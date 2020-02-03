@@ -1,9 +1,9 @@
-[English README](https://github.com/EasyChart/Beautiful-Visualization-with-R/blob/master/README-en.md)  
+
 # 《python数据可视化之美》配套代码
 <p>
-    <img src="https://github.com/EasyChart/EasyCharts/blob/master/Pics/RV.jpg" alt="微信公众号"  width="300">
+    <img src="https://github.com/EasyChart/EasyCharts/blob/master/Pics/python.png" alt="微信公众号"  width="300">
 </p>
-本书预计上市时间为：2020年3月
+###本书预计上市时间为：2020年3月
 
 本书主要介绍如何使用python中的matplotlib、seaborn、plotnine、geoplot等包绘制专业图表。本书先介绍了python语言编程基础知识，以及使用numpy和pandas两个包的数据操作方法；再对比了matplotlib、seaborn和plotnine三个包的图形语法。本书系统性地介绍了使用matplotlib、seaborn和plotnine绘制类别对比型、数据关系型、时间序列型、整体局部型、地理空间型等常见的二维和三维图表的绘制方法。另外，本书也介绍了商业图表与学术图表的规范与差异，以及如何使用matplotlib包绘制HTML交互页面动画。更多精彩内容可以浏览我们的EasyCharts网站，包括书籍中忍痛割移的地理空间数据可视化部分：http://www.easycharts.club/
 
