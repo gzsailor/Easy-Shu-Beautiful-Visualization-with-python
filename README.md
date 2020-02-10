@@ -17,7 +17,7 @@ python作为免费的开源软件，数据分析与可视化的包更新迭代�
 </p>
 
 
-### 欢迎关注我们的微信公众号：EasyCharts
+### 欢迎关注我们的微信公众号：EasyShu
 <p>
     <img src="https://github.com/EasyChart/EasyCharts/blob/master/Pics/WPN.jpg" alt="微信公众号"  width="250" height="250">
 </p>
