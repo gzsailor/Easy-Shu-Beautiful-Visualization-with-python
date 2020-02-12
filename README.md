@@ -1,7 +1,7 @@
 
 # 《python数据可视化之美》配套代码
 <p>
-    <img src="https://github.com/Easy-Shu/EasyShu-WeChat/blob/master/%E3%80%90Python%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96%E4%B9%8B%E7%BE%8E%E3%80%91.png" alt="微信公众号"  width="500">
+    <img src="https://github.com/Easy-Shu/EasyShu-WeChat/blob/master/%E3%80%90Python%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96%E4%B9%8B%E7%BE%8E%E3%80%91.png" alt="微信公众号"  width="1000">
 </p>
 ###本书预计上市时间为：2020年3月
 
