@@ -1,0 +1,2696 @@
+
+
+
+
+
+
+ 
+
+ 
+
+目录
+第一章python编程基础	4
+1.1 python基础知识	4
+1.2 六种常用数据结构	4
+1.2.1 列表	4
+1.2.2 字典	5
+1.3 三类语句与控制流	5
+1.4 函数	5
+1.5 类	6
+第二章 数据处理基础	7
+2.1 numpy：数值运算	7
+2.2 pandas: 表格处理	8
+表格的变换	10
+2.1.2 变量的变换	10
+2.1.3 表格的排序	11
+2.2 表格的整理	11
+2.2.1 表格的拼接	11
+2.2.2表格的融合	12
+第三章 数据可视化基础	18
+3.1 Matplotlib	18
+3.2 Seaborn	18
+3.3 plotnine	18
+第四章 类别比较型图表	19
+第五章 数据关系型图表	19
+第六章 数据分布型图表	20
+5.1 统计直方图和核密度估计图	21
+5.1.1 统计直方图	21
+5.1.2 核密度估计图	21
+5.2数据分布图表系列	23
+5.2.1 散点分布图系列	24
+5.5.2 柱形分布图系列	26
+5.2.3 箱型图系列	27
+5.2.4 其他图表	31
+5.3 二维核密度估计图和统计直方图	35
+5.3.1 二维统计直方图	35
+5.3.2 二维核密度估计图	36
+第七章 局部整体型图表	41
+第八章 时间序列型图表	41
+第九章 高维数据型图表	41
+
+?
+第一章python编程基础
+1.1 python基础知识
+1.2 六种常用数据结构
+1. 数字(number): 用于储存数值；
+2. 字符串(string): 由数值、字母、下划线组成的一串字符；
+3. 列表(list): 一维序列，变长，其内容可以进行修改，用“[ ]”标识；
+4. 元组(tuple): 一维序列，定长、不可变，内容不能修改，用“( )”标识；
+5. 字典(dict): 最重要的内置结构之一，大小可变的键值对集，其中键(key)和值(value)都是python对象，用“{ }”
+6. 集合(set): 由唯一元素组成的无序集，可看成只有键没有值的字典。
+
+1.2.1 列表
+列表方式可以通过“列表对象.列表方法(参数)”的方式调用。主要方法如下表所示。
+List1=[3, 2, 4]
+List2=['c', 'b', 'd']
+List3=List1+List2: [3, 2, 4, 'c', 'b', 'd']
+方法	作用	返回值	示例	结果
+append	在列表末尾添加新的元素	无	List1.append(2); List
+List2.append('b'); List2	[3, 2, 4, 2]
+['c', 'b', 'd', 'b']
+count	统计某个元素在列表中出现的次数	有	List1.count(2)
+List2.count('b')	2
+2
+extend	在列表的末尾一次性追加另一个列表的多个值	无	List1.extend([3,1]); List1
+List2.extend(['c', 'a']); List2	[3, 2, 4, 2, 3, 1]
+['c', 'b', 'd', 'b', 'c', 'a']
+index	从列表中找出某个值第一个匹配项的索引位置	有	List2.index('b')	2
+insert	将对象插入列表	无	List2.insert(0, 'e'); List2	['e', 'c', 'b', 'd', 'b', 'c', 'a']
+pop	移除列表中的一个元素(默认最后一个)	有	List2.pop()	'a'
+remove	移除列表中某个值的匹配项	无	List2.remove(‘c’); List2	['e', 'b', 'd', 'b', 'c']
+reverse	将列表中的元素反向存放，该方法无参数	无	List2.reverse(); List2	['c', 'b', 'd', 'b', 'e']
+sort	在原位置对列表进行排序	无	List2.sort(); List2	['b', 'b' 'c', 'd', 'e', ,]
+
+
+
+
+1.2.2 字典
+
+方法	作用	示例	结果
+clear	清楚字典中所有的项，无返回值	dc={‘Age’: 30, ‘Gender’:’Female’}
+dc.clear()
+dc	{ }
+copy	返回一个具有相同键-值对的新字典(浅复制)	dc={‘Age’: 30, ‘Gender’:’Female’}
+dc_c=dc.copy()
+dc_c	{‘Age’: 30, ‘Gender’:’Female’}
+fromkeys	使用给定的键建立新的字典，每个键都对应一个默认的值none	seq=(‘Age’,’Weight’)
+dc.fromkeys(seq, 30)
+dc.fromkeys(seq)	{‘Age’: 30, ‘Weight’: 30 }
+{‘Age’: none, ‘Weight’: none}
+get	类似于d[k]引用字典的值，当访问一个不存在的键时，不会发生异常，而得到none值，而且可以自定义默认值	dc.get(‘Age‘)
+dc.get(‘age‘, ‘Key NOT Found!’)	30
+‘Key NOT Found!’
+has_key	检查字典中是否含有特定的键	dc. has_key (‘age‘)	False
+items	将字典所有的项以列表方式返回，列表中的每一项都表示为(键，值)的形式	dc.items	[(‘Age’: 30),
+( ‘Gender’:’Female’)]
+iteritems	作用与items大致相同，返回一个迭代器对象而不是列表	for i in dc.iteritems():
+   print i	(‘Age’: 30),
+( ‘Gender’:’Female’)
+keys	将字典中的键以列表形式返回	dc.keys()	[‘Age’, ‘Gender’]
+pop 	用来获得对应于给定键的值，然后将这个键-值对从字典中移除	dc.pop (‘Gender’)
+dc	‘Female’
+{‘Age’: 30}
+popitem	类似于list.pop，弹出随机的项	dc.popitem()	(‘Gender’:’Female’)
+update	利用一个字典项更新另外一个字典	dc_up={‘Height’: 1.75,’Wight’: 65}
+dc.update(dc_up)
+dc	{‘Age’: 30, ‘Gender’:’Female’, ‘Height’: 1.75,’Wight’: 65}
+
+1.3 三类语句与控制流
+
+1.4 函数
+
+1.5 类
+
+?
+第二章 数据处理基础
+2.1 numpy：数值运算
+NumPy是Numerical Python的简称，是高性能计算和数据分析的基础包。“ndarray”是NumPy的核心功能，其含义为n-dimensional array，即多维数组。数组与列表之间的首要区别在于：数组是同类的，即数组的所有元素必须具有相同的类型。相反，列表可以包含任意类型的元素。
+
+import numpy as np
+
+2.1.1 数组的创建
+表1-4-1 数组的创建
+输入	输出	描述
+np.array([1,2,3],dtype=float)	array([1., 2., 3.])	创建一维数组
+np.array([[1,2,3],[3,5,1]])	array([[1, 2, 3],
+     [3, 5, 1]])	创建二维数组
+np.arange(0,3,1)	array([0, 1, 2])	步长为0.5的等差数列
+np.linspace(0,3,4)	array([0., 1., 2., 3.])	将一个向量重复3次
+np.repeat([1,2],2)	array([1, 1, 2, 2])	数组元素的连续重复复制
+np.tile([1,2],2)	array([1, 2, 1, 2])	数组元素的连续重复复制
+np.ones((3,))	array([1., 1., 1.])	np.ones_like()
+np.zeros((3,))	array([0., 0., 0.])	np.zeros_like()
+np.random.random(3)	array([0.24, 0.74, 0.95])	0~1之间的随机数
+np.random.randn(3)	array([-1.44,  0.39,  1.8 ])	标准正态分布
+np.random.normal(loc=0,scale=1,size=3)	array([ 0.55, -2.03, -0.21])	均值为0，标准差为1的正态分布
+
+numpy数组扩展函数repeat和tile用法
+numpy数组扩展函数有repeat和tile，由于数组不能进行动态扩展，故函数调用之后都重新分配新的空间来存储扩展后的数据。
+repeat函数功能：对数组中的元素进行连续重复复制，用法有两种：
+(1) numpy.repeat(a, repeats, axis=None)
+(2) a.repeats(repeats, axis=None)
+其中a为数组，repeats为重复的次数，axis表示数组维度
+import numpy as np
+>>> a = np.arange(10)  
+>>> a  
+array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])  
+>>> a.repeat(5) 
+array([0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 4, 4, 4,  
+      4, 4, 5, 5, 5, 5, 5, 6, 6, 6, 6, 6, 7, 7, 7, 7, 7, 8, 8, 8, 8, 8, 9,  
+      9, 9, 9, 9])  
+https://docs.scipy.org/doc/numpy/reference/generated/numpy.repeat.html
+
+tile函数功能：对整个数组进行复制拼接,用法：
+numpy.tile(a, reps)
+其中a为数组，reps为重复的次数
+>>> np.tile(a,2)  
+array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9])  
+https://docs.scipy.org/doc/numpy/reference/generated/numpy.tile.html#numpy.tile 
+
+2.1.2 数组的索引
+a=np.arange(6).reshape(3,2)
+a=np.reshape(np.arange(6),(3,2)) 
+
+?
+语句	示例	语句	示例
+数组的构建：
+a=np.arange(6).reshape(3,2)	 	选取某一列：
+a[:,1]	 
+选取多列：
+a[:,[0,1]]	 	选取某一行：
+a[1,:]	 
+选取多行：
+a[[0,1],:]	 	选取某个元素：
+a[1,1]	 
+单条件过滤：
+a[a[:,1]>2,]	 	多条件过滤：
+a[(a[:,1]>2) & (a[:,1]<4),]	 
+选取某一列：
+a.reshape(2,3)	 	选取多行：
+a.T	 
+选取多列：
+a.flatten()	 	选取某一行：
+a.ravel()	 
+
+语句	示例		语句	示例
+a=np.arange(6).reshape(3,2)	 		np.hstack((a,b))
+np.concatenate((a,b),axis=1)
+np.append(a,b,axis=1)	 
+b=np.arange(9).reshape(3,3)	 		np.vstack((b,c))
+np.concatenate((b,c),axis=0)
+np.append(b,c,axis=0)	 
+c=np.arange(6).reshape(2,3)	 		np.append(a,c)	 
+
+表1-4-1 简单统计函数
+函数	输出
+np.mean, np.average	计算平均值、加权平均值
+np.var	计算方差
+np.std	计算标准差
+np.min,np.max	计算最小值、最大值
+np.argmin,np.argmax	返回最小值、最大值对的索引
+np.ptp	计算全距，即最大值与最小值的差
+np.percentile	计算百分位在统计对象中的值
+np.median	计算统计对象的中值
+np.sum	计算统计对象的和
+
+2.2 pandas: 表格处理
+Pandas提供了三种数据类型，分别是Series、DataFrame和Panel。其中Series用于保存一维数据，DataFrame用于保存二维数据，Panel用于保存三维或者可变维数据。平常的数据分析最常用的数据类型为Series和DataFrame，而Panel较少用到。
+
+import pandas as pd
+import numpy as np
+
+2.2.1	Series的创建
+Series本质是一个含有索引的一维数组，看起来，其包含一个左侧可以自动生成（也可以手动指定）的index和右侧的values值，分别使用 s.index s.values 进行查看。index返回一个index对象，而values则返回一个array。
+Series就是一个带有索引的列表，为什么我们不使用字典呢? 一个优势是，Series更快，其内部是向量化运行的，和迭代相比，使用Series可以获得显著的性能上的优势。
+	语句1	语句2
+代码	s=pd.Series([1,3,2,4])	s=pd.Series([1,3,2,4],index=['a', 'b','c','d'])
+s.values	array([1, 3, 2, 4], dtype=int64)	array([1, 3, 2, 4], dtype=int64)
+s.index	RangeIndex(start=0, stop=4, step=1)	Index(['a', 'b', 'c', 'd'], dtype='object')
+
+2.2.2 DataFrame的创建
+使用list创建DataFrame：
+df=pd.DataFrame([['a', 1, 2], ['b', 2, 5], ['c', 3, 3]], columns=['x','y','z'])
+使用字典创建DataFrame：
+df=pd.DataFrame({'x': ['a', 'b','c'],'y':range(1,4), 'z':[2,5,3]})
+df=pd.DataFrame(dict(x=['a', 'b','c'],y=range(1,4), z=[2,5,3]))
+
+但是需要注意的是：数据框的行索引默认是从0开始的。
+表1-4-2 数据框数据的选取
+语句	示例	语句	示例
+数据框的构建：
+df=pd.DataFrame({'x': ['a', 'b','c'], 'y':range(1,4),  'z':[2,5,3]})	 	选取某一列：
+df['y']
+df.y
+df.loc[:,['y']]
+df.iloc[:,[1]]	 
+选取多列：
+df[['x','y']]
+df.loc[:,['x','y']]
+df.iloc[:,[1,2]]	 	选取某一行：
+df.loc[1,:]
+df.iloc[1,:]	 
+选取多行：
+df.loc[[0,1],:]
+df.iloc[[0,1],:]	 	选取某个元素：
+df.loc[1,'y']
+df.loc[[1],['y']]
+df.iloc[1,1]	 
+单条件过滤：
+df[df.z>=3]	 	多条件过滤：
+df[(df.z>=3) & (df.z<=4)]
+df.query('z>=3 & z<=4')	 
+
+?	获取数据框的行数、列数和维数：df.shape[0] 或 len(df) , df.shape[1], df.shape
+?	获取数据框的列名或行名：df.columns, df.index；重新定义列名：df.columns =["X", "Y", "Z"]，或者重新更改某列的列名：df.rename(columns={'x':'X'},inplace=True), 注意如果缺少inplace选项则不会更改，而是增加新列。
+?	观察数据框的内容：df.info()，df.head()，df.tail()
+
+空数据框的创建在需要自己构造绘图的数据框数据信息时，尤为重要。有时候，绘制复杂的数据图表时，我们需要对现有的数据就行插值、拟合等处理时，需要使用空的数据框储存新的数据，最后使用新的数据框绘制图表。创建空的数据框的方法很简单：
+df_empty= pd.DataFrame( columns=['x','y','z'])
+
+a = ['A','B','C']
+b = [5,7,9]
+X,Y=np.meshgrid(a,b)
+df_grid =pd.DataFrame({'x':X.flatten(),'y':Y.flatten()})	 
+
+
+1.4.2.2 因子 (factor)
+因子 (factor) 是 R 语言中许多强大运算的基础，包括许多针对表格数据的运算，可分为类别型变量和有序型变量。因子可以看成是包含了额外信息的向量，这额外的信息就是不同的类别，称之为水平 (level)。因子在R中非常重要，因为它决定了数据的分析方式以及如何进行视觉呈现。
+(1) 因子的创建
+一个因子不仅包括分类变量本身还包括变量不同的可能水平(即使它们在数据中不出现)。因子函数factor用下面的选项创建一个因子。对于字符型向量，因子的水平levels默认依字母顺序创建: (Fair,Good, Ideal, Premium, Very Good)
+Cut=["Fair","Good","Very Good","Premium","Ideal"]
+Cut_Facor1=pd.Categorical(Cut)
+(2) 水平的更改
+很多时候，按默认的字母顺序排序的因子很少能够让人满意。因此，可以指定levels选项来覆盖默认排序。更改因子向量的levels为[Good, Fair, Very Good, Ideal, Premium]，就需要使用factor()函数更改levels。
+Cut_Facor2=pd.Categorical(["Fair","Good","Very Good","Premium","Ideal"],
+                 categories=["Good","Fair","Very Good","Ideal","Premium"], 
+                 ordered=Fasle)
+
+Cut=pd.Series(["Fair","Good","Very Good","Premium","Ideal"])
+Cut_Facor2=Cut.astype("category",categories=["Good","Fair","Very Good","Ideal","Premium"],ordered=True)
+当ordered=True时，Categories 为有序的[Good < Fair < Very Good < Ideal < Premium]
+(3)类型的转换
+数值型因子向量的类型变换。有时候我们需要将数值型的因子向量重新转换成数值型向量，这时，我们需要使用as.numeric(as.character())组合函数，而不能直接使用as.numeric()函数。其中as.character()函数表示将向量变成字符型，as.numeric()函数表示将向量变成数值型。
+	Cut_Facor1的factorize	Cut_Facor2的factorize
+语句	labels1, uniques1 = pd.factorize(Cut_Facor1,sort=True)	labels2, uniques2 = pd.factorize(Cut_Facor2,sort=True)
+Cut_Facor	[Fair, Good, Very Good, Premium, Ideal]
+Categories (5, object): [Fair, Good, Ideal, Premium, Very Good]	[Fair, Good, Very Good, Premium, Ideal]
+Categories (5, object): [Good, Fair, Very Good, Ideal, Premium]
+labels	array([0, 1, 4, 3, 2], dtype=int64)	array([1, 0, 2, 4, 3], dtype=int64)
+uniques	[Fair, Good, Ideal, Premium, Very Good]
+Categories (5, object): [Fair, Good, Ideal, Premium, Very Good]	[Good, Fair, Very Good, Ideal, Premium]
+Categories (5, object): [Good, Fair, Very Good, Ideal, Premium]
+
+表格的变换
+使用R ggplot2绘图时，通常使用一维数据列表的数据框。但是如果有时候导入的数据表格是二维数据列表时，我们需要使用reshape2包的melt()函数或者tidyr包的gather()函数，可以将二维数据列表的数据框转换成一维数据列表。我们首先构造数据框df：
+df=pd.DataFrame({'X': ['A', 'B','C'],'2010':[1,3,4], '2011':[3,5,2]})
+(1) 宽数据转换为长数据，将多行聚集成列，从而二维表变成一维表：
+?	df_melt=pd.melt(df,id_vars='X',var_name='year',value_name='value')
+其中，id.vars ("x")表示由标识变量构成的向量，用于标识观测的变量；variable.name ("year")表示用于保存原始变量名的变量的名称；value.name("value")表示用于保存原始值的名称。
+(2) 长数据转换为宽数据，将一列根据变量展开为多行，从而一维表变二维表：
+df_pivot=df_melt.pivot_table(index='X', columns='year', values='value')
+df_pivot=df_pivot.reset_index()
+其中，dcast借助于公式来描述数据的形状 id.vars~variable.name，左边参数表示id.vars ("x")，而右边的参数表示需要variable.name ("year")。
+
+ 
+
+2.1.2 变量的变换
+有时候，我们需要对数据框某列每个元素都作运算处理，从而产生并添加新的列。我们可以使用R语言内置函数transform()为原数据框添加新的列，可以改变原变量列的值，也可以赋值NULL删除列变量：
+df_melt['value1']=df_melt['value'].transform(lambda x: x + 1)
+    我们也可以结合向量话的条件语句ifelse()作更加复杂的运算。另外，dplyr包的mutate()也能实现与transform()函数相同的功能。但是mutate()函数很好的解决了transform函数不能解决的问题，即mutate函数，允许新列对刚刚建立起来的列进行计算。
+df_melt['value2']=df_melt.transform(lambda x: x['value']*2 if x['year']=="2011" else x['value'],axis=1)
+df_melt['value2']=df_melt.apply(lambda x: x['value']*2 if x['year']=="2011" else x['value'],axis=1)
+ 
+图2-1-2 变量变换的示意案例
+apply, applymap和map方法均可以对对象中的数据传递函数操作，主要区别如下：
+?	apply的操作对象是DataFrame的某一列或者某一行；
+?	applymap是元素级，作用于每个DataFrame的每个数据；
+?	map也是元素级，对Series中的每个数据调用一次函数。
+2.1.3 表格的排序
+我们可以使用sort()函数对向量排序处理。对于数据框，我们也可以使用dplyr包的arrange()函数，根据数据框的某列数值对整个表排序。其中desc(value)表示根据df的value列作降序处理，如dat_arrange2数据框所示。
+dat_sort1=df_melt.sort_values(by='value',ascending=True)
+
+dat_sort2=df_melt.sort_values(by='value',ascending=False)
+
+dat_sort3=df_melt.sort_values(by=['year','value'],ascending=True)
+      
+图2-2-3 表格排序的示意案例
+
+2.2 表格的整理
+2.2.1 表格的拼接
+有时候，我们需要在已有数据框的基础上添加新的行或者列、或者横向或纵向添加另外一个表格。此时我们需要使用R内置函数cbind()和rbind()函数，或者dplyr包的bind_cols()和bind_rows()函数实现该功能。先构造3个数据框如下：
+df1=pd.DataFrame(dict(x= ["a","b","c"], y=range(1,4)))
+df2=pd.DataFrame(dict(z= ["B","D","H"], g =[2,5,3]))
+df3=pd.DataFrame(dict(x= ["g","d"], y =[2,5]))
+(1) 数据框添加列或者横向添加表格：
+dat_cbind=pd.concat([df1,df2],axis=1)
+axis表示沿纵轴(axis=0)或者横轴(axis=1)方向连接
+(2) 数据框添加行或者纵向添加表格：
+dat_rbind=pd.concat([df1,df3],axis=0) 
+dat_rbind=df1.append(df3)
+ 
+图2-2-1 表格拼接的示意案例
+
+2.2.2表格的融合
+有时候两个数据框并没有保持很好的一致，一致不能简单地使用cbind()或rbind()函数直接拼接。所以它们需要一个共同的列(common key)作为融合的依据。在表格的融合中，最常用的函数是R内置函数merge()和dplyr包的*_join()系列函数。我们首先构造4个数据框如下：
+df1=pd.DataFrame(dict(x= ["a","b","c"], y=range(1,4)))
+df2=pd.DataFrame(dict(x= ["a","b","d"], z =[2,5,3]))
+df3=pd.DataFrame(dict(g= ["a","b","d"], z =[2,5,3]))
+df4=pd.DataFrame(dict(x= ["a","b","d"], y=[1,4,2],z =[2,5,3]))
+ 
+图2-2-2 表格融合的示意案例
+(1) merge()函数
+优势在于对于每个数据框可以指定不同的匹配列名；缺点在于运行速度比较慢。其中，by.x是指左边数据框的匹配列，by.y是指右边数据框的匹配列。
+?	dat_merge1 <-merge(df1,df2,by="x", all = TRUE) 
+?	dat_merge2 <-merge(df1,df3,by.x="x",by.y="g") 
+?	dat_merge3 <-merge(df1,df4,by=c("x","y"), all = TRUE) 
+ 
+图2-2-3 merge()函数融合表格的示意案例
+(2)*_join()系列函数
+dplyr包提供了left_join(), right_join(), inner_join()和full_ join()四个函数可以实现不同的表格融合效果。其中， full_ join()主要用来生成两个集合的并集；inner_join()通常用来生成有效的数据 ；left_join()和right_join()使用的场景偏少。另外，两个表格融合会用缺失值NA代替不存在的值。
+?	只保留左表的所有数据：
+dat_merge1=pd.merge(left=df1,right=df2,how="left",on="x")
+?	只保留右表的所有数据：
+dat_merge2=pd.merge(left=df1,right=df2,how="right",on="x")
+?	只保留两个表中公共部分的信息：
+dat_merge3=pd.merge(left=df1,right=df2,how="inner",on="x")
+?	保留两个表的所有信息：
+dat_merge4=pd.merge(left=df1,right=df2,how="outer",on="x")
+ 
+图2-2-4   *_join()系列函数融合表格的示意案例
+
+?	by=c("x","y")表示多列匹配：
+dat_merge5=pd.merge(left=df1,right=df4,how="left",on=["x","y"])
+?	by=c("x"="g")可以根据两个表的不同列名合并：
+dat_merge6=pd.merge(left=df1,right=df3,how="left", left_on="x", right_on="g")
+?	如果和表合并的过程中遇到有一列两个表都同名，但是值不同，合并的时候又都想保留下来，就可以用suffixes给每个表的重复列名增加后缀：
+dat_merge7=pd.merge(left=df1,right=df4,how="left", on="x",suffixes=[".1",".2"])
+ 
+图2-2-5  *_join()系列函数复杂融合表格的示意案例
+
+
+1.	分组操作
+数据框往往存在某列包含多个类别的数据，如df$X包含A、B和C三个不同类别的数据，df_melt$year包含2010和2011两个类别的数据。我们有时候需要对数据框的列或者行，亦或者按数据类别作分类运算处理等，此时数据的分组操作就尤为重要。先构造两个数据框如下：
+df = pd.DataFrame({'x': ['A','B','C', 'A', 'C'],'2010':[ 1,3,4,4,3], '2011':[3,5,2,8,9]})
+df_melt=pd.melt(df,id_vars=['x'],var_name='year',value_name='value')
+ 
+df_melt.info()
+ 
+如果需要将year变成int格式，则需要：df_melt[["year"]]= df_melt[["year"]].astype(int)
+
+(1) 按行或列操作
+df_rowsum= df[['2010','2011']].apply(lambda x: x.sum(), axis=1)
+df_colsum= df[['2010','2011']].apply(lambda x: x.sum(), axis=0)
+
+df_group_mean1=df_melt.groupby('year').mean()
+df_group_sum= df_melt.groupby('year').sum()
+df_group_std= df_melt.groupby('year').std()
+ 
+df_group_mean2=df_melt.groupby(['year','x'],as_index=False).mean()
+ 
+
+(2) aggregate:分组聚合，结合groupby与agg实现SQL中的分组聚合运算操作，需要使用相应的聚合函数
+df_group1=df_melt.groupby(['x','year']).aggregate({ np.mean,  np.median})
+df_group2=df_melt.groupby(['x','year']).agg({'value':{'mean': np.mean, 'median': np.median}})
+
+df_group3=df_melt.groupby(['x','year'], as_index=False).agg({'value':{'mean': np.mean, 'median': np.median}})
+    
+(3) transform:分组运算:，可以结合groupby与transform来方便地实现类似SQL中的聚合运算的操作
+df_melt['percentage'] = df_melt.groupby('x')['value'].transform(lambda x: x / x.sum())
+
+(4)  filter:分组筛选:
+df_filter=df_melt.groupby('x').filter(lambda x: x['value'].mean()>4)
+
+(5) apply:单列运算-在Pandas中，DataFrame的一列就是一个Series, 可以通过map来对一列进行操作
+df['2010_2'] = df['2010'].apply(lambda x: x + 2)
+#多列运算:要对DataFrame的多个列同时进行运算，可以使用apply
+df['2010_2011'] = df.apply(lambda x: x['2010'] + 2 * x['2011'], axis=1)
+
+17.数据的导入导出
+我们大部分的时候都是直接使用外部保存的数据文件，再使用它绘制图表。此时，我们就需要借助数据导入函数导入不同格式的数据，包括csv、txt、Excel、SQL、HTML等。有时候，我们也需要将处理好的数据从R语言中导出保存。其中，我们在数据可视化中使用最多的就是前3种格式的数据文件。
+(1) csv格式数据的导入与导出
+使用read.csv()函数，可以读入.csv格式的数据，并为data.frame格式存储。需要注意是：当stringsAsFactors=TRUE时，R会自动将读入的字符型变量转换成因子，但是这样很容易导致数据只是按字母默认顺序展示。在导入大批量数据时，为了提高性能，尽可能分两步走： (1) 显式指定“stringsAsFactors = FALSE”； (2) 依次将所需要的数据列(向量)转换为因子。
+
+df=pd.read_csv("Data.csv",sep=",",encoding="utf8",header=0)
+
+根据所读取的数据文件编码格式设置encoding参数，如utf8，ansi和gbk等编码方式。根据所读取的数据文件列之间的分割方式设定delimiter参数，大于一个字符的分隔符被看作正则表达式，如一个或者多个空格(\s+)、tab符号(\t)等。
+
+
+使用write.csv()函数, 可以将data.frame的数据存储为csv文件
+
+df.to_csv("Data.csv",index=False,header=True)
+index=False，表示忽略索引信息；index=True，表示输出文件的第一列保留索引值。
+
+csv文件的特点主要有以下几个：1.文件结构简单，基本上和txt文本的差别不大；2.可以和Excle进行转换，这是一个很大的优点，很容易进行察看模式转换，但是其文件存储大小比Excel小。3.由于其简单的存储方式，一方面可以减少存储信息的容量，这样有利于网络传输以及客户端的再处理；同时由于是一堆没有任何说明的数据，具备基本的安全性。所以相比于txt和excel数据文件，我们更加推荐使用.csv格式的数据文件，进行导入与导出操作。
+(3) Excel
+ 
+
+1.4.4.2 缺失值的处理
+有时候，我们导入的数据存在缺失值。另外，在统计与计算中，缺失值也起着至关重要的作用。R语言中主要有两种类型的缺失数据：NULL和NA。
+(1)	NA
+R中使用NA代替缺失数据，作为向量中的另外一种元素出现。我们可以使用is.na()函数用于检查向量或数据框中的每个元素是否为缺失值。我们先构造一个含有缺失数据的数据框，然后讲解使用tidyr包实现常用的缺失数据处理方法。
+
+
+
+
+
+ID	代码	示意
+1	直接删除带NA的行：
+df_NA1=df.dropna(axis=0)	 
+2	使用最邻近的元素填充NA：
+df_NA2=df.fillna(method="ffill")	 
+3	使用指定的数值替代NA:
+df_NA3=df.fillna(2)	 
+
+
+?
+第三章 数据可视化基础
+
+
+     
+图1-5-1 Matplotlib图形系统绘制的图表示例
+     
+图1-5-2 Seaborn包绘制的图表示例
+
+       
+图1-5-3 plotnine包绘制的图表示例
+
+使用base、lattice和ggplot2包绘制的散点图、统计直方图和箱型图具体代码如表1-5-1所示。df是一个包含SOD、tau和Class(Control、Impaired和Uncertain)三列的数据框data.frame。其中，base和lattice绘制函数最大的问题就是参数繁多、条理不清。而ggplot2语法相对来说很清晰，可以绘制很美观的个性化图表。本书将会以图表类型为导向，详细地介绍常用的图表绘制方法，以ggplo2图形语法为主，但是有时候也会使用base和lattice等图形语法。
+
+表1-5-1 不同图形语法的代码示例
+图形
+语法	散点图	统计直方图	箱型图
+Matplotlib	plt.scatter(df['SOD'], df['tau'], c='black', s=15,  marker='o')	plt.hist(df['SOD'], 30, density=False, facecolor='w',edgecolor="k")	
+labels=np.unique( df['Class'])
+all_data = [df[df['Class']==label]['SOD'] for label in labels]
+plt.boxplot(all_data, widths=0.6, notch=False,labels=labels)   
+Seaborn	sns.relplot(x="SOD", y="tau", data=df,color='k')	sns.distplot(df['SOD'], kde=False, bins=30, hist_kws=dict(edgecolor="k", facecolor="w",linewidth=1,alpha=1))	sns.boxplot(x="Class", y="SOD", data=df, width =0.6,palette=['w'])
+plotnine	(ggplot(df, aes(x='SOD',y='tau')) + geom_point())	(ggplot(df, aes(x='SOD')) + geom_histogram(bins=30,colour="black",fill="white"))	(ggplot(df, aes(x='Class',y='SOD'))+ 
+  geom_boxplot(show_legend=False))
+
+
+3.1 Matplotlib
+https://matplotlib.org/
+https://matplotlib.org/tutorials/index.html
+
+figure(图形)、axes(子图形)、title(标题)、legend(图例)、Major tick(大标尺刻度)、Minor tick(小标尺刻度)、Major tick label(大标尺刻度数值)、Minor tick label(小标尺刻度数值)、Y axis label(y轴指标说明)、X axis label(x轴指标说明)、Line(线型图)、Markers(数据标注点)、Grid(格子)等等。
+matplotlib图形的几个主要对象：
+
+1.	Figure对象：整个图形即是一个Figure对象。Figure对象至少包含一个子图，也就是Axes对象。Figure对象包含一些特殊的Artist对象，如title标题、图例legend。Figure对象包含画布canvas对象。 canvas对象一般不可见，通常无需直接操作该对象，matplotlib程序实际绘图时需要调用该对象。
+2.	Axes对象：字面上理解，axes是数据轴axis的复数，但它并不是指数据轴，而是子图对象。可以这样理解，每一个子图都有x和y轴，axes则用于代表这两个数据轴所对应的一个子图对象。常用方法：set_xlim()以及set_ylim()：设置子图x轴和y轴对应的数据范围。set_title()：设置子图的标题。set_xlabel()以及set_ylable()：设置子图x轴和y轴指标的描述说明。
+3.	Axis对象：Axis是数据轴对象，主要用于控制数据轴上刻度位置和显示数值。Axis有Locator和Formatter两个子对象，分别用于控制刻度位置和显示数值。
+4.	Artist对象：基本上所有的对象都是一个Artist对象，包括Figure对象、Axes对象和Axis对象，可以将Artist理解为一个基本类。当提交代码，图像最终呈现时，所有的artist对象都会绘制于canvas画布上。
+ 
+matplotlib有许多不同的样式可用于渲染绘图，可以用plt.style.available查看系统中有哪些可用的样式。使用plt进行绘图固然很方便，但是有时候我们需要细微调整，一般需要使用：
+plt.gca() 返回当前状态下的Axes对象，Fig.gca()的Alias
+plt.gca().get_children() 方便查看当前Axes下的元素
+plt.gcf() 返回当前状态下的Figure对象,一般用以遍历多个图形的
+Axes(plt.gcf().get_axes())。另一种方法是使用Axes矩阵的索引抽取子Plot的Axes。
+
+
+ID	函数	核心参数说明	图表类型
+1	plot()	x,y, color(线条颜色)，linestyle (线条类型), linewidth (线条宽度), marker(标记类型)，markeredgecolor(标记边框颜色)，markeredgewidth(标记边框宽度)，markerfacecolor(标记填充颜色)，markersize(标记大小)，lable(线条标签)	折线图、带数据标记的折线图
+2	scatter()	x,y,s(散点大小),c(散点颜色),label, marker(散点类型), linewidths(散点边框宽度), edgecolors(散点边框颜色)	散点图、气泡图
+3	bar()	x, height (柱形高度), width(柱形宽度), align(柱形位置), color(填充颜色), edgecolor(柱形边框颜色), linewidth(柱形边框宽度)	柱形图、堆积柱形图
+4	barh	y, height (柱形高度), width(柱形宽度), align(柱形位置), color(填充颜色), edgecolor(柱形边框颜色), linewidth(柱形边框宽度)	条形图、堆积条形图
+5	stackplot()	x,y, baseline(基准线), colors(填充颜色)，labels(标签)
+面积图、堆积面积图、量化波形图
+6	pie()	x,colors(填充颜色)，labels(标签)
+饼图
+7	errorbar()	x,y,yerr(y轴方向误差范围),xerr(x轴方向误差范围), fmt(数据点的标记和连接样式),ecolor(误差棒颜色),elinewidth(误差棒宽度),ms(数据点大小),mfc(数据点标记填充颜色),mec(数据点标记边缘颜色), capthick(误差棒横杠的粗细),capsize(误差棒横杠的大小)	误差棒
+8	hist()	x, bins (箱的总数), range(统计范围), density(是否为频率统计), align (柱形位置), color(颜色) , label (标签)	统计直方图
+9	boxplot()	x, notch(有无凹槽), sym(散点形状), vert(水平或竖直方向), widths(箱型宽度), labels (数据标签)	箱型图
+10	axhline()
+axvline()	y, xmin, xmax, 或 (x, ymin, ymax), color, linestyle (线条类型), linewidth (线条宽度), label (数据标签)	垂直于x轴直线，
+垂直于y轴直线
+11	axhspan()
+axvspan()	ymin, ymax, 或 (xmin, xmax), alpha, facecolor(填充颜色), edgecolor(边框颜色), label, linestyle, linewidth 
+垂直于x轴矩形方块，
+垂直于y轴矩形方块
+
+
+ID	函数	核心参数说明	功能
+1	title()	str(图名), fontdict (文本格式，包括字体大小，类型等)	设置标题
+2	xlabel(),ylabel()	xlabel(x轴名)或ylabel(y轴名) 	设置x轴和y轴的标题
+3	axis(),xlim(),ylim()	xmin, xmax 或 ymin, ymax	设置x轴和y轴的范围
+4	xticks(),yticks()	ticks(刻度数值), labels(刻度名称), fontdict 	设置x轴和y轴刻度
+5	grid()	b(有无网格线), which(主次网格线), axis(x和y轴网格线), color, linestyle, linewidth, alpha(透明度)	设置x轴和y轴的主要和次要网格线
+6	legend()	loc(位置),edgecolor, facecolor, fontsize	控制图例显示
+7	text()	x, y, s(文本), fontdict 	在指定位置放置文本
+8	annotate()	s(文本), xy(标注点的位置), xytext(标注文本位置), arrowprops (箭头属性)	在指定的数据点上添加文本标注
+9	figure()	figsize (图像尺寸), dpi(分辨率)	
+10	subplot()	Nrows(行), ncols (列), index(位置), projection(投影方式), polar(是否为极坐标), xlim, xticklabels, xticks, ylim, yticklabels, yticks	绘制多个子图形，并设定其投影方式与图表格式
+11	subplot2grid()	shape(行列数), loc(位置), rowspan, colspan	
+
+
+df=pd.read_csv("MappingAnalysis_Data.csv")
+
+图示	代码
+ 	group=["0%(Control)","1%","5%","15%"]
+fig =plt.figure(figsize=(4,3), dpi=100)
+
+for i in range(0,4):
+    temp_df=df[df.variable==group[i]]
+    plt.plot(temp_df.Time, temp_df.value)
+plt.show()
+ 	colors=['#e41a1c','#377eb8','#4daf4a','#984ea3']
+markers=['o','s','H','D']    
+for i in range(0,4):
+plt.plot(df[df.variable==group[i]].Time,df[df.variable==group[i]].value, marker=markers[i], markerfacecolor=colors[i], markersize=8, markeredgewidth=0.5, color="k", linewidth=0.5, linestyle="-", label=group[i])
+ 	plt.xlabel("Time(d)",fontsize=14)
+plt.ylabel("value",fontsize=14)
+plt.xlim(-1,20)
+plt.ylim(-2,90)
+plt.xticks(np.linspace(0,20,11,endpoint=True),fontsize=10)
+plt.yticks(np.linspace(0,90,10,endpoint=True),fontsize=10)
+ax = plt.gca()
+ax.spines['right'].set_color('none')
+ax.spines['top'].set_color('none')
+ 	
+plt.legend(loc='upper left',edgecolor='none',facecolor='none')
+
+
+
+
+
+
+
+ 
+
+df1=df[df.variable=='0%(Control)']
+df2=df[df.variable=='1%']
+df3=df[df.variable=='5%']
+
+fig,(ax0,ax1)= plt.subplots(nrows=1,ncols=2,sharey=True,figsize=(8,3))
+
+ax0.plot(df1.Time, df1.value, 
+         marker=markers[0], markerfacecolor=colors[0], markersize=8,markeredgewidth=0.5,
+         color="k", linewidth=0.5, linestyle="-",label=labels[0])
+ax0.plot(df2.Time, df2.value, 
+         marker=markers[1], markerfacecolor=colors[1], markersize=7,markeredgewidth=0.5,
+         color="k", linewidth=0.5, linestyle="-",label=labels[1])
+
+ax1.plot(df1.Time, df1.value, 
+         marker=markers[0], markerfacecolor=colors[0], markersize=8,markeredgewidth=0.5,
+         color="k", linewidth=0.5, linestyle="-",label=labels[0])
+ax1.plot(df3.Time, df3.value, 
+         marker=markers[2], markerfacecolor=colors[2], markersize=8,markeredgewidth=0.5,
+         color="k", linewidth=0.5, linestyle="-",label=labels[2])  
+ 
+3.2 Seaborn
+
+https://seaborn.pydata.org/index.html
+https://seaborn.pydata.org/tutorial.html
+
+ID	函数	核心参数说明	图表类型
+1	lineplot()	x, y, hue (颜色映射), size(线条宽度映射), style(线条宽度类型映射), data(数据框格式的数据), palette(颜色模板), sizes(线条宽度), markers(数标记类型) 	折线图、带数据标记的折线图
+2	scatterplot()	x, y, hue (颜色映射), size(数据标记大小映射), style(数据标记类型映射), data(DataFrame格式的数据), palette(颜色模板), sizes(数标标记大小), markers(数据标记类型) 	散点图、气泡图
+3	stripplot()
+x, y, hue (颜色映射)，data(DataFrame格式的数据), order(x轴数据的显示顺序), dodge (多数据系列是否分离展示), orient(水平或竖直方向), palette(颜色模板), color, size, edgecolor, linewidth	抖动散点图
+4	swarmplot()  	x, y, hue (颜色映射)，data(DataFrame格式的数据), order(x轴数据的显示顺序), orient(水平或竖直方向), palette(颜色模板), color, size, edgecolor, linewidth	蜂巢图
+5	pointplot()
+x, y, hue (颜色映射)，data(DataFrame格式的数据), order(x轴数据的显示顺序), orient(水平或竖直方向), palette(颜色模板), color, markers,  linewidth, errwidth (误差棒横杠的粗细),capsize(误差棒横杠的大小)	带误差棒的散点图
+6	barplot()
+x, y, hue (颜色映射)，data(DataFrame格式的数据), order(x轴数据的显示顺序), orient(水平或竖直方向), palette(颜色模板), color, errcolor(误差棒颜色)，errwidth (误差棒横杠的粗细),capsize(误差棒横杠的大小)，dodge (多数据系列是否分离展示)	带误差棒的柱形图
+7	countplot()
+x, y, hue (颜色映射)，data(DataFrame格式的数据), order(x轴数据的显示顺序), orient(水平或竖直方向), palette(颜色模板), color	用于分类统计展示的柱形图
+8	boxplot()
+x, y, hue (颜色映射)，data(DataFrame格式的数据), order(x轴数据的显示顺序), orient(水平或竖直方向), palette(颜色模板),width(箱型宽度)，dodge (多数据系列是否分离展示), notch(有无凹槽)	箱型图
+9	violinplot()
+x, y, hue (颜色映射)，data(DataFrame格式的数据), order(x轴数据的显示顺序), bw(核密度估计的宽度), width(小提琴图的宽度)，inner(内部展示数据类型), split(双数据系列的小提琴图是否分离), orient(水平或竖直方向), palette(颜色模板), 	小提琴图
+10	boxenplot()
+x, y, hue (颜色映射)，data(DataFrame格式的数据), order(x轴数据的显示顺序), orient(水平或竖直方向), palette(颜色模板),width(箱型宽度)，dodge (多数据系列是否分离展示)	用于高维数据展示的箱型图
+11	regplot()	x, y, data(DataFrame格式的数据), label, color,marker, {scatter,line}_kws (控制散点与拟合曲线格式的参数)	用于数据拟合展示的散点图
+12	distplot()	a(Series格式的数据), bins(箱的总数), hist (是否绘制统计直方图), kde (是否绘制核密度估计图), rug(是否绘制底部毯形图), {hist, kde, rug, fit}_kws (控制统计直方柱形、核密度估计曲线、毯形图格式的参数)	统计直方与核密度估计的组合图
+13	heatmap()	data(DataFrame格式的数据), vmin (颜色刻度条的最小值), vmax (颜色刻度条的最大值), cmap (颜色刻度条对应的颜色模板), annot (是否显示每个单元格的数值), fmt (数值显示的格式) , linewidths (分割线的线宽), linecolor (分割线的颜色)	热力图
+
+
+
+
+
+
+
+图示	代码
+ 	sns.set_palette("Set1")
+sns.set_style("ticks")
+sns.set_context( rc={'axes.labelsize': 15, 'legend.fontsize':13, 
+                    'xtick.labelsize': 13,'ytick.labelsize': 13})
+
+fig = plt.figure(figsize=(5,4), dpi=100)
+sns_line=sns.lineplot(x="Time", y="value",
+                  hue="variable", style="variable",data=df,
+                  markers=True, dashes=False)
+ 	markers=['o','s','H','D']    
+sns_line=sns.lineplot(x="Time",y="value",
+hue="variable",style="variable",data=df,
+markers=markers,dashes=False,markersize=8,markeredgewidth=0.5,markeredgecolor="k",linewidth=1)
+ 	plt.xlabel("Time(d)")
+plt.ylabel("value")
+plt.xlim(-1,20)
+plt.ylim(-2,90)
+plt.xticks(np.linspace(0,20,11,endpoint=True))
+plt.yticks(np.linspace(0,90,10,endpoint=True))
+plt.legend(loc='upper left',edgecolor='none',facecolor='none')
+ 	
+ax = plt.gca()
+ax.spines['right'].set_color('none')
+ax.spines['top'].set_color('none')
+
+handles, labels = ax.get_legend_handles_labels()
+ax.legend(handles=handles[1:],labels=labels[1:], 
+loc='upper left',edgecolor='none',facecolor='none')
+
+
+ 
+
+g = sns.FacetGrid(df, col="variable", hue="variable",size=3, aspect=0.9,gridspec_kws={"wspace":0.1})
+g.map(sns.lineplot, "Time", "value",marker='o',dashes=False, linewidth=1, 
+                  markersize=8,markeredgewidth=0.5,markeredgecolor="k")
+g.set_xlabels("Time(d)")
+g.set_ylabels("value")
+plt.xticks(np.linspace(0,20,5,endpoint=True))
+plt.yticks(np.linspace(0,80,5,endpoint=True))
+
+g.set_titles(row_template = '{row_name}', col_template = '{col_name}')
+
+3.3 plotnine 
+ggplot2 是一个功能强大且灵活的R包 ，由Hadley Wickham 编写，其用于生成优雅的图形。ggplot2中的gg 表示图形语法（Grammar of Graphics），这是一个通过使用“语法”来绘图的图形概念。ggplot2主张模块间的协调与分工，整个ggplot2的语法框架如图1-6-1所示，主要包括数据绘图部分与美化细节部分。R语言ggplot2图形语法的主要特点有：
+1. 采用图层的设计方式，有利于结构化思维实现数据可视化。有明确的起始(ggplot()开始)与终止，图层之间的叠加是靠“+”实现的，越往后，其图层越在上方。通常一条geom_xxx() 或stat_xxx()函数可以绘制一个图层。
+2. 将表征数据和图形细节分开，能快速将图形表现出来，使创造性的绘图更加容易实现。而且通过stat_xxx()函数将常见的统计变换融入到绘图中。
+3. 图形美观，扩展包(Extension Packages)丰富，有专门调整颜色(Color)、字体(Font)和主题(theme)等辅助包。可以帮助用户快读定制个性化的图表。
+  
+图1-6-1 ggplot2语法框架
+
+ggplot2的绘图基本语法如图1-6-2所示。其中必需的图表输入信息包括：
+1.	ggplot()：底层绘图函数：DATA为数据集，主要是数据框data.frame格式的数据集；MAPPING表示变量的映射，用来表示变量x和y，还可以用来控制颜色color、大小size或形状shape等；STAT表示统计变换，与stat_xxx()相对应，默认为"identity"（无数据变换）；POSITION表示绘图数据系列的位置调整，默认为"identity"（无位置调整），关于POSITION的具体内容可见第3章 3.1 柱形图系列；
+2.	geom_xxx() | stat_xxx()：几何图层或统计变换，比如常见的散点图geom_point()、柱形图geom_bar()、统计直方图geom_ histogram()、箱型图geom_ boxplot()、折线图geom_line()等。我们通常使用geom_xxx()就可以绘制大部分图表，有时候通过设定stat参数可以先实现统计变换。
+
+可选的部分包括如下5个部分，主要是实现对图表的美化与变换等。
+1.	scale_xxx()： 标度调整，调整具体的标度，包括颜色color、大小size或形状shape等，跟MAPPING的映射变量相对应；
+2.	coord_xxx()：坐标变换，默认笛卡尔坐标系，还包括极坐标系、地理空间坐标系等；
+3.	facet_xxx()：分面系统，将某个变量进行分面变换，包括按行、按列和按网格等形式分面绘图，这部分内容具体可见第9章 9.4 分面图：；
+4.	guides()：图例调整，主要包括连续型和离散型两种类型的图例。
+5.	theme() ：主题设定，主要是调整图表的细节，包括图表背景颜色、网格线的间隔与颜色等。
+ 
+图1-6-2 ggplot2绘图基本语法结构
+1.6.1 geom_xxx()与stat_xxx()
+1.5.1.1 geom_xxx()几何对象函数
+R 语言ggplot2包包含几十种不同的geom_xxx()几何对象函数、以及stat_xxx()统计变换函数。平时，我们主要是使用geom_xxx()几何对象函数，只有当绘制图表涉及统计变换，我们才会使用stat_xxx()统计变换函数，比如绘制带误差线的均值散点图或柱形图等。geom_point()函数绘制散点图与气泡图如图1-6-3所示，ggplot2默认使用直角坐标系。
+ 
+(a) 散点图
+ 
+(b) 气泡图
+图1-6-3 geom_point()函数的绘制过程.
+	
+根据函数输入的变量总数与数据类型(连续型或离散型)，我们可以将大部分函数大致分成3个大类，6个小类，如表1-6-1所示。但是有两类函数没有囊括在此表中：
+(1)	图元(graphical primitives) 系列函数：geom_curve(), geom_path(), geom_polygon(), geom_rect(), geom_ribbon(), geom_linerange(),geom_abline(), geom_hline(), geom_vline(), geom_segment(), geom_spoke()，这些函数主要是用于是绘制基本的图表元素，比如矩形方块，多边形、线段等，可以供用户创造新的图表类型。
+(2)	误差(error)展示函数：geom_crossbar(), geom_errorbar(), geom_errorbarh, geom_pointrange()可以分别绘制误差框、竖直误差线、水平误差线、带误差棒的均值点；但是这些函数需要设置stat统计变换参数后，才能自动先根据数据计算得到均值与标准差后，再使用绘制添加误差信息。
+
+每个ggplot2函数的具体参数可以使用RStudio的help界面或者查看ggplot2的官方手册(https://ggplot2.tidyverse.org/reference/index.html) 查看。
+
+表1-6-1 ggplot2函数的分类
+变量数	类型	函数	常用图表类型
+1	连续型	geom_histogram(), geom_density(), geom_dotplot(), geom_freqpoly(), geom_qq(), geom_area()	统计直方图，核密度估计曲线图
+	离散型	geom_bar()	柱形图系列
+2	x-连续型
+y-连续型	geom_point(), geom_area(),geom_line(), geom_jitter(), geom_smooth(), geom_label(), geom_text(),geom_bin2d(), geom_hex(), geom_density2d(), geom_map()，geom_step(), geom_quantile(), geom_rug()	散点图系列，面积图系列，折线图系列，散点抖动图、平滑曲线图，文本，标签、二维统计直方图，二维核密度估计图，地理空间图表
+	x-离散型
+y-连续型	geom_boxplot(),geom_violin(), geom_dotplot(), geom_col()	箱型图，小提琴图，点阵图, 统计直方图
+	x-离散型
+y-离散型	geom_count()	二维统计直方图
+3	x, y, z-
+连续型	geom_contour(), geom_raster(), geom_tile()	等高线图、热力图
+
+1.5.1.2 stat_xxx()统计变换函数
+统计转换函数（stats）在数据被绘制出来之前对数据进行聚合和其他计算。stat_xxx()确定了数据的计算方法。不同方法的计算会产生不同的结果，所以一个stat()函数必须与一个geom()函数对应作数据的计算，如图1-6-4所示。在某些特殊类型统计图形制作过程中（比如柱形图、直方图、平滑曲线图、概率密度曲线、箱线图等），数据对象在向几何对象的视觉信号映射过程中，会做特殊转换，也称统计变换过程。为了让作图者更好的聚焦于统计变换过程，将该图层以同效果的stat_xxx()命名可以很好地达到聚焦注意力的作用。
+ 
+图1-6-4 stat_count()函数的绘制过程
+
+我们应将geom_xxx（几何对象）和stat_xxx（统计变换）都视作图层。在大多是成对出现的geom_xxx()和stat_xxx()完成的绘图效果也都是一样的，但是并非全部都是一样的。每一个图层都包含一个几何对象和一个统计变换，也即每一个geom_xxx开头的几何对象都含有一个stat(统计变换)参数，同时每一个stata_xxx开头的几何对象都拥有一个geom(几何对象)参数。但是为什么要分开命名呢，难道不是多此一举吗？
+?	以stat_xxx()统计变换开始的图层，在制作这些特殊统计图形时，我们无需设定统计变换参数（因为函数开头名称已经声明），但需指定集合对象名称图表类型geom，就可以绘制与之对应的统计类型图表。这样需要变换geom函数，就可以根据统计变换结果绘制不同的图表，可以使得作图过程更加侧重统计变换过程。
+?	geom_xxx（几何对象）绘制的图层，更加侧重图表类型的绘制，而通过修改stat统计变化参数，也可以实现绘图前数据的统计变化，比如绘制均值散点，语句(a1)和(b1)实现的效果都是一样的，(a1)是使用指定geom="point"(散点)的stat_summary()语句，而(b1)是使用指定stat="summary"的geom_point()语句。
+(a1) ggplot(mydata, aes(Class, Value,fill = Class))+
+         stat_summary(fun.y="mean", fun.args = list(mult=1), geom="point", color = "white",size = 4)
+(b1) ggplot(mydata, aes(Class, Value,fill = Class))+
+geom_point(stat="summary", fun.y="mean",fun.args = list(mult=1), color = "white",size = 4)
+绘制带误差线的散点图，语句(a2)和(b2)实现的效果也是一样的，(a2)是使用指定geom="pointrange"(带误差线的散点)的stat_summary()语句, (b2)是使用stat="summary"的geom_pointrange ()语句。
+(a2) ggplot(mydata, aes(Class, Value,fill = Class))+
+      stat_summary(fun.data="mean_sdl", fun.args = list(mult=1), geom="pointrange", color = "black",size = 1.2)
+(b2) ggplot(mydata, aes(Class, Value,fill = Class))+
+geom_pointrange(stat="summary", fun.data="mean_sdl",fun.args = list(mult=1), color = "black",size = 1.2)
+其中，fun.data 表示指定完整的汇总函数，输入数字向量，输出数据框，常见4种为：mean_cl_boot、mean_cl_normal、mean_sdl、median_hilow。fun.y 表示指定对y的汇总函数，同样是输入数字向量，返回单个数字median或mean等，这里的y通常会被分组，汇总后是每组返回1个数字。
+当绘制的图表不涉及统计变换时，我们可以直接使用geom_xxx()函数就可以，也无需设定stat参数，因为会默认stat="identity"（无数据变换）。只有涉及统计变换处理时，我们才需要使用更改stat的参数，或者直接使用stat_xxx()以强调数据的统计变化。
+
+1.6.2 美学参数映射
+	R语言可用作变量的美学映射参数主要包括color/col/colour、fill、size、angle、linetype、shape、vjust和hjust，其具体说明如下所示。需要注意的是，有些美学映射参数只适应于类别型变量，比如linetype、shape。
+1.	color/col/colour、fill和alpha属性都是与颜色相关的美学参数。其中，color/col/colour是指点(point)、线(line)和填充区域(region)轮廓的颜色；fill是指定填充区域(region)的颜色；alpha是指定颜色的透明度，数值范围是从0(完全透明) 到 1(不透明)；
+2.	size是指点(point)的尺寸或线的(line)宽度，默认单位为mm，可以在geom_point()函数绘制的散点图基础上，添加size的映射从而实现气泡图；
+3.	angle是指角度，只有部分几何对象有，如geom_text()函数中文本的摆放角度、geom_spoke()函数中短棒摆放角度； 
+4.	vjust和hjust都是与位置调整有关的美学参数。其中，vjust是指垂直位置微调，在(0, 1)区间的数字或位置字符串: 0=“buttom”, 0.5=“middle”, 1=“top”，区间外的数字微调比例控制不均；hjust是指水平位置微调，在(0, 1)区间的数字或位置字符串：0=“left”, 0.5=“center”, 1=“right”，区间外的数字微调比例控制不均。
+5.	linetype是指定线条的类型，包括白线(0=“blank”)、实线(1=“solid”)、短虚线(2=“dashed”)、点线(3=“dotted”)、点横线(4=“dotdash”)、长虚线(5=“longdash”)、短长虚线(6=“twodash”)；
+6.	shape是指点(point)的形状，为[0, 25]区间的26个整数，分别对应方形、圆形、三角形、菱形等26种不同的形状，如图1-6-5所示。只有21到26号点型有颜色填充fill的属性，其它都只有轮廓颜色color的属性；
+ 
+图 1-6-5 R语言ggplot2包可供选择的形状(shape).
+	
+	R ggplot2的geom_xxx()系列函数，其基础的展示元素可以分成四类：点(point)、线(line)、多边形(polygon)和文本(text)，将表1-6-1 ggplot2常见函数的主要美学参数映射归类如表1-6-2所示。ggplot2每个函数的具体参数可以在RStudio右下角的“help”中输入函数名查找，或者在左下角的“Console”控制台输入：?函数名，比如：??geom_point()。
+表1-6-2 ggplot2常见函数的主要美学参数映射
+元素	geom_xxx()函数	类别型美学映射参数	数值型美学映射参数
+点(point)	geom_point(),geom_jitter(),geom_dotplot()等	color,fill, shape	color,fill, alpha,size
+线 (line)	geom_line(),geom_path(),geom_curve(),
+geom_density(),geom_linerange(),geom_step(),
+geom_abline(),geom_hline()等	color,linetype	color,size
+多边形
+(polygon)	geom_polygon(),geom_rect(), geom_bar(),geom_ribbon(),geom_area(),
+geom_histogram(),geom_violin()等	color,fill	color,fill, alpha
+文本
+(text)	geom_label(), geom_text()	color	color,angle, vjust,hjust
+
+	如图1-6-6所示为同一数据集，不同的美学参数映射效果。使用read.csv()函数：df<-read.csv("Facet_Data.csv", header = TRUE)，可以读入数据集df，df是总共有4列的数据集：tau、SOD、age和Class（Control、Impaired和Uncertain），其数据框前6行如下所示：
+ 
+
+图1-6-6都是使用geom_point()函数，其参数包括x, y, alpha(透明度), colour(轮廓线条颜色), fill(填充颜色), group(分组映射的变量), shape(散点的形状), size(散点的大小), stroke(轮廓线条的粗细)。图(a)是将离散数值型变量age映射到点的大小size，然后散点图转换成气泡图，气泡的大小对应age的数值；图(b)是将age映射到点的大小size和填充颜色fill，ggplot2会自动将填充颜色映射到颜色条colorbar；图(c)是将离散类别型变量Class映射到点的颜色填充fill，ggplot2会自动将不同的颜色填充对应类别的数据点，从而绘制多数据系列的散点图；图(d)是将离散数值型变量age和离散类别型变量Class分别映射到点的大小size和颜色fill。
+
+
+ 	
+ 
+ggplot(df, aes(x=SOD,y=tau,size=age)) + 
+  geom_point(shape=21,color="black",
+fill="#336A97",stroke=0.25)	ggplot(df, aes(SOD,tau,fill=age,size=age)) + 
+  geom_point(shape=21,colour="black",
+stroke=0.25, alpha=0.8) 
+(a) age映射到点的大小size	(b) age映射到点的大小size和填充颜色fill
+
+
+ 	
+ 
+ggplot(df, aes(x=SOD,y=tau,fill=Class)) + 
+geom_point(shape=21,size=3,colour="black",
+stroke=0.25)	ggplot(df, aes(SOD,tau,fill=Class,size=age)) + 
+  geom_point(shape=21,colour="black",
+stroke=0.25, alpha=0.8)
+(c) Class映射到点的颜色填充fill	(d) age和Class分别映射到点的大小size和颜色fill
+图1-6-6 不同的美学参数映射效果
+
+	另外，还有不用作变量的美学映射参数，但是有比较重要的美学参数：字体(family)和字型(fontface)。其中，字型，分为: “plain”常规体, “bold”粗体, “italic”斜体, “bold.italic”粗斜体。常用于geom_text等文本对象；字体(Font face)内置的只有3种：“sans”, “serif”, “mono”，但是可以通过扩展包extrafont来将其它字体转换为ggplot2可识别的标准形式，还可以通过showtext包以图片的形式将字体插入到ggplot2绘制的图表中。不同的字体(family)和字型(fontface)组合如图1-6-7所示。
+ 
+图1-6-7 不同的字体(family)和字型(fontface)组合.
+
+1.6.3 标度调整
+标度用于控制变量映射到视觉对象的具体细节，比如：X和Y坐标轴、alpha透明度、colour: 轮廓色、fill填充色、alpha透明度、linetype线形状、shape形状和scale大小等，它们都有相应的标度函数，如表1-5-3。根据映射美学参数的变量属性，将标度调整函数分成数值型和类别型两大类。R ggplot2的默认标度为scale_xxx_identity()。需要注意的是：scale_*_manual()表示手动自定义离散的标度，包括color、fill、alpha、linetype、shape和size等美学映射参数。
+	在表1-6-3 ggplot2常见标度调整函数中，x和y轴标度是控制坐标轴的间隔与标签的显示等信息，会在讲解1.6.4坐标系时再作详细介绍。颜色作为数据可视化中尤为重要的部分，color轮廓色标度和fill: 填充色标度会在讲解 1.7学术图表的色彩运用原理 时再作详细介绍。在实际的图表绘制中，我们很少使用alpha透明度标度，因为这很难观察到透明度的映射变化。每个标度调整函数的具体参数可以使用RStudio的help界面或者查看ggplot2的官方手册(https://ggplot2.tidyverse.org/reference/index.html) 查看。
+
+表1-6-3 ggplot2常见标度调整函数
+标度Scale	数值型	类别型
+x: x轴标度
+y: y轴标度	scale_x/y_continuous()
+scale_x/y_log10()
+scale_x/y_sqrt()
+scale_x/y_reverse()
+scale_x/y_date()       
+scale_x/y_datetime() 
+scale_x/y_time()	scale_x/y_discrete()
+colour: 轮廓色标度
+fill: 填充色标度	scale_colour/fill_continuous()
+scale_fill_distiller()
+scale_colour/fill _gradient() 
+scale_colour/ fill _gradient2()
+scale_colour/fill _gradientn() 	scale_colour/fill_discrete()
+scale_colour/fill_brewer()
+scale_colour/ fill_manual()
+alpha: 透明度标度	scale_alpha_continuous()	scale_alpha_discrete()
+scale_alpha_manual()
+linetype: 线形状		scale_linetype_discrete()
+scale_linetype_manual()
+Shape : 形状标度		scale_shape()
+scale_shape_manual()
+scale ：大小标度	scale_size()
+scale_size_area()      	scale_size_manual()
+
+如图1-6-8 散点图的不同的标度调整效果所示，图(a)是将数值离散型变量age映射到气泡的大小size，再使用scale_size(range=c(a,b))调整了点大小size的标度， range 表示美学参数映射变量转化后气泡面积的映射显示范围。图(b)是在图(a)的基础上添加了颜色的映射，使用scale_fill_distiller(palette="Reds")函数将数值离散型变量age映射到红色渐变颜色条，其中，direction = 0表示颜色是从浅到深渐变的（注意：需要加载RColorBrewer包，才能使用“Reds”颜色主题）。图(c)是将类别离散型类别变量Class映射到不同的填充颜色fill和形状shape，使用scale_*_manual()手动自定义fill和shape的标度。图(d)是将数值离散型变量age和类别离散型变量Class分别映射到点的大小size和颜色fill，然后scale_size()和scale_fill_manual()分布调整气泡大小size的映射范围与填充颜色fill的颜色数值。
+
+
+
+ 	
+ 
+ggplot(df, aes(x=SOD,y=tau,size=age)) + 
+geom_point(shape=21,color="black",
+fill="#FF0000",stroke=0.25,alpha=0.8)+
+scale_size(range = c(1, 8))	ggplot(df, aes(SOD,tau,fill=age,size=age)) + 
+  geom_point(shape=21,colour="black",
+stroke=0.25, alpha=0.8) +
+scale_size(range = c(1, 8))+
+scale_fill_distiller(palette="Reds", direction = 0)
+(a) 点大小size的标度调整 	(b) 点大小size和填充颜色fill的标度调整
+
+
+ 	
+ 
+ggplot(df, aes(x=SOD,y=tau,fill=Class)) + 
+geom_point(shape=21,size=3,colour="black",
+stroke=0.25)+ 
+scale_fill_manual(values=c("#36BED9","#FF0000","#FBAD01"))+
+scale_shape_manual(values=c(21,22,23))	ggplot(df, aes(SOD,tau,fill=Class,size=age)) + 
+  geom_point(shape=21,colour="black",
+stroke=0.25, alpha=0.8)+
+scale_fill_manual(values=c("#36BED9","#FF0000","#FBAD01"))+
+scale_size(range = c(1, 8))
+(c)点颜色填充fill与形状shape的标度调整	(d)点大小size和颜色fill的标度调整
+图1-6-8 不同的标度调整效果
+
+	我们关键是要学会合理地使用美学映射参数，并调整合适的标度。可视化最基本的形式就是简单地把数据映射成彩色图形。它的工作原理就是大脑倾向于寻找模式，你可以在图形和它所代表的数字间来回切换。1985 年，AT&T 贝尔实验室的统计学家威廉·克利夫兰（William Cleveland）和罗伯特·麦吉尔（Robert McGill）发表了关于图形感知和方法的论文 [18]。研究焦点是确定人们理解上述视觉暗示（不包括形状）的精确程度， 最终得出如图1-6-9所示从最精确到最不精确的排序清单。图1-6-9 展示了数值型数据使用不同视觉暗示的精确程度排序。
+
+位置
+Position	长度
+Length	角度
+Angle	方向
+Orientation	面积
+Area	体积
+Volume	饱和度
+Color Sat	色相
+Color Hue	纹理
+Texture	形状
+Shape
+ 	 	 	 	 	 	 	 	 	 
+	 精确的            不精确的  	
+图 1-6-9 克利夫兰和麦吉尔的视觉暗示排序[18]
+
+我们能用到的视觉暗示通常有:长度、面积、体积、角度、弧度、位置、方向、形状和颜色。所以正确的选择哪些视觉暗示就取决于你对形状、颜色、大小的理解，以及数据本身和目标。不同的图表类型应该使用不同视觉暗示，合理的视觉暗示组合能更好地促进读者理解图表的数据信息。如图1-5-10所示，相同的数据系列采用不同的视觉暗示组合共有6种，分析结果如表1-5-4所示。
+
+表1-6-4 图1-6-10系列图表的视觉暗示组合分析结果
+图表	视觉暗示组合	数据系列区分程度	美观程度	印刷适合类型
+(a)	位置+方向	无法	较美	黑白
+(b)	位置+方向+饱和度	较易	较美	黑白
+(c)	位置+方向+形状	容易	较美	黑白
+(d)	位置+方向+色相	容易	很美	彩色
+(e)	位置+方向+饱和度+形状	很容易	较美	黑白
+(f)	位置+方向+色相+形状	很容易	很美	彩色、黑白
+
+根据表1-6-4可知，图1-6-10 (f)是最优的视觉暗示组合结果，既能保证很容易区分数据系列的同时，也保证图表很美观，同时也适应于彩色与le黑白两种印刷方式。当图(f)采用黑白印刷时，色相视觉暗示会消除，只保留位置+方向+形状，如图(c)所示，但是这样也能容易区分数据系列，保证读者对数据信息的正确快读理解。表1-6-5展示了图1-6-10系列图表的视觉暗示组合代码与说明。
+
+     
+(a) 位置 + 方向                       (b) 位置 + 方向 + 饱和度
+
+    
+(c) 位置 + 方向 + 形状                     (d) 位置 + 方向 + 色相
+
+    
+(e) 位置 + 方向 + 饱和度 + 形状            (f) 位置 + 方向 + 色相 + 形状
+图 1-6-10 不同视觉暗示的组合结果
+
+表1-6-5 图1-6-10系列图表的视觉暗示组合代码与说明
+图表	R ggplot2 代码	说明
+(a)	ggplot(data=df, aes(x=Time,y=value,group=variable)) + 
+  geom_line()+
+  geom_point(shape=21,size=4,colour="black",fill="white") +
+  theme_classic()	group表示根据类别型变量variable分组绘制，并先后使用geom_line()和geom_point()添加折线和散点图层
+(b)	ggplot(data=df, aes(x=Time,y=value,fill=variable)) + 
+  geom_line()+
+  geom_point(shape=21,size=4,colour="black") +
+  scale_fill_manual(values=c("grey60","grey30","black","white"))+
+  theme_classic()	将类别型变量variable映射到散点的颜色填充fill，并使用scale_fill_manual()函数调整颜色填充标度为不同饱和度的颜色
+(c)	ggplot(data=df, aes(x=Time,y=value,shape=variable)) + 
+  geom_line()+
+  geom_point(size=4,colour="black",fill="grey60") +
+  scale_shape_manual(values=c(21,22,23,24))+
+  theme_classic()	将类别型变量variable映射到散点的散点形状shape，并使用scale_shape_manual()函数指定散点的形状
+(d)	ggplot(data=df, aes(x=Time,y=value,fill=variable)) + 
+  geom_line()+
+  geom_point(shape=21,size=4,colour="black") +
+  scale_fill_manual(values=c("#FF9641","#FF5B4E",
+"#B887C3","#38C25D"))+
+  theme_classic()	将类别型变量variable映射到散点的颜色填充fill，并使用scale_fill_manual()函数调整颜色填充标度为不同色相的颜色
+(e)	ggplot(data=df, aes(x=Time,y=value,fill=variable,shape=variable)) + 
+  geom_line()+
+  geom_point(size=4,colour="black") +
+  scale_fill_manual(values=c("grey60","grey30","black","white"))+
+  scale_shape_manual(values=c(21,22,23,24))+
+  theme_classic()	同时将类别型变量variable映射到散点的颜色填充fill和形状shape，并使用scale_fill_manual()和scale_shape_manual()函数设定不同饱和度的颜色填充与形状
+(f)	ggplot(data=df, aes(x=Time,y=value,fill=variable,shape=variable)) + 
+  geom_line()+
+  geom_point(size=4,colour="black") +
+scale_fill_manual(values=c("#FF9641","#FF5B4E",
+"#B887C3","#38C25D"))+
+  scale_shape_manual(values=c(21,22,23,24))+
+  theme_classic()	同时将类别型变量variable映射到散点的颜色填充fill和形状shape，并使用scale_fill_manual()和scale_shape_manual()函数设定不同色相的颜色填充与形状
+
+在表1-6-5中，我们需要重点理解fill、color、size、shape等美学映射参数位置何时应该在aes()内部，何时应该在aes()外部的区别：
+?	当我们指定的美学映射参数需要进行个性化映射时（即一一映射），应该写在aes函数内部，即每一个观测值都会按照我们指定的特定变量值进行个性化设定。典型情况是需要添加一个维度，将这个维度按照以颜色、大小、线条等方式针对维度向量中每一个记录值进行一一设定。
+?	当我们需要统一设定某些图表元素对象（共性，统一化）时，此时应该将其参数指定在aes函数外部，即所有观测值都会按照统一属性进行映射，例如size=5，linetype=“dash”，color=“blue”。典型情况是需要统一所有的点大小、颜色、形状、透明度或者线条颜色、粗细、形状等。这种情况下不会消耗我们数据源中的任何一个维度或者度量指标，仅仅是对已经呈现出来的图形图素的外观属性做了统一设定。
+?
+
+1.6.4 坐标系
+编码数据的时候，需要把数据系列放到一个结构化的空间中，即坐标系，它赋予 XY 坐标或经纬度以意义。图 1-5-11 展示了三种常用的坐标系，分别为直角坐标系（也称为笛卡尔坐标系Rectangular coordinates） 、极坐标系（Polar coordinates）和地理坐标系（Geographic coordinates）。它们几乎可以满足数据可视化的所有需求。
+           
+(a)直角坐标系          (b) 极坐标系     (c) 地理坐标系
+图 1-6-11 常用坐标系
+
+1.6.4.1 直角坐标系
+直角坐标系（Rectangular Coordinates/ Cartesian Coordinates），也叫笛卡尔坐标系，是最常用的坐标系，如图1-6-12。你平时经常绘制的条形图、散点图或气泡图，就是直角坐标系。坐标系所在平面叫做坐标平面，两坐标轴的公共原点叫做直角坐标系的原点。X轴和Y轴把坐标平面分成四个象限，右上面的叫做第一象限，其他三个部分按逆时针方向依次叫做第二象限、第三象限和第四象限。象限以数轴为界，横轴、纵轴上的点不属于任何象限。通常在直角坐标系中的点可以记为：（x, y），其中x表示X轴的数值，y表示Y轴的数值。
+ggplot2的直角坐标系包括coord_cartesian()、coord_fixed()、coord_flip()和coord_trans()四种类型。 ggplot2默认为直角坐标系coord_cartesian()，其它坐标系都是通过直角坐标系画图，然后变换过来的。在直角坐标系中，可以使用coord_fixed()固定纵横比笛卡尔坐标系，在绘制华夫饼图和复合型散点饼图时，我们需要使用纵横比为1的笛卡尔坐标系：coord_fixed(ratio = 1)；
+我们在绘制条形图或者水平箱型图时，需要使用coord_flip()翻转坐标系。它会将X和Y坐标轴对换，从而可以将竖直的柱形图转换成水平的条形图。
+原始的笛卡尔坐标上，坐标轴上的刻度比例尺是不变的，而coord_trans()坐标系的坐标轴上刻度比例尺是变化的，这种坐标系应用很少，但不是没用， 可以将曲线变成直线显示， 如果数据点在某个轴方向的密集程度是变化的，这样不便于观察，可以通过改变比例尺来调节，使数据点集中显示，更加方便观察
+    
+(a) 二维散点图                        (b)二维气泡图
+图 1-6-12 直角坐标系下的散点图和气泡图
+
+三维直角坐标系的投影方法 在绘图软件中，对位三维直角坐标系中的绘图其中有投影（Projection）这个参数：正交投影(Orthographic Projection)和透视投影(Perspective Projection)，如图1-6-13所示。读者的眼睛就好比三维渲染场景中的相机。而相机存在两种投影方法。一种是正交投影(Orthographic Projection)，也叫平行投影(Parallel Projection)，即进入相机的光线与投影方向是平行的。另一种是透视投影(Perspective Projection)，即所有的光线相交于一点。不管是plot3D包还是lattice包的三维图表绘制函数，都存在这样一个参数可以调整三维坐标系的透视程度，这个参数对三维图表美观程度的展示尤为重要。
+    
+ (a) 正交投影                                  (b)透视投影
+图1-6-13 两种不同形式的投影方法
+
+直角坐标系还可以扩展到多维空间。例如，三维空间可以用（x, y, z）三个值对来表示三维空间中数据点的位置。如果再拓展到平行坐标系（Parallel Coordinates）， 可以用于对高维几何和多元数据的可视化，这时，我们可以使用R语言GGally包ggparcoord()函数实现平行坐标系的绘制。
+
+1.6.4.2 极坐标系
+你平时使用的雷达图、饼图等就是极坐标系。尽管你可能只用到了角度，还没有用到半径，如图1-6-14为极坐标下的柱形图（南丁格尔玫瑰图）。
+极坐标系（polar coordinates）是指在平面内由极点、极轴和极径组成的坐标系。在平面上取定一点O，称为极点。从O出发引一条射线Ox，称为极轴。再取定一个单位长度，通常规定角度取逆时针方向为正。这样，平面上任一点P的位置就可以用线段OP的长度ρ以及从Ox到OP的角度θ来确定，有序数对 (ρ, θ)就称为P点的极坐标，记为P (ρ, θ)；ρ称为P点的极径，指数据点到圆心的距离，θ称为P点的极角，指数据点距离最右边水平轴的角度。 
+极坐标系的最右边点是零度，角度越大，逆时针旋转越多。距离圆心越远，半径越大。 极坐标系再绘图中没有直角坐标系用得多，但在角度和方向两个视觉暗示方面有很好的优势，往往可以绘制出很出人意料的精美图表。
+R ggoplot2使用coord_polar()语句可以将坐标系从直角坐标系转换到极坐标系，具体语句为：coord_polar(theta = "x", start = 0, direction = 1, clip = "on")，其中，theta 表示要极坐标化的中心轴，即X坐标轴转化为圆周，Y坐标轴转化为半径；direction 表示排列方向，direction=1表示顺时针，direction=-1表示逆时针；start 表示起始角度，以距离12点针的弧度衡量,具体位置与direction参数有关，若direction为1则在顺时针start角度处,若direction为-1则在逆时针start角度处。注意：极坐标转化比较耗费计算机资源，最好先用如下语句清空内存：rm(list = ls()); gc()
+       
+(a)极坐标柱形图                     (b) 极坐标堆积柱形图
+图 1-6-14 极坐标下的柱形图
+
+1.6.4.3 地理坐标系
+位置数据的最大好处就在于它与现实世界的联系，用地理坐标系可以映射位置数据。位置数据的形式有许多种，包括经度(Longitude)、纬度(Latitude)、邮编等。但通常都是用纬度和经度来描述，分别相对于赤道和子午线的角度。 纬度线是东西向的，标识地球上的南北位置；经度线是南北向的，标识地球上的东西位置。相对于直角坐标系，纬度就好比水平轴，经度就好比垂直轴。也就是说，相当于使用了平面投影。 
+由于球面上任何一点的位置是用地理坐标经纬度(λ，φ)表示的，而平面上的点的位置是用直角坐标(x, y)或极坐标(ρ, θ)表示的，所以要想将地球表面上的点转移到平面上，必须采用一定的方法来确定地理坐标与平面直角坐标或极坐标之间的关系。这种在球面和平面之间建立点与点之间函数关系的数学方法，就是地图投影方法。地图投影的实质就是将地球椭球面上的地理坐标转化为平面直角坐标。用某种投影条件将投影球面上的地理坐标点一一投影到平面坐标系内，以构成某种地图投影。
+地图投影方法有20多种，其中常用的有：墨卡托投影法(Mercator projection)、Lambert等角割圆锥投影（Lambert Conformal Projection）、Albers等积正割圆锥投影(Albers Equal-area Conic Projection)、等距圆柱投影（Equidistant Cylindrical Projection）等（http://resources.esri.com/help/9.3/arcgisserver/apis/rest/pcs.html ）。具体来说，不同区域常用的地图投影不同。墨卡托投影法又称正轴等角圆柱投影，是一种等角的圆柱形地图投影法，如图1-6-15(a)所示。以此投影法绘制的地图上，经纬线于任何位置皆垂直相交，使世界地图可以绘制在一个长方形上。由于可显示任两点间的正确方位，航海用途的海图、航路图大都以此方式绘制。在该投影中线型比例尺在图中任意一点周围都保持不变，从而可以保持大陆轮廓投影后的角度和形状不变（即等角）；但麦卡托投影会使面积产生变形，极点的比例甚至达到了无穷大。
+
+R ggplot2使用coord_map()和coord_quickmap()函数可以设定坐标系为地理空间坐标系。其中coord_quickmap()是一种保留经纬直线的快速近似绘制的地理坐标系，它最适合靠近赤道的较小区域展示。coord_map()函数可以通过设定projection投影参数，从而实现不同投影的地理空间坐标系，包括墨卡托投影法、Lambert等角割圆锥投影、Albers等积正割圆锥投影、等距圆柱投影和正交法投影等。
+ 
+
+坐标系的转换
+选择合适的坐标系对数据的清晰表达也很重要，直角坐标系与极坐标系的转换如图1-6-15所示。使用极坐标可以将数据以365天围绕圆心排列。极坐标图可以让用户方便得看到数据在周期上、方向上的变化趋势，而对连续时间段变化趋势的显示不如直角坐标系。
+极坐标系的表示方法为P(ρ, θ)，平面直角坐标系的表示方法为Q(x, y)。极坐标系中的两个坐标r和θ可以由下面的公式转换为直角坐标系下的坐标值：
+x=ρcosθ
+y=ρsinθ
+而从直角坐标系中x 和 y 两坐标如何计算出极坐标下的坐标：
+ 
+ 
+其中要满足 x不等于0；在 x = 0的情况下：若 y 为正数时，则θ = 90° (π/2 radians)；若 y 为负数时，则 θ = 270° (3π/2radians)。
+     
+        
+(a) 直角坐标系                   (b) 极坐标系
+图 1-6-15 坐标系的转换
+
+坐标轴标度
+坐标系指定了可视化的维度，而坐标轴的标度则指定了在每一个维度里数据映射的范围。坐标轴的标度有很多种，你也可以用数学函数定义自己的坐标轴标度，但是基本上都属于图 1-6-16所示的坐标轴标度。这些坐标轴标度主要分为三种，包括数字坐标轴标度、分类坐标轴标度和时间坐标轴标度。
+
+线性坐标轴标度
+数值等距分布		对数坐标轴标度
+关注百分比变化
+ 		 
+		
+分类坐标轴标度
+离散的条形		顺序坐标轴标度
+有序的分类标尺
+ 		 
+		
+百分比坐标轴标度
+描述整体中的部分		时间坐标轴标度
+以月、日或小时为单位
+ 		 
+图1-6-16 不同类型的标尺[19]
+
+R ggplot2数字坐标轴标度包括：scale_x/y_continuous()，scale_x/y_log10()， scale_x/y_sqrt()，scale_x/y_reverse()；分类坐标轴标度包括scale_x/y_discrete()；时间坐标轴标度包括：scale_x/y_date()，scale_x/y_datetime()，scale_x/y_time()。这些标度的主要参数包括：1. name 表示指定坐标轴名称，也将作为对应的图例名；2. breaks 表示指定坐标轴刻度位置，即粗网格线位置；3. labels 表示指定坐标轴刻度标签内容；4. limits 表示指定坐标轴显示范围，支持反区间；4. expand 表示扩展坐标轴显示范围；5. trans 表示指定坐标轴变换函数，自带有 exp, log, log10等，还支持scales包内的其它变换函数，如scales::percent()百分比刻度,自定义等。图1-6-17(b)就是在图(a)的基础上添加了scale_x_continuous()和scale_y_continuous()以调整X和Y坐标轴的刻度与轴名：
+X轴标度：scale_x_continuous(name="Time(d)",breaks=seq(0,20,2))              
+  Y轴标度：scale_y_continuous(breaks=seq(0,90,10),limits=c(0,90),expand =c(0, 1))   
+    
+(a)                                        (b)
+图1-6-17 直角坐标系标度的调整
+
+线性坐标轴标度（Linear scale）上的间距处处相等，无论处于坐标轴的什么位置。因此，在尺度的低端测量两点间的距离，和在尺度高端测量的结果是一样的。然而，对数坐标轴标度（logarithmic scale）是一个非线性的测量尺度，用在数量有较大范围的差异时。像里氏地震震级、声学中的音量、光学中的光强度、及溶液的PH值等。对数尺度是以数量级为基础，不是一般的线性尺度，因此每个刻度之间的商为一定值。若数据有以下特性时，用对数尺度来表示会比较方便：
+1.	数据有数量级的差异时，使用对数尺度可以同时显示很大和很小的数据信息；
+2.	数据有指数增长或幂定律的特性时，使用对数尺度可以将曲线变为直线表示。
+如图1-6-18所示，图(a)的X和Y轴都为线性尺度，而图(b)X轴仍为线性尺度、将Y轴转变成对数尺度，就可以很好地展示很大和很小的数据信息。
+     
+(a) 线性尺度                        (b) 对数尺度
+图1-6-18 坐标标尺的转换
+
+分类坐标轴标度 （Categorical scale）数据不仅仅包括数值，有时候还包括类别，比如不同实验条件、实验样品等测试得到的数据。分类标尺通常和数字标尺一起使用、以表达数据信息。条形图就是水平X轴为数字标尺、垂直Y轴为分类标尺；而柱形图是水平X轴为分类标尺、垂直Y轴为数字标尺，如图1-6-19所示 。其中，条形图和柱形图一个重要的视觉调整参数就是分类间隔，但是它和数值没有关系（如果是多数据系列，还包括一个视觉参数：系列重叠）。另外，饼图和圆环图也是数字尺度和分类尺度的组合。
+注意：对于柱形图、条形图和饼图最好对数据先排序后再进行展示。对于柱形图和条形图，把数据从大到小排序，最大的位置放置在最左边或者最上边。而饼图的数据要从大到小排序，最大的从12点位置开始。
+           
+(a) 柱形图                                      (b) 条形图
+图1-6-19 分类标尺与数字标尺的组合使用
+
+常见的相关性系数图的XY轴都为分类标尺，如图1-6-20所示。相关系数图一般都是三维及以上的数据，但是使用二维图表显示。其中，X、Y列为都为类别数据，分布对应图表的X、Y坐标轴；Z列为数值信息，通过颜色饱和度、面积大小等视觉暗示表示。图1-6-20(a)使用颜色饱和度和颜色色相综合表示Z列数据；图1-6-20(b)使用方块的面积大小以及颜色综合表示Z列数据，从图中很容易观察到哪两组变量的相关性最好。
+    
+(a) 热力相关性图 [1]                           (b) 方块相关性图 [20]
+图1-6-20 分类尺度的使用
+
+ 
+
+时间坐标轴标度（Time scale） 时间是连续的变量，你可以把时间数据画到线性标度上，也可以将其分成时刻、星期、月份、季节或者年份，如图1-6-21所示。时间是日常生活的一部分。随着日出和日落，在时钟和日历里，我们每时每刻都在感受和体验着时间。 所以我们会经常遇见时间序列的数据，时间序列的数据常用柱形图、折线图或者面积图表示，有时候使用极坐标图也可以很好地展示数据，因为时间往往存在周期性，以天（day）、周（week）、月（month）、季（Season）或年（year）为一个周期。
+需要注意的是：R ggplot2 时间坐标轴标度函数scale_xxx_date() 要求变量是Date格式；scale_xxx_datetime() 要求变量是POSIXct格式；scale_xxx_time() 要求变量是hms格式。
+ 
+(a1) [21]                       (b1) [21]                   (c1) [21]  
+
+     
+(a2)                           (b2)                           (c2)
+图 1-6-21 时间序列图表
+1.6.5 图例
+图例作为图表背景信息的重要部分，对图表的完整与正确表达尤为重要。R ggplot2的 guide_colorbar()/guide_colourbar() 用于调整连续变量的图例；guide_legend() 用于离散变量的图例，也可以用于连续变量；
+guides() 将guide_colorbar和guide_legend两种图例嵌套进去，方便映射与处理，如guides(fill = guide_colorbar())，对多个图例共同处理的时候尤为有效。另外，我们也可以在scale_xxx()标度中指定guide类型，guide = “colorbar”或guide = “legend”。
+其中，尤为重要的部分是图例位置的设定，R ggplot2默认是将图例放置在图表的右边 "right"，但是我们在最后添加的theme()函数中，设定图例的位置legend.position。legend.position的位置可以设定为”right”,”left”,””和””
+ggplot2绘图过程种，控制图例在图中的位置利用theme(legend.position）参数，该参数对应的设置如下： "none" (无图例), "left"(左边), "right"(右边), "bottom"(底部), "top"(头部)，legend.position也可以用两个元素构成的数值向量来控制，如c(0.9,0.7)，主要是设置图例在图表中间所在具体位置，而不是图片的外围。数值大小一般在0-1之间，超出数值往往导致图例隐藏。如果图例通过数值向量设定在图表的具体位置，最好同时设定图例背景legend.background为透明或者无的。如图1-6-22所示使用theme_classic()内置的图表系统主题，再使用theme()函数调整图例的具体位置等。图(a)图例的默认设定语句为：
+theme( legend.background = element_rect(fill="white"),  
+      legend.position="right")
+图例的背景为白色填充的矩形，位置设定为图表的右边。图(b)将图例的位置设定为图表内部的左上角，并将图例背景legend.background为无。其中c(0.2,0.8)表示图例的位置放置在图表内部X轴方向20%、Y轴方向80%的相对位置。
+theme(legend.background = element_blank(),
+ 	     legend.position=c(0.2,0.8))
+   
+(a)                                        (b)
+图1-6-22 图例位置的调整
+1.6.6 主题系统
+	主题系统包括等绘图区背景、网格线、坐标轴线条等图表的细节部分，而图表风格主要是指绘图区背景、网格线、坐标轴线条等的格式设定所展现的效果。ggplot2图表的主题系统主要对象包括文本text、矩形rect和线条line三大类，对应的函数包括element_text()、element_rect()、element_line()，另外还有element_blank()表示该对象设置为无，具体如表1-6-6所示。其中，我们使用比较多的系统对象是坐标轴的标签(axis.text.x、axis.text.y)、图例的位置与背景(legend.position和legend.background)。X轴标签(axis.text.x)在绘制极坐标系柱形图和径向图时会用于调整X轴标签的旋转角度，Y轴标签(axis.text.y)也会用于时间序列峰峦图的Y轴标签的替换等，具体可见后面图表案例的讲解。
+表1-6-6 主题系统的主要对象
+对象	函数	图形对象整体	绘图区（面板）	坐标轴	图例	分面系统
+text	element_text()
+参数：family,face ,
+colour,size, hjust,vjust, angle, lineheight	plot.title
+plot.subtitle
+plot.caption		axis.title
+axis.title.x
+axis.title.y
+axis.text
+axis.text.x
+axis.text.y	legend.text
+legent.text.align
+legend.text.title
+legend.text.align	strip.text
+strip.text.x
+strip.text.y
+rect	element_rect()
+参数：colour,size, type	plot.background
+plot.sapcing
+plot.margin	panel.background
+panel.border
+panel.spacing		legend.background
+legend.margin
+legend.spacing
+legend.spacing.x
+legend.spacing.y	strip.background
+
+line	element_line()
+参数：fill, colour,size, type		panel.grid.major
+panel.grid.minor
+panel.grid.major.x
+panel.grid.major.x
+panel.grid.minor.x
+panel.grid.minor.y	axis.line
+axis.line.x
+axis.line.y
+axis.ticks
+axis.ticks.x
+axis.ticks.y
+axis.ticks.length
+axis.ticks.margin		
+
+由于ggplot2主题设置的内部函数及参数非常多，不建议新手直接学习。针对新手，建议使用ggThemeAssist包进行主题设置，用鼠标而不是代码，更加方便，或者直接套用主题模板。
+
+1.5.6.1 ggThemeAssist包
+使用ggThemeAssist，需要先安装shiny包 安装好该包后，RStudio界面就会出现“Tools”-“Addins”下拉菜单，里面就有选项“ggplot Theme Assistant”，其界面如图1-6-23所示。具体使用方法：首先运行函数要画图的ggplot2代码，以加载到内存；然后选中该画图函数，如ggplot； 然后点击“Tools”-“Addins”下拉菜单，点击“ggplot Theme Assistant”，就会出现一个交互式的shiny弹窗，然后在该弹窗上用鼠标操作；在交互弹窗中处理完后，点击右上角的“Done”按钮，然后就将主题代码输出到需要的位置，最后进行对代码进行微调即可。但是需要注意的是：有的地方可能会少括号或引号。
+ 
+图1-6-23 ggplot Theme Assistant 操作界面
+1.5.6.2 套用主题模板
+R语言的主题模板包包括ggthemes、ggtech、ggthemer、ggsci、cowplot等。其中ggsci包就是专门为学术图表开发的包，具体可见：https://nanx.me/ggsci/articles/ggsci.html。R ggplot2自带的主题模板也有多种，包括theme_gray()、theme_minimal()、theme_bw()、 theme_light()、theme_test()、theme_classic()等。相同的数据以及数据格式，可以结合不同的图表风格，如图1-6-24所示。挑选几种具有代表性的图表风格讲解：
+1.	图（a）是R ggplot2风格的散点图，使用R ggplot2 Set3的颜色主题，绘图区背景填充颜色为RGB（229, 229, 229）的灰色，以及白色的网格线［主要网格线的颜色为RGB（255, 255, 255），次要网格线的颜色为RGB（242, 242, 242）］。这种图表风格给读者清新脱俗的感觉，推荐使用在ppt演示中；
+2.	图(d)的绘图区背景填充颜色为RGB（255,255, 255）的白色，无主要和次要网格线，没有过多的背景信息。当图表尺寸较小时，任然可以清晰地表达数据内容，不像图(b)会因为背景线条太多而显得凌乱，常应用在学术期刊的论文中展示数据。
+3.	图(e)在图(d)的基础上，将绘图区边框设定为“无”，也没有主要和次要网格线，同样常应用在学术期刊的论文中展示数据。 
+所以，总的来说，图(a)和(b)的风格适合于ppt演示，图(d)和(e)适合于学术论文展示。其实，不管使用R语言、Python，还是Origin、Excel，都可以通过调整绘图区背景、主要和次要网格线、坐标轴线条等的格式，实现如下6种不同的图表风格。
+
+     
+(a) theme_gray()             (b) theme_bw()               (c) theme_light()
+    
+(d) theme_test()              (e) theme_classic()          (f) theme_minimal()
+图1-6-24 不同的图表风格
+
+新手工具
+--------------------------------------------------------------------------------------------------------------------------------------	
+对于R语言新手，在这里推荐一款RStudio的插件 esquisse：可通过交互操作实现简单的ggplot2图表，并自动生成导出绘图代码，供用户再作进一步的调整与美化。Esquisse的安装可以通过使用devtools包安装：
+devtools::install_github("dreamRs/esquisse")
+如果要在RStudio中启动esquisse，既可以通过点击RStudio界面的“Tools”-“Addins”-“ggplot2 builder”选项；也可以在console命令框中输入语句：esquisse:::esquisser()启动，其界面如图1-6-25所示。
+
+ 图1-6-25 esquisse交互操作界面
+
+高手必备
+------------------------------------------------------------------------------------------------------------------------------------------
+特别强调的是，要想熟练使用ggplot2绘制图表，就必须深入理解ggplot与geom对象之间的关系。在实际绘图语句中存在如表所示三种情况。在表中的案例，我们使用的数据集为使用向量排序函数sort()和正态分布随机数生成函数rnorm()构造的df1和df2，
+N<-20
+df1 <- data.frame(x=sort(rnorm(N)),y=sort(rnorm(N)))
+df2 <- data.frame(x=df1$x+0.1*rnorm(N),y=df1$y+0.1*rnorm(N))
+ggplot与geom对象之间的关系主要体现在如下两点：
+?	ggplot(data=NULL,mapping = aes())：ggplot内有data、mapping两个参数 ，具有全局优先级，可以被之后的所有geom对象所继承（前提是geom内未指定相关参数）。
+?	geom_xxx(data=NULL,mapping = aes())：geom对象内同样有data和mapping参数，但geom内的data和mapping参数属于局部参数，仅作用于geom对象内部。
+
+表1-6-7 ggplot与geom对象之间的关系情况
+	1	2	3
+类型	所有图层共享数据源和美学映射参数	所有图层仅共享数据源	各图层对象均使用独立的数据源与美学映射参数
+图例	 	 	 
+代码	ggplot(df1,aes(x,y,colour=x+y))+
+geom_line(size=1)+
+geom_point(shape=16,size=5)+
+guides(color=guide_colorbar(title="Point\nLine"))	ggplot(df1,aes(x,y))+
+geom_line(aes(colour=x+y),
+size=1)+
+geom_point(aes(fill=x+y),
+color="black",shape=21, size=5)+
+scale_fill_distiller(name="Point",palette="YlOrRd")+
+scale_color_distiller(name="Line",palette="Blues")	ggplot()+
+geom_line(aes(x,y,colour=x+y),df1,size=1)+
+geom_point(aes(x,y,fill=x+y),df2,color="black",shape=21, size=5)+
+scale_fill_distiller(name="Point",palette="YlOrRd")+
+scale_color_distiller(name="Line",palette="Blues")
+说明	所有geom对象都使用相同的data和mapping (x, y, size, alpha, linetype, colour, fill, angle等),根据参数继承规则，可以data和mapping指定在 ggplot函数内，无论之后有多少个图层需要指定data和mapping，你都仅需在ggplot内指定一次即可，后续geom会自动继承。	此种情况，根据参数继承规则，将共享的数据源部分data写在ggplot内，将不同图层单独使用的美学映射参数指定在各自的geom内，在遇多图层时，data参数仅需在ggplot内指定一次，之后的geom对象都会自动继承，无需一一指定，但是那些geom内部使用的各自美学映射属性则需一一指定。	此种情况属于特殊情况，仅在涉及到高级制图或者复杂地理信息多图层图表时才会接触，此时因为各图层没有共享任何data和mapping，假设有N个图层需要映射，此时所有的data和mapping参数都需要在各自geom内进行一一制定，因为在geom内指定毫无意义。
+应用	简单图表	较为复杂的图表	高级图表与地理信息图表
+
+
+?
+一维数据的插值
+import numpy as np
+#从scipy库中导入插值需要的方法 interpolate
+from scipy import interpolate
+#定义函数 x:横坐标列表 y:纵坐标列表 kind:插值方式
+
+df = pd.DataFrame({'x': [ 0, 1, 2,  3,  4], 'y': [ 0., 0.308, 0.55, 0.546, 0.44 ]})    
+f = interpolate.interp1d(df['x'], df['y'], kind='cubic')
+#插值方式:nearest：最邻近插值法；zero：阶梯插值；slinear、linear：线性插值；quadratic、cubic：2、3阶B样条曲线插值
+x_new=np.linspace(0,4)
+y_new=f(x_new)
+df_interpolate = pd.DataFrame({'x': x_new,'y':y_new})
+
+base_plot=(ggplot()
++geom_line(df_interpolate,aes(x='x',y='y'),size=1,colour='black')
+#+geom_line(df,aes(x='x',y='y'),size=1,colour='red')
++geom_point(df,aes(x='x',y='y'),shape='o',size=8,colour='black',fill="red")           
+#+theme_matplotlib()
++theme(
+    #text=element_text(size=15,face="plain",color="black"),
+    axis_title=element_text(size=12,face="plain",color="black"),
+    axis_text = element_text(size=14,face="plain",color="black"),
+    strip_text=element_text(size=12,face="plain",color="black"),
+    strip_background=element_blank(),
+     legend_title=element_text(size=16,face="plain",color="black"),
+     legend_text=element_text(size=15,face="plain",color="black"),
+   # legend_position='top',
+    #legend_position = c(0.88,0.88),
+    figure_size = (10,8),
+    dpi = 50
+))
+print(base_plot)
+
+
+?
+第四章 类别比较型图表
+3.1 柱形图系列
+柱形图用于显示一段时间内的数据变化或显示各项之间的比较情况。柱形图用于显示一段时间内的数据变化或显示各项之间的比较情况。在柱形图中，类别型或序数型变量映射到横轴的位置，数值型变量映射到矩形的高度。柱形图控制柱状图的两个重要参数是：“设置系列数据格式”中的“系列重叠”和“分类间距”。“分类间距”控制同一数据系列的柱形宽度，数值范围为[0.0，1.0]；“系列重叠”控制不同数据系列之间的距离，数值范围为[-1.0, 1.0]。图3-1-1使用R语言ggplot2包的geom_bar()直接绘制的柱形图系列，包括(a) 单数据系列柱形图 (b)多数据系列柱形图 (c) 堆积柱形图 (d)百分比堆积柱形图四种常见到的类型。但是R语言绘制柱形图和条形图系列的最大潜在问题就是排序问题。
+在R语言ggplot2包柱形图中，X轴变量默认会按照输入的数据顺序绘制，Y轴变量和图例变量默认按照字母顺序绘制。所以R语言绘制柱形图系列图表要注意：绘制图表前对数据进行排序处理。使用geom_bar()函数绘制柱形图系列时，position的参数有如下四种：1. identity: 不做任何位置调整，该情况在多分类柱形图中不可行，序列间会遮盖，但是在多序列散点图、折线图即可行，不存在遮盖问题；2. stack: 垂直堆叠放置。（堆积柱形图）；3. dodge: 水平抖动放置（簇状柱形图，position=position_dodge()）；4. fill：百分比化（垂直堆叠放置，如百分比堆积面积图，百分比堆积柱形图等）。
+       
+(a)                 (b)                   (c)                 (d)
+图3-1-1 柱形图系列.
+(a) 单数据系列柱形图 (b)多数据系列柱形图 (c) 堆积柱形图 (d)百分比堆积柱形图.
+
+       
+(a)                 (b)                   (c)                 (d)
+图3-1-2 排序调整后的柱形图系列.
+(a) 单数据系列柱形图 (b)多数据系列柱形图 (c) 堆积柱形图 (d)百分比堆积柱形图.
+3.1.1 单数据系列柱形图------------------------------------------------------------------------------------------------
+图3-1-1(a)和3-1-2(a)分别对应排序调整前和调整后的单数据系列柱形图。如前面所说，数据类型大致可以分为：类别型、序数型和数值型。柱形图的X轴变量一般为类别型和序数型，Y轴变量为数值型。对于X轴变量为序数型的情况，直接按顺序绘制柱形图，如图3-1-1(a)的X轴为Fair、Good、Very Good、Premium和Ideal（一般、好、非常好、超级好、完美）的顺序。最常见的序数型数据还包括时序数据，如年、月份("January"、"February"、"March"、"April"、"May"、"June"、"July"、"August"、"September"、"October"、"November"、"December"）、日期等。
+但是如果X轴变量为类别型的情况，一般推荐对数据进行降序进行处理后，再展示图表，如图3-1-2(a)（假定图3-1-2(a)的X轴变量为类别型）。这样，更加方便观察数据规律，确定某个类别对应的数值所在整个数据范围的位置。对于X轴变量为类别型数据，使用ggplot2函数绘图时，会默认把X轴类别按照字母顺序绘制柱形，如图3-1-1(a)所示。这是因为绘图不是根据X轴变量的因子向量顺序排列展示，而是根据因子向量的水平levels按顺序展示。因子向量factor包括向量vector和水平levels两个部分，比如：
+Cut<- as.factor(c("Fair","Good","Very Good","Premium","Ideal"))
+最终的输出结果Cut为：向量部分(Fair，Good，Very Good，Premium, Ideal)和水平部分(Fair,Good,Ideal, Premium,Very Good)，其中水平部分会根据字母顺序自动排序。
+需要注意的是：只排序数据框，而不改变X轴因子向量的水平levels，并不会改变柱形图的绘制顺序。在R中表格的排序主要有两种方法：base包的order()函数（用于对向量vector排序）和dplyr包的arrange()函数（用于对数据框data.frame根据某列数据排序），具体语句分别如下：
+mydata<-mydata[order(mydata[,2],decreasing = TRUE),]
+mydata<-dplyr::arrange(mydata, desc(Price))
+可以得到图3-1-3(b)所示的新表格，因为虽然对表格数据排序，但是并没有改变因子向量的水平levels。但是使用geom_bar()绘制时，还是根据levels的原有的顺序绘制柱形图，如图3-1-1(a)所示。
+在R语言中，要实现X轴变量的降序展示（如图3-1-2(a)所示），需要通过控制并改变因子向量factor的水平levels实现。我们一定要先对表格或因子向量排序后，再改变其水平levels，才会使X轴的类别顺序根据Y轴变量的数值降序展示，具体语句如下：
+order<-sort(mydata$Price,index.return=TRUE,decreasing = TRUE)
+mydata$Cut <- factor(mydata$Cut, levels = mydata$Cut[order$ix])
+在这里，mydata$Cut中原来的levels为(Fair, Good, Ideal, Premium, Very Good)，而使用上面的语句处理后，新的levels为(Premium, Fair, Very Good, Good, Ideal)，然后绘制图表的时候会根据mydata$Cut中levels的顺序绘制柱形数据系列，如图3-1-2(a)所示。
+       
+(a) 导入R的原始数据    (b) 直接对表格进行排序后的表格
+图3-1-3 R语言中原始数据的展示.
+
+  单数据系列柱形图
+R语言ggplot2包就提供了柱形图系列绘制的函数：geom_bar()。其中stat和position的参数都为identity, width控制柱形的宽度，范围为（0, 1）。其中 3-1-2(a)单数据系列柱形图的实现代码如下所示：
+library(ggplot2)
+mydata<-data.frame(Cut=c("Fair","Good","Very Good","Premium","Ideal"),
+                    Price=c(4300,3800,3950,4700,3500))
+order<-sort(mydata$Price,index.return=TRUE,decreasing = TRUE)
+mydata$Cut <- factor(mydata$Cut, levels = mydata$Cut[order$ix])
+ggplot(data=mydata,aes(Cut,Price))+
+  geom_bar(stat = "identity", width = 0.8,colour="black",size=0.25,fill="#FC4E07",alpha=1)          
+
+3.1.2 多数据系列柱形图------------------------------------------------------------------------------------------
+	对于如图3-1-1(b)和3-1-2(b)所示的多数据系列柱形图，图表绘制的关键在于将原始数据的二维表（图3-1-4(a)）转换成一维表（图3-1-4(b)）。在R语言中，使用reshape2包的melt()函数或者tidyr包的gather()函数可以把二维表转换成一维表。
+对于多数据系列柱形图，最好使表格根据第1个数据系列的数值降序处理，然后再展示。在图3-1-4(b)，根据数据第1个系列“1996”降序展示表格，所以要使用sort()和factor()函数处理表格。
+ 
+(a) 原始二维表
+ 
+(b) 数据处理后的二维表
+图3-1-4 表格类型的转换
+
+  多数据系列柱形图
+R语言ggplot2包就提供了柱形图系列绘制的函数：geom_bar()，其中width控制柱形的宽度；position设定为position_dodge()，表示柱形并排展示。也可以通过设定position_dodge(width =0.7)，再改变两个数据系列的间隔，3-1-2(b)多数据系列柱形图的具体实现代码如下所示：
+library(reshape2)
+mydata<-read.csv("MultiColumn_Data.csv",check.names=FALSE)
+order<-sort(mydata$ "1996",index.return=TRUE,decreasing = TRUE) #根据1996 排序
+mydata$Catergory<- factor(mydata$Catergory, levels = mydata$Catergory[order$ix]) 
+#根据1996的排序结果设定因子向量的水平顺序
+mydata<-melt(mydata,id.vars='Catergory') 
+ggplot(data=mydata,aes(Catergory,value,fill=variable))+
+  geom_bar(stat="identity", color="black", position=position_dodge(),width=0.7,size=0.25)
+
+
+3.1.3 堆积柱形图---------------------------------------------------------------------------------------------------
+堆积柱形图显示单个项目与整体之间的关系，它比较各个类别的每个数值所占总数值的大小。堆积柱形图以二维垂直堆积矩形显示数值。
+在图3-1-2(c)中，要注意两点：
+1.	柱形图的X轴变量一般为类别型，Y轴变量为数值型。所以要先求和得到每个类别的总和数值，然后对数据进行降序进行处理。
+2.	图例的变量属于序数型，为Fair、Good、Very Good、Premium和Ideal（一般、好、非常好、超级好、完美）的顺序，需要按顺序显示图例。 
+  堆积柱形图
+R语言ggplot2包就提供了柱形图系列绘制的函数：geom_bar()。其中position设定为"stack"。3-1-2(c)多数据系列柱形图的具体实现代码如下所示：
+mydata<-read.csv("StackedColumn_Data.csv")
+Order<-sort(colSums(mydata[,2:ncol(mydata)]),index.return=TRUE,decreasing = TRUE) 
+#根据列求和结果对数据排序
+mydata<-mydata[,c(1,Order$ix+1)] 
+#根据列求和结果对表格排序
+mydata$Clarity <- factor(mydata$Clarity, levels = mydata$Clarity[c(1:5)])
+# 由于输入时就已经按顺序导入表格，所以只需要保持固有的排序
+mydata<-melt(mydata,id.vars='Clarity')
+ggplot(data=mydata,aes(variable,value,fill=Clarity))+
+  geom_bar(stat="identity",position="stack", color="black", width=0.7,size=0.25)
+
+3.1.4 百分比堆积柱形图------------------------------------------------------------------------------------------
+百分比堆积柱形图和三维百分比堆积柱形图表达相同的图表信息。这些类型的柱形图比较各个类别的每一数值所占总数值的百分比大小。百分比堆积柱形图以二维垂直百分比堆积矩形显示数值。在图3-1-2(c)中，要注意两点：
+3.	柱形图的X轴变量一般为类别型，Y轴变量为数值型。所以要先求重点想展示类别的占比（如Ideal数据系列，一般推荐为占比最大的数据系列），然后对数据进行降序进行处理。
+4.	图例的变量属于序数型，为Fair、Good、Very Good、Premium和Ideal（一般、好、非常好、超级好、完美）的顺序，需要按顺序显示图例。
+  百分比堆积柱形图
+R语言ggplot2包就提供了柱形图系列绘制的函数：geom_bar()。其中position设定为"fill"。3-1-2(d)百分比堆积柱形图的具体实现代码如下所示：
+mydata<-read.csv("StackedColumn_Data.csv")
+Per<-(as.matrix(mydata[5,2:ncol(mydata)])) / t(as.matrix(colSums(mydata[,2:ncol(mydata)])))
+Ideal<-sort(as.numeric(Per),index.return=TRUE,decreasing = TRUE)
+mydata<-mydata[,c(1,Ideal$ix+1)]
+mydata$Clarity <- factor(mydata$Clarity, levels = mydata$Clarity[c(1:5)])
+mydata<-melt(mydata,id.vars='Clarity')
+
+ggplot(data=mydata,aes(variable,value,fill=Clarity))+
+  geom_bar(stat="identity", position="fill",color="black", width=0.8,size=0.25)
+
+3.2 条形图系列
+簇状条形图也跟簇状柱形图类似，几乎可以表达相同大的数据信息。在条形图中，类别型或序数型变量映射到纵轴的位置，数值型变量映射到矩形的宽度。条形图的柱形变为横向，从而导致与柱形图相比，条形图更加强调项目之间的大小。尤其在项目名称较长以及数量较多时，采用条形图可视化数据会更加美观、清晰。
+在R语言ggplot2包条形图中，Y轴变量和图例变量默认按照字母顺序绘制，可以参照3.1 柱形图系列的代码实现。只需要添加ggplot2包的coord_flip()语句，就可以将X-Y坐标轴旋转，从而将柱形图转换成条形图。
+           
+(a) 单数据系列条形图             (b) 多数据系列条形图
+
+    
+(c) 堆积条形图                      (d) 百分比条形图
+图3-2-1 条形图系列
+
+3.3 不等宽柱形图
+有的时候，需要在柱状图中同时表达两个维度的数据，除了每个柱子的高度表达了某个对象的数值大小（Y轴纵坐标），还希望柱子的宽度也能表达该对象的另外一个数值大小（X轴横坐标），以便直观地比较这两个维度。这个时候可以使用不等宽柱状图（Variable Width Column Chart）来展示数据，如图3-3-1所示。不等宽柱状图是常规柱状图的一种变化形式，它用柱形的高度反映一个数值的大小，同时用柱状的宽度反映另一个数值的大小，多用在市场调查研究、维度分析等方面。
+
+ 
+图3-3-1 不等宽柱状图
+
+  不等宽柱状图
+R语言ggplot2包就提供了矩形绘制的函数：geom_rect()。geom_rect()函数可以根据右下角坐标(xmin, ymin)和左上角坐标(xmax, ymax)绘制矩形，矩形的宽度width为（max-xmin）对应X轴变量的数值大小；矩形的高度height为（ymax-ymin）对应Y轴变量的数值大小。3-3-1不等宽柱状图的具体实现代码如下所示：
+library(ggplot2)
+mydata<-data.frame(Name=paste0("Project",1:5),Scale=c(35,30,20,10,5),ARPU=c(56,37,63,57,59))
+#构造矩形X轴的起点（最小点）
+mydata$xmin<-0
+for (i in 2:5){
+  mydata$xmin[i]<-sum(mydata$Scale[1:i-1])}
+#构造矩形X轴的终点（最大点）
+for (i in 1:5){
+  mydata$xmax[i]<-sum(mydata$Scale[1:i])}
+#构造数据标签的横坐标：
+for (i in 1:5){
+  mydata$label[i]<-sum(mydata$Scale[1:i])-mydata$Scale[i]/2}
+ggplot(mydata)+
+  geom_rect(aes(xmin=xmin,xmax=xmax,ymin=0,ymax=ARPU,fill=Name),colour="black",size=0.25)+
+geom_text(aes(x=label,y=ARPU+3,label=ARPU),size=4,col="black")+
+  geom_text(aes(x=label,y=-2.5,label=Name),size=4,col="black")
+
+3.4 克利夫兰点图
+	如图3-4-1所示，三种不同类型的图表，但是在本质上都可以看成是克利夫兰点图，所以就归纳成同一类别：
+棒棒糖图（Lollipop Chart）：棒棒糖图传达了跟柱形图或者条形图相同的信息，只是将矩形转变成线条，这样可减少展示空间，重点放过在数据点上，从而看起来更加简洁与美观。相对于柱形图与条形图，棒棒糖图更加适合数据量比较多的情况。图3-4-1(a)为横向棒棒糖图，对应条形图；而如果是纵向棒棒糖图则对于柱形图。
+克利夫兰点图（Cleveland's Dot Plots）：也就是我们常用的滑珠散点图，非常类似于棒棒糖图，只是没有连接的线条，重点强调数据的排序展示以及互相之间的差距。如图3-4-1(b)所示。克利夫兰点图一般都是横向展示，所以Y轴变量一般为类别型变量。
+哑铃图（Dumbbell Plot）：可以看成多数据系列的克利夫兰点图，只是使用直线连接了两个数据系列的数据点。哑铃图可以主要用于：1.展示在同一时间段两个数据点的相对位置（增加或者减少），2. 比较两个类别之间的数据值差别。如图3-4-1(c)所示，就是展示了男性（male）和女性（Female）两个类别的数值差别，以女性（Female）数据系列的数值排序显示。
+      
+(a)棒棒糖图                    (b) 克利夫兰点图               (c) 哑铃图
+图3-4-1 克利夫兰点图系列
+
+  棒棒糖图
+R语言ggplot2包就提供了散点绘制geom_point()函数以及连接线geom_segment()函数。其中geom_segment()函数根据起点坐标(x,y) 和终点坐标(xend,yend)绘制两者之间的连接线，棒棒糖图的连接线为平行于X轴水平绘制，其长度length对应于X轴变量的数值。图3-4-1(a)棒棒糖图的具体实现代码如下所示。而图3-4-1(b)克利夫兰点图就是在棒棒糖图的基础上只保留散点。
+library(ggplot2)
+mydata<-read.csv("DotPlots_Data.csv",sep=",",na.strings="NA",stringsAsFactors=FALSE)
+mydata$sum<-rowSums(mydata[,2:3])
+order<-sort(mydata$sum,index.return=TRUE,decreasing = FALSE)
+mydata$City<- factor(mydata$City, levels = mydata$City[order$ix])
+
+ggplot(mydata, aes(sum, City)) +
+  geom_segment(aes(x=0, xend=sum, y=City, yend=City))+ #添加链接线 
+  geom_point(shape=21,size=3,colour="black",fill="#FC4E07")
+
+  哑铃图
+R语言ggplot2包就提供了散点绘制geom_point()函数以及连接线geom_segment()函数。其中geom_segment()的始点和终点分别对应数据系列1数据点P(x,y) 和数据系列2数据点Q(x,y)。3-3-1(c)哑铃图的实现代码如下所示：
+library(ggplot2)
+library(reshape2)
+mydata<-read.csv("DotPlots_Data.csv",sep=",",na.strings="NA",stringsAsFactors=FALSE)
+mydata$City <- factor(mydata$City, levels = mydata$City[order(mydata$Female)])
+mydata<-melt(mydata,id.vars='City')
+ggplot(mydata, aes(value,City,fill=variable)) +
+  geom_line(aes(group = City)) +
+  geom_point(shape=21,size=3,colour="black")+
+  scale_fill_manual(values=c("#00AFBB", "#FC4E07","#36BED9"))+
+  theme(legend.position = c(0.85,0.12))
+
+
+3.5 坡度图
+坡度图（Slope charts）可以看成是一种多数据系列的折线图，可以很好地用于比较在两个不同时间或者两个不同实验条件下，某些类别变量的数据变化关系。
+图3-5-1 (a)展示了1952和1957两年的变化数据，直接使用直线连接这两个年份不同国家的数据点，同时用绿色和红色标注增长和减少的国家数据，这样可以很清晰地对比不同国家的数值变化情况；
+图3-5-1(b)展示了2007年到2013年总共7年的变化数据，使用曲线将每个国家7年的数据连接，但是重点展示第一年(2007)和最后一年(2013)的数据点，同时用绿色和红色标注增长和减少的国家数据，这样可以很清晰地对比不同国家的数值变化情况。
+
+   
+(a)两年份对比                        (b)多年份对比
+图3-5-1 坡度图
+  坡度图
+R语言ggplot2包就提供了geom_segment()函数可以绘制两点之间的直线，geom_point()函数可以绘制两根直线上的数据点。3-5-1(a)坡度图的具体代码如下所示。
+3-5-1(b)坡度图跟3-5-1(a)代码的主要区别主要在于两个：1.先把读入的数据框df，使用melt()函数根据“continent”列融合，再计算左标签(left_label)、右标签(right_label)和类别(class)；2. 两点之前的连接线函数使用geom_xspline()替代geom_segment()函数，因为geom_segment()函数只能使用直线连接两点，而geom_xspline()可以使用光滑的曲线连接多个数据点。
+library(ggplot2)
+library(reshape2)
+df <- read.csv("Slopecharts_Data1.csv")
+colnames(df) <- c("continent", "1952", "1957")
+left_label <- paste(df$continent, round(df$`1952`),sep=", ")
+right_label <- paste(df$continent, round(df$`1957`),sep=", ")
+df$class <- ifelse((df$`1957` - df$`1952`) < 0, "red", "green")
+
+p <- ggplot(df) + 
+  geom_segment(aes(x=1, xend=2, y=`1952`, yend=`1957`, col=class), size=.75, show.legend=F) +  #连接线
+  geom_vline(xintercept=1, linetype="solid", size=.1) + # 1952年的垂直直线
+  geom_vline(xintercept=2, linetype="solid", size=.1) + # 1957年的垂直直线
+  geom_point(aes(x=1, y=`1952`), size=3,shape=21,fill="grey80",color="black") + # 1952年的数据点
+  geom_point(aes(x=2, y=`1957`), size=3,shape=21,fill="grey80",color="black") + # 1957年的数据点
+  scale_color_manual(labels = c("Up", "Down"), values = c("green"="#A6D854","red"="#FC4E07")) +  
+  xlim(.5, 2.5) 
+
+# 添加文本信息
+p <- p + geom_text(label=left_label, y=df$`1952`, x=rep(1, NROW(df)), hjust=1.1, size=3.5)
+p <- p + geom_text(label=right_label, y=df$`1957`, x=rep(2, NROW(df)), hjust=-0.1, size=3.5)
+p <- p + geom_text(label="1952", x=1, y=1.02*(max(df$`1952`, df$`1957`)), hjust=1.2, size=5)   
+p <- p + geom_text(label="1957", x=2, y=1.02*(max(df$`1952`, df$`1957`)), hjust=-0.1, size=5) 
+
+p<-p+theme_void()
+p 
+
+3.6 南丁格尔玫瑰图
+极坐标柱形图，是一种圆形的柱形图。平常的柱形图的坐标系是直角坐标系，而极坐标柱形图的坐标系是极坐标系。其实，极坐标柱形图还有一个更加有意思的名字：南丁格尔玫瑰图（Nightingale Rose Chart, Coxcomb Chart, Polar Area Diagram）。因为这种图是弗罗伦斯·南丁格尔所发明的。南丁格尔玫瑰图是在极坐标下绘制的柱状图，使用圆弧的半径长短表示数据的大小（数量的多少）。每个数据类别或间隔在径向图上划分为相等分段，每个分段从中心延伸多远（与其所代表的数值成正比）取决于极座标轴线。因此，从极座标中心延伸出来的每一环可以当作标尺使用，用来表示分段大小并代表较高的数值，如图3-6-1所示。
+1.由于半径和面积的关系是平方的关系，极坐标柱形图会将数据的比例大小夸大，所以适合对比大小相近的数值。
+2.由于圆形有周期的特性，所以玫瑰图特别适用于X轴变量是环状周期型序数的情况，比如月份、星期、日期等，这些都是具有周期性的序数型数据。
+3. 极坐标柱形图是将数据以圆形排列展示，而柱形图是将数据横向排列展示。所以在数据量比较多时，使用极坐标柱形图更能减省绘图空间。
+但是南丁格尔玫瑰图的主要缺点在于面积较大的外围部分会更加引人注目，这跟数值的增量成反比。
+      
+(a) 堆积柱形图              (b) 南丁格尔玫瑰图
+图3-6-1 南丁格尔玫瑰图的映射
+
+          
+(a)单数据系列                         (b)单数据系列
+         
+(c)多数据系列                         (d)多数据系列
+图3-6-2 极坐标柱形图系列
+  单数据系列极坐标柱形图
+R语言从直角坐标系(图3-6-1(a))转到极坐标系(图3-6-1(b))，只需要添加一条坐标系的语句：coord_polar(theta = "x",start=0)，其中theta表示是将X轴或Y轴映射到极坐标系。图3-6-2(a)的X轴坐标为时间序列型，所以就是根据X轴时间顺序展示数据。
+library(ggplot2)
+mydata <- data.frame( a=c("Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"),
+                      b=c(50, 60, 70, 20,90,110,30))
+myAngle <-seq(-20,-340,length.out =7) #设定坐标轴标签的角度，使之垂直于中心线
+ggplot(mydata, aes(x=a, y=b, fill=factor(b))) +
+  geom_bar(width = 1,stat="identity",colour = "black",fill="#F8766D") +
+  geom_text(aes(y = b-8,label = b),color="white") +
+  coord_polar(theta = "x",start=0) +
+  ylim(c(0,120))+
+  theme_light()+
+  theme(axis.text.x=element_text(size = 13,colour="black",angle = myAngle))
+
+  多数据系列极坐标柱形图
+图3-6-2(b)多数据系列极坐标图的X轴坐标为类别型变量，所以就是根据Y轴数值排序后展示数据，这个原理跟堆积柱形图类似。根据处理后的数据绘制堆积柱形图后，添加语句coord_polar(theta = "x",start=0)，就可以把直角坐标系转换成极坐标系。
+library(ggplot2)
+library(dplyr)
+diamonds<-cbind(diamonds,Cou=rep(1,nrow(diamonds)))
+sum_clarity<-aggregate(Cou~clarity,diamonds,sum)
+sort_clarity<-arrange(sum_clarity,desc(Cou))   #对数据框sum_clarity根据Cou降序处理
+diamonds$clarity<- factor(diamonds$clarity, levels = sort_clarity$clarity)
+myAngle <-seq(-20,-340,length.out = 8) 
+ggplot(diamonds,aes(x=clarity,fill=color))+
+  geom_bar(width=1.0,colour="black",size=0.25)+
+  coord_polar(theta = "x",start=0)+  #把直角坐标系转换成极坐标系
+  scale_fill_brewer(palette="Reds")+  #选择的离散型颜色主题方案为"Reds"
+  guides(fill=guide_legend(reverse=TRUE,title="Color"))+
+  ylim(c(-2000,12000))+
+  theme_light()+
+  theme(axis.text.x=element_text(size = 13,colour="black",angle = myAngle))
+
+-------------------------------------------------------------------------------------------------------------------------
+南丁格尔玫瑰图的故事
+19世纪50年代，英国、法国、土耳其和俄国进行了克里米亚战争，英国的战地战士死亡率高达42%。弗罗伦斯·南丁格尔主动申请，自愿担任战地护士。她率领38名护士抵达前线，在战地医院服务。当时的野战医院卫生条件极差，各种资源极度匮乏，她竭尽全力排除各种困难，为伤员解决必须的生活用品和食品，对他们进行认真的护理。仅仅半年左右的时间伤病员的死亡率就下降到2.2%。每个夜晚，她都手执风灯巡视，伤病员们亲切地称她为“提灯女神”。战争结束后，南丁格尔回到英国，被人们推崇为民族英雄。
+ 
+出于对资料统计的结果会不受人重视的忧虑，她发展出一种色彩缤纷的图表形式，让数据能够更加让人印象深刻。这种图表形式有时也被称作「南丁格尔的玫瑰」，是一种圆形的直方图。南丁格尔自己常昵称这类图为鸡冠花图（coxcomb），并且用以表达军医院季节性的死亡率，对象是那些不太能理解传统统计报表的公务人员。她的方法打动了当时的高层，包括军方人士和维多利亚女王本人，于是医事改良的提案才得到支持。
+-------------------------------------------------------------------------------------------------------------------------
+3.7 径向柱图
+径向柱图也称为圆形柱图或星图。这种图表使用同心圆网格来绘制条形图，如图3-7-1所示。每个圆圈表示一个数值刻度，而径向分隔线（从中心延伸出来的线）则用作区分不同类别或间隔（如果是直方图）。刻度上较低的数值通常由中心点开始，然后数值会随着每个圆形往外增加，但也可以把任何外圆设为零值，这样里面的内圆就可用来显示负值。条形通常从中心点开始向外延伸，但也可以别处为起点以显示数值范围（如跨度图）。此外，条形也可以如堆叠式条形图般堆叠起来。
+      
+(a) 堆积柱形图              (b) 径向柱图
+图3-7-1 径向柱图的映射
+      
+(a) 单数剧系列                               (b)多数据系列
+图3-7-2 径向柱图
+  径向柱图
+径向柱图其实与R语言绘制极坐标柱形图基本类似，也是将直角坐标系转换成极坐标系，只是使Y轴坐标不从0开始，关键的语句在于设定Y轴的坐标范围ylim(ymin, ymax), ymin和ymax分布表示Y轴的最小和最大值。图3-7-2多数据系列的径向柱形图就是将直角坐标系下的多数据系列柱形图，转换成极坐标系，然后将Y轴设定从负值开始。
+library(ggplot2)
+library(RColorBrewer)
+df <- data.frame(item=rep(LETTERS[1:10], 5), 
+                  score=rep(letters[1:5], each=10), 
+                  value=rep((1:5), each=10) + rnorm(50, 0, .5))
+myAng <-seq(-20,-340,length.out =10)
+ggplot(data=df,aes(item,value,fill=score))+
+  geom_bar(stat="identity", color="black", position=position_dodge(),width=0.7,size=0.25)+
+  coord_polar(theta = "x",start=0) +   #把直角坐标系转换成极坐标系
+  ylim(c(-3,6))+  #Y轴数值范围设定为(-3, 6)
+  scale_fill_brewer(palette="YlGnBu")+ #选择的离散型颜色主题方案为" YlGnBu"
+  theme_light()+
+  theme(axis.text.x=element_text(size = 13,colour="black",angle = myAng))
+
+极坐标跨度图 
+极坐标跨度图是一种常用的时间序列的波动范围图表，对于数据量较多的数据，可以使用线型line代替柱形bar表示数据，可以用于价格、温度等随时间的波动变化，如图3-7-3所示。
+
+     
+(a)                                        (b)
+
+图3-7-3 极坐标跨度图
+  极坐标跨度图
+R语言ggplot2包就提供了线型范围函数：geom_linerange()，主要包括三个参数(x,ymin,ymax)，分布对于X轴数值、Y轴最小值和最大值。图3-7-3(b)的具体实现代码如下所示。
+library(ggplot2)
+library(viridis)
+df<-read.csv("PloarRange_Data.csv",sep=",",na.strings="NA",stringsAsFactors=FALSE)
+df$date<-as.Date(df$date) #将数据框df的date列数据转换成日期型数据
+myAngle <-seq(-20,-340,length.out = 12)
+ggplot(df, aes(date, ymin = min.temperaturec, ymax = max.temperaturec, color = mean.temperaturec)) + 
+  geom_linerange(size = 1.3, alpha = 0.75) +
+  scale_color_viridis("Temperature", option = "D") +  #使用scale_color_viridis()函数设定颜色主题为连续型"D"
+  scale_x_date(labels = date_format("%m"), breaks = date_breaks("month")) + 
+# scale_x_date()设定日期型X轴坐标的标签显示格式和间隔
+  ylim(-10, 35) + 
+  coord_polar() + 
+  theme_light() +
+  theme(axis.text.x=element_text(size = 13,colour="black",angle = myAngle))
+3.8 雷达图
+雷达图(Radar Chart)，又称为蜘蛛图、极地图或星图。雷达图是用来比较多个定量变量的方法，可用于查看哪些变量具有相似数值，或者每个变量中有没有任何异常值。此外，雷达图也可用于查看数据集中哪些变量得分较高/低，是显示性能表现的理想之选。
+每个变量都具有自己的轴（从中心开始）。所有的轴都以径向排列，彼此之间的距离相等，所有轴都有相同的刻度。轴与轴之间的网格线通常只作指引用途。每个变量数值会画在其所属轴线之上，数据集内的所有变量将连在一起形成一个多边形。
+然而，雷达图有一些重大缺点：1. 在一个雷达图中使用多个多边形，会令图表难以阅读，而且相当混乱。特别是如果用颜色填满多边形，表面的多边形会覆盖着下面的其他多边形。2. 过多变量也会导致出现太多的轴线，使图表难以阅读和变得复杂，故雷达图只能保持简单，因而限制了可用变量的数量。3. 它未能很有效地比较每个变量的数值。即使借助蜘蛛网般的网格指引，在直线轴上比较数值始终较为容易。
+我们接下来以数据集label_data为例讲解雷达图的绘制方法：
+label_data<-data.frame(car=c("Math" , "English" , "Biology" , "Music" , "R-Coding" ), value=c(12 , 2 ,14 ,20, 18), id=c(1:5) )
+其中，car和vlaue列是实际的X轴和Y轴变量，id为辅助的绘图变量，为1~N的等差数列（N为数据框的总行数）。
+?	在R语言的直角坐标系下，直接将使用geom_path()函数绘制的折线图，或者geom_polygon()函数绘制的多边形图，再将其转换成极坐标系时，得到的图表会如图3-8-1(a)所示。其出现的问题是起点和末点会绘制在同一X轴位置。其核心语句如下
+ggplot(data=mydata,aes(x=id, y=value)) +
+geom_polygon(color = "black", fill=brewer.pal(7,"Set1")[1],alpha=0.1)+
+geom_point(size=5,shape=21,color = 'black', fill=brewer.pal(7,"Set1")[1])+
+coord_polar()
+?	这时，可以再原始数据框的末尾，添加第一行的数据：
+AddRow<-c(NA,nrow(label_data)+1,mydata1[1,ncol(label_data)])
+mydata<-rbind(label_data,AddRow)
+再使用相同的方法绘制，就可以得到如图3-8-1(b)所示的带平滑线的雷达图。但是其存在的问题是X轴坐标标签并没有跟实际的X轴数据对应。
+?	在图3-8-1(b)的基础上，使用scale_x_continuous()函数，可以将X轴坐标标签替换成car列的数值，具体语句如下：
+scale_x_continuous(breaks =label_data$id,labels=label_data$car)
+这样，就可以得到如图3-8-1(c)所示的带平滑曲线雷达图。
+?	如果要得到图3-8-1(d)所示的直线连接的雷达图，只需要将极坐标系coord_polar()修改成自定义的雷达坐标系coord_radar()。
+
+    
+                      (a) 数据处理前的雷达图     (b) 数据处理后的雷达图
+    
+
+(c) 极坐标系下的圆形雷达图       (d)雷达坐标系下的圆形雷达图
+图3-8-1 雷达图的绘制演变过程
+
+   
+(a) 圆形雷达图                            (b) 带平滑线的圆形雷达图
+图3-8-2 多数据系列雷达图系列
+  雷达图系列
+R语言的fmsb包提供了radarchart()函数可以如图3-8-2(a)所示的标准雷达图；使用ggplot2包的geom_polygon()或者geom_path()函数，同时借助自制的辅助函数coord_radar()可以实现图3-8-2(a)所示的圆形雷达图，具体代码如下所示。但是使用coord_polar() 替代coord_radar()，就可以实现为图3-8-2(b) 所示的带平滑线的圆形雷达图。
+其中，geom_polygon()函数是根据给定的数据点依次连接形成封闭的多边形，而geom_path()函数是根据给定的数据点依次使用线条连接。
+library(ggplot2)
+library(RColorBrewer)
+#雷达坐标系的定义
+coord_radar <- function (theta = "x", start = 0, direction = 1) 
+{  theta <- match.arg(theta, c("x", "y"))
+r <- if (theta == "x") 
+  "y"
+else "x"
+ggproto("CoordRadar", CoordPolar, theta = theta, r = r, start = start, 
+        direction = sign(direction),
+        is_linear = function(coord) TRUE)}
+
+label_data<-data.frame(car=c("Math" , "English" , "Biology" , "Music" , "R-Coding" ),
+                    id=c(1:5) ,
+                    value=c(12 , 2 ,14 ,20, 18))
+#添加一行辅助数据到绘图数据
+AddRow<-c(NA,nrow(label_data)+1,mydata1[1,ncol(label_data)])
+mydata<-rbind(label_data,AddRow)
+#坐标轴标签的角度设定
+angle0<-  360 * (label_data$id-1) /nrow(label_data)  
+myAngle<-ifelse(angle0 >angle0[1], 180-angle0, angle0)
+
+ggplot(data=mydata,aes(x=id, y=value)) + 
+  geom_polygon(color = "black", fill=brewer.pal(7,"Set1")[1],alpha=0.1)+
+  geom_point(size=5,shape=21,color = 'black', fill=brewer.pal(7,"Set1")[1])+
+  #coord_polar() + #实现为图3-8-1(c) 极坐标系下的圆形雷达图
+  coord_radar()+  #实现为图3-8-1() 雷达坐标系下的圆形雷达图
+  scale_x_continuous(breaks =label_data$id,labels=label_data$car)+
+  ylim(0,22)+
+  theme_light()+
+  theme(axis.text.x=element_text(size = 11,colour="black",angle = myAngle))
+
+
+3.9 词云
+
+词云图 (Word Cloud) 是通过使每个字的大小与其出现频率成正比，显示不同单词在给定文本中的出现频率，然后将所有的字词排在一起，形成云状图案，也可以任何格式排列：水平线、垂直列或其他形状，如图3-9-1所示。也可用于显示获分配元数据的单词。。在字云图上使用颜色通常都是毫无意义的，主要是为了美观，但我们可以用颜色对单词进行分类或显示另一个数据变量。字云图通常用于网站或博客上，以描述关键字或标签使用，也可用来比较两个不同的文本。
+词云图虽然简单易懂，但有着一些重大缺点：1. 较长的字词会更引人注意；2.字母含有很多升部/降部的单词可能会更受人关注；3.分析精度不足，较常是为了美观。
+   
+(a) 柱形图                                 (b)词云图
+图3-9-1 词云图的映射
+
+?
+第五章 数据关系型图表
+4.1 散点图系列
+4.1.1 趋势显示的二维散点图
+散点图（Scatter Graph, Point Graph, X-Y Plot, Scatter Chart或者 Scattergram）是科研绘图中最常见的图形类型之一，通常用于显示和比较数值。散点图是使用一系列的散点在直角坐标系中展示变量的数值分布。在二维散点图中，可以通过观察两个变量的数据分析，发现两者的关系与相关性，如图3-1-1所示。散点图可以提供三类关键信息：（1）变量之间是否存在数量关联趋势；（2）如果存在关联趋势，是线性还是非线性的；（3）观察是否有存在离群值，从而分析这些离群值对建模分析的影响。
+ 
+图 4-1-1 二维散点图
+通过观察散点图上数据点的分布情况，我们可以推断出变量间的相关性。如果变量之间不存在相互关系，那么在散点图上就会表现为随机分布的离散的点，如果存在某种相关性，那么大部分的数据点就会相对密集并以某种趋势呈现。数据的相关关系主要分为：正相关（两个变量值同时增长）、负相关（一个变量值增加另一个变量值下降）、不相关、线性相关、指数相关等，表现在散点图上的大致分布如右图所示。那些离点集群较远的点我们称为离群点或者异常点(Outliers)。
+作为自变量的因素与作为因变量的预测对象是否有关，相关程度如何，以及判断这种相关程度的把握性多大，就成为进行回归分析必须要解决的问题。进行相关分析，一般要求出相关关系，以相关系数的大小来判断自变量和因变量的相关的程度：强相关、弱相关和无相关等。
+ 
+式中，Cov(X, Y)为X，Y的协方差，D(X)、D(Y)分别为X、Y 的方差。散点图经常与回归线（Line of Best Fit，就是最准确地贯穿所有点的线）结合使用，归纳分析现有数据实现曲线拟合，以进行预测分析。对于那些变量之间存在密切关系，但是这些关系又不像数学公式和物理公式那样能够精确表达的，散点图是一种很好的图形工具。但是在分析过程中需要注意，这两个变量之间的相关性并不等同于确定的因果关系，也可能需要考虑其他的影响因素。
+回归分析构建检验因变量与一个或多个自变量的关系的数学模型。这些模型可以用于预测自变量的未观察值和/或未来值的响应。在简单情况下，从属变量y和独立变量x都是标量变量，给定对于i = 1,2,…, n的观察值（xi，yi），f是回归函数，ei是具有共同方差，σ2的零均值独立随机误差。回归分析的目的是构建f的模型，并基于噪声数据进行估计。
+
+4.1.1.1 参数回归模型
+参数回归模型假定f的形式是已知的。曲线拟合（Curve fitting）是指选择适当的曲线类型来拟合观测数据，并用拟合的曲线方程分析两变量间的关系。绘图软件一般使用最小二乘法(Least square method)实现拟合曲线的计算求取。回归分析（Regression analysis)是对具有因果关系的影响因素（自变量）和预测对象（因变量）所进行的数理统计分析处理。只有当变量与因变量确实存在某种关系时，建立的回归方程才有意义。按照自变量的多少，可分为一元回归分析和多元回归分析；按照自变量和因变量之间的关系类型，可分为线性回归分析和非线性回归分析。比较常用的是多项式回归、线性回归和指数回归模型：
+1. 指数回归模型：y=aebx，如图3-1-4(a)所示；
+2. 线性回归模型：y=ax+b，如图3-1-4(b)所示；
+3. 对数回归模型：y=lnx+b，如图3-1-4(c)所示；
+4. 幂回归模型：y=axb，如图3-1-4(d)所示；
+5. 多项式回归模型：y=a1x+a2x2+···+anxn+b，其中n表示多项式的最高次项，如图3-1-1所示，回归曲线函数为：y = 1.0088x2 - 3.9231x + 399.02，R2 = 0.818，如图3-1-4(e)所示；
+
+4.1.1.2 参数回归模型
+非参数回归模型不采用预定义形式。相反，它对f的定性性质做出假设。例如，可以愿意假设f是“平滑的”，其不会减少到具有有限数量的参数的特定形式。因此，非参数方法通常更灵活。它们可以揭示数据中可能被遗漏的结构。数据平滑（Data smooth）通过建立近似函数尝试抓住数据中的主要模式，去除噪音、结构细节或瞬时现象，来平滑一个数据集。在平滑过程中，信号数据点被修改，由噪音产生的单独数据点被降低，低于毗邻数据点的点被提升，从而得到一个更平滑的信号。平滑可以两种重要形式用于数据分析：1、若平滑的假设是合理的，可以从数据中获得更多信息；2、提供灵活而且稳健的分析。数据平滑的方法主要有：loess局部加权回归（locally weighted scatterplot smoothing，LOWESS或LOESS）、gam广义可加模型（Generalised additive model）、Savitzky-Golay光滑、样条光滑（Smoothing Spline）
+1. Loess数据平滑，主要思想是取一定比例的局部数据，在这部分子集中拟合多项式回归曲线，这样就可以观察到数据在局部展现出来的规律和趋势。曲线的光滑程度与选取数据比例有关：比例越少，拟合越不光滑，反之越光滑，如图3-1-4(f)所示；
+2. gam数据平滑，在R 语言中调用mgcv包拟合数据得到广义可加模型。广义可加模型的拟合是通过一个迭代过程（向后拟合算法）对每个预测变量进行样条平滑。其算法要在拟合误差和自由度之间进行权衡最终达到最优，如图3-1-4(g)所示；
+3. 样条数据平滑，如图3-1-4(h)所示；
+     
+图4-1-4 二维散点图的不同曲线类型
+  带趋势曲线的二维散点图的绘制方法
+1.	回归曲线：Excel可以实现图3-1-4(a)-(e)的五种数据回归类型，具体方法可以参考《Excel 数据之美》，Origin、Sigmaplot和Graphad也可以先根据数据绘制二维散点图后，再通过数据“分析(A)”模块的“拟合(F)”添加回归线。Matlab、Python和R可以使用相应的函数（Function）拟合数据。总的来说，对于二维散点图添加回归曲线，使用Excel是最简单的方法。
+2.	平滑曲线：平滑曲线的算法有很多，而且还要设定相应的平滑参数。R 语言ggplot2包 的geom_smooth()函数提供了图3-1-4(f)-(h)等平滑算法，基本能满足平时的实验数据处理要求，loess方法平滑数据的核心代码如下：
+library(ggplot2)
+mydata<-read.csv("Scatter_Data.csv",stringsAsFactors=FALSE) # mydata为x和y两列数据组成
+ggplot(data = mydata, aes(x,y)) +
+geom_point(fill="black",colour="black",size=3,shape=21) +# 绘制二维散点
+geom_smooth(method = 'loess',span=0.4,se=TRUE,colour="#00A5FF",fill="#00A5FF",alpha=0.2)
+#使用loess方法平滑数据，添加平滑曲线 
+ 
+拟合的数值和实际数值就是残差（residual）。残差分析（residual analysis）就是通过残差所提供的信息，分析出数据的可靠性、周期性或其它干扰 。用于分析模型的假定正确与否的方法。所谓残差是指观测值与预测值（拟合值）之间的差，即是实际观察值与回归估计值的差。
+在回归分析中，测定值与按回归方程预测的值之差，以δ表示。残差δ遵从正态分布N(0，σ2)。（δ-残差的均值）/残差的标准差，称为标准化残差，以δ*表示。δ*遵从标准正态分布N(0，1)。实验点的标准化残差落在(-2，2)区间以外的概率≤0.05。若某一实验点的标准化残差落在(-2，2)区间以外，可在95%置信度将其判为异常实验点，不参与回归线拟合。
+图3-1-5为使用R绘制的残差图，分别对应图3-1-4(b)线性拟合和(e)多项式拟合。采用黑色到红色渐变颜色和气泡面积大小两个视觉暗示对应残差的绝对值大小，用于实际数据点的表示；而拟合数据点则用小空心圆圈表示，并放置在灰色的拟合曲线上。并用直线连接实际数据点和拟合数据点。残差的绝对值越大，颜色越红、气泡也越大，连接直线越长，这样可以很清晰地观察数据的拟合效果。
+   
+(a) 线性回归                      (b)二次回归
+图4-1-5 残差分析图
+  残差分析图的绘制方法
+如果省去气泡颜色和面积大小两个视觉特征，直接使用实际和拟合数据点的连接线表示残差。那么可以使用Excel、Origin等。在R中，现根据拟合曲线计算预测值和残差，再使用实际值与预测值绘制散点图，最后使用残差作为实际值的误差线长度，添加误差线，这样就可以实现实际值与预测值的连接，同时将实际值的气泡面积大小与颜色映射到改点的残差数值，图4-1-5(a)残差分析图的核心代码如下：
+library(ggplot2) 
+mydata<-read.csv("Residual_Analysis_Data.csv",stringsAsFactors=FALSE)
+fit <- lm(y2 ~ x, data = mydata) # 线性拟合，mydata的x和2y两列数据
+mydata$predicted <- predict(fit)   # 保存预测值
+mydata$residuals <- residuals(fit)   #保存残差(有正有负)
+mydata$Abs_Residuals<-abs(mydata$residuals)  #保存残差的绝对值
+#mydata包含x、y2、predicted、residuals、Abs_Residuals 共5列数值
+ggplot(mydata, aes(x = x, y = y2)) +
+  geom_point(aes(fill =Abs_Residuals, size = Abs_Residuals),shape=21,colour="black") +
+# 使用实际值绘制气泡图，并将气泡的颜色和面积映射到残差的绝对值Abs_Residuals
+  geom_smooth(method = "lm", se = FALSE, color = "lightgrey") + # 添加灰色的线性拟合曲线
+  geom_point(aes(y = predicted), shape = 1) + #添加空心圆圈的预测值
+  geom_segment(aes(xend = x, yend = predicted), alpha = .2) +#添加实际值和预测值的连接线...
+scale_fill_continuous(low = "black", high = "red") + #填充颜色映射到red单色渐变系i
+  guides(fill = guide_legend((title="Rresidual")),
+         size = guide_legend((title="Rresidual"))) 
+
+	图片类型散点图，就是使用图片置换数据点?，有时候可以更加形象化地表达数据内容。一般来说，数据信息为(x, y, image)或者(x, y, z, image)，其中image为数据点对应的图片，x和y分别定义直角坐标系中的数据点位置，z也可以定义数据点所展示的图片面积大小，类似于气泡图，如图3-1-6所示的梅丽尔·斯特里普的艺术人生。
+	梅丽尔·斯特里普是史上获得奥斯卡提名最多的演员,达到了难以置信的17次,更是3次捧得小金人，仅次于凯特林·赫本,和杰克·尼克儿森,英格丽·褒曼等并驾齐驱. 在她N年的电影生涯中演过的角色不计其数，而且跨度很大。Vulture把这些角色按照从冷酷（cold）到温情（warm），从严肃(serious)和随性（frivolous）分类，绘制成了散点图。29个角色尽收眼底，看起来温情的比较多，严肃的也稍稍多过随性的。
+R语言ggimage包 提供了geom_image函数可以将对应的圆形数据点使用图片替代展示。但是需要预先借助图像处理软件把图片处理成圆形状。
+ 
+图4-1-6 梅丽尔·斯特里普的艺术人生
+
+
+
+4.1.2 分布显示的二维散点图
+4.1.2.1 单数据系列
+1. Q-Q图和P-P图
+关于统计分布的检验有很多种，例如KS检验、卡方检验等，从图形的角度来说，我们也可以使用QQ图或PP图来检查数据是否服从某种分布。P-P图（或Q-Q图）可检验的分布包括：贝塔分布（Beta）、T分布（Student t）、卡方分布（Chi-square）、伽马分布（Gamma）、正态分布（Normal）、均匀分布（Uniform）、帕累托分布（Pareto）、Logistic分布（Logistic）等 。
+（1）Q-Q图（Quantile-Quantile Plot）是一种通过画出分位数来比较两个概率分布的图形方法。首先选定区间长度，点(x,y)对应于第一个分布(x轴)的分位数和第二个分布(y轴)相同的分位数。因此画出的是一条含参数的曲线，参数为区间个数。对应于正态分布的Q-Q图，就是由标准正态分布的分位数为横坐标，样本值为纵坐标的散点图。 要利用Q-Q图鉴别样本数据是否近似于正态分布，只需看Q-Q图上的点是否近似地在一条直线附近，而且该直线的斜率为标准差，截距为均值，如图3-1-6(b2)所示。原始数据服从正态分布如图3-1-6(a2)所示，且标准差为1.0，均值为10.0。
+QQ图的用途不仅在检查数据是否服从某种特定理论分布，它也可以推广到检查数据是否来自某个位置参数分布族。如果被比较的两个分布比较相似，则其Q-Q图近似地位于y = x上。如果两个分布线性相关，则Q-Q图上的点近似地落在一条直线上，但并不一定是y = x这条线。Q-Q图可以比较概率分布的形状，从图形上显示两个分布的位置，尺度和偏度等性质是否相似或不同。一般来说，当比较两组样本时，Q-Q图是一种比直方图更加有效的方法，但是理解Q-Q图需要更多的背景知识。
+（2）P-P图 (Probability–Probability Plot 或 Percent–Percent Plot)是根据变量的累积比例与指定分布的累积比例之间的关系所绘制的图形。通过P-P图可以检验数据是否符合指定的分布。当数据符合指定分布时，P-P图中各点近似呈一条直线。如果P-P图中各点不呈直线，但有一定规律，可以对变量数据进行转换，使转换后的数据更接近指定分布。P-P图和Q-Q图的用途完全相同，只是检验方法存在差异 [22]。
+      
+(a1) 服从均匀分布的原始数据            (b1) Q-Q图                   (c1) P-P图
+       
+(a2) 服从正态分布的原始数据            (b2) Q-Q图                  (c2) P-P图
+图4-1-7 Q-Q图和P-P图的对比分析
+
+  Q-Q图的绘制方法
+R 语言可以使用CircStats包的pp.plot()函数绘制P-P图；ggplot2的geom_qq()和geom_qq_line()函数可以联合绘制Q-Q图； 另外，ggplot2包结合ggpubr包可以绘制如图4-1-7 Q-Q图的核心代码如下：
+library(ggpubr)
+x <- rnorm(250 , mean=10 , sd=1)
+ggqqplot(x, 
+shape=21,fill="white",colour="black", #使用白色填充、黑色边框的圆圈绘制数据点
+         ggtheme = ggplot2::theme_grey()) #采用ggplot2包的灰色风格
+
+
+2. 分类图
+散点图通常用于显示和比较数值，不光可以显示趋势，还能显示数据集群的形状，以及在数据云团中各数据点的关系。这类散点图很适合用于聚类分析中，根据二维特征对数据进行类别区分。常用的聚类分析方法包括kmeans、FCM、KFCM、DBSCAN、MeanShift等聚类方法 [23]。Python的scikit-learn包中专门对多种聚类算法（clustering）进行实现与对比 。同时也推荐大家一本关于R语言聚类算法的书籍： Alboukadel Kassambara. Practical Guide to Cluster Analysis in R [24]，里面有队各种聚类算法的详细说明。对于高密度的散点图可以利用数据点的透明度观察数据的形状和密度，如图3-1-7所示。
+    
+(a) 原始数据的散点分布图       (b) 带透明度设置的散点图
+
+     
+(c) kmeans聚类的散点图            (d) 带椭圆标定的聚类散点图
+图4-1-8 高密度散点图
+
+  高密度散点图的绘制方法
+使用ggplot2包的geom_point()函数可以绘制散点图：先根据数据(x,y)映射到散点，如图4-1-8(a)所示，然后设置数据点的透明度，就可以实现如图4-1-8(b)所示的效果。
+算法的实现：kmeans算法是很常见的聚类算法，k-means（k-均值）算法是一种基于距离的聚类算法，属于非监督学习方法，是很常见的一种聚类算法 [25]。它用质心（Centroid）到属于该质心的点距离这个度量来实现聚类，通常可以用于N维空间中对象。 k-means 算法接受输入量 k ；然后将n个数据对象划分为 k个聚类以便使得所获得的聚类满足：同一聚类中的对象相似度较高；而不同聚类中的对象相似度较小。聚类相似度是利用各聚类中对象的均值所获得一个“中心对象”（引力中心）来进行计算的。 Matlab、Python和R可以通过kmeans相关函数实现，R语言stats包实现kmeans算法的核心代码如下：
+library(ggplot2)
+mydata<-read.csv("HighDensity_Scatter_Data.csv",stringsAsFactors=FALSE)
+kmeansResult<- kmeans(mydata, 2, nstart =20) 
+# mydata为x和y两列数据组成，kmeans聚类算法
+   mydata$cluster <- as.factor(kmeansResult$cluster) 
+#将分类结果转变成类别变量(categorical variables)
+   ggplot(data = mydata, aes(x,y,color=cluster)) +
+   geom_point (alpha=0.2)+
+  # 绘制透明度为0.2 的散点图
+  stat_ellipse(aes(x=x,y=y,fill= cluster), geom="polygon", level=0.95, alpha=0.2) +
+  #绘制椭圆标定不同类别，如果省略该语句，则绘制图3-1-7(c)
+  scale_color_manual(values=c("#00AFBB","#FC4E07")) +#使用不同颜色标定不同数据类别
+  scale_fill_manual(values=c("#00AFBB","#FC4E07"))  #使用不同颜色标定不同椭类别
+
+
+4.1.2.2 多数据系列
+多数据系列的散点图需要使用不同的颜色填充（Fill）和数据点形状（Shape）两个视觉特征，表示数据系列。如图3-1-9所示，图(a)只使用不同的颜色填充区分数据系列，图(b)就是使用不同颜色填充和不同形状两个视觉特征，同时区分数据系列，即使在黑白印刷时也能保证读者清晰地区分数据系列。R语言ggplot2包可供选择的形状(shape)如图3-1-10所示，总共20种不同类型的形状。Excel、Origin、Python等软件中也存在不同的形状，最常用就是圆形○、菱形◇、方形□、三角形△等。
+
+     
+(a) 相同形状+不同颜色填充         (b) 不同形状+不同颜色填充
+图4-1-9 多数据系列散点图
+
+  多数据系列散点图的绘制方法
+多数据系列散点图只是在单数据系列添加新的数据系列，使用不同的填充颜色或形状区分数据系列，R语言ggplot2包的geom_point()可以根据数据类别映射到不同的颜色填充fill与形状shape，以及边框颜色color，实现图4-1-9(b) 多数据系列散点图的核心代码如下所示：
+ggplot(data = mydata, aes(x,y,fill=cluster,shape=cluster)) +
+# mydata为x、y和cluster三列数据组成，cluster表示类别
+  geom_point(size=4,colour="black",alpha=0.7)+  # 绘制透明度为0.7 的散点图
+  scale_shape_manual(values=c(21,23))+ #使用不同的形状标定不同数据类别
+  scale_fill_manual(values=c("#00AFBB",  "#FC4E07")) #使用的不同颜色标定不同数据类别
+
+4.1.3 气泡图
+气泡图是一种多变量图表，是散点图的变体，也可以认为是散点图和百分比区域图的组合。气泡图最基本的用法是使用三个值来确定每个数据序列，和散点图一样，气泡图将两个维度的数据值分别映射为笛卡尔坐标系上的坐标点，其中 X 和 Y 轴分别代表不同的两个维度的数据，但是不同于散点图的是，每一个气泡的面积代表第三个维度的数据。气泡图通过气泡的位置以及面积大小，可分析数据之间的相关性。
+需要注意的是圆圈状气泡的大小是映射到面积(Circle Area)而不是半径(Circle Radius)或者直径(Circle Diameter)绘制的。因为如果是基于半径或者直径的话，圆的大小不仅会呈指数级变化，而且还会导致视觉误差。
+Circle Area=π × (Circle Diameter/2)2
+Circle Diameter=(SQRT(Area/π))×2
+如图3-1-11(a)所示只使用面积大小（1个视觉特征）来表示气泡图，为了避免数据的重叠遮挡，一般设置气泡的透明度。添加填充颜色渐变的气泡图（2个视觉特征），如图(b)所示，第三维变量“disp”不仅映射到气泡大小，而且还映射到填充颜色，这样能使读者更加清晰地观察数据变化关系。在图(b)气泡图的基础上添加数据标签（第三维变量“disp”，即气泡的面积大小），如图(c)所示；但是需要注意不要出现太严重的数据标签的重叠（overlap）。图(d)只是在图(b)的基础上把圆圈状的气泡换成方块状，给人的视觉感受与图(b)截然不同。图(b)和图(d)并不能判断谁更好看，“萝卜白菜，各有所爱”，你喜欢使用哪种类型，就可以绘制哪种类型。
+       
+(a) 圆圈状的气泡图          (b) 带填充颜色渐变的气泡图
+    
+(c) 带数据标签的气泡图         (d) 方块状的气泡图
+图4-1-11 气泡图系列
+  气泡图的绘制方法
+图3-1-11(a)圆圈状的气泡图可以使用Excel绘制；但是Excel绘制的气泡图没有图例，这是其最大的一个问题。R语言ggplot2包实现图3-1-9(c) 气泡图的核心代码如下所示，但是有ggplot2包自带的添加数据标签函数geom_tex()t容易出现数据标签重叠的情况，所以使用ggrepel包的geom_text_repel() 。
+library(ggrepel)
+library(ggplot2)
+ggplot(data=mtcars, aes(x=wt,y=mpg))+
+   geom_point(aes(size=disp,fill=disp),shape=21,colour="black",alpha=0.8)+ 
+# 绘制气泡图，颜色填充和面积大小都映射到“disp”
+   scale_fill_gradient2(low="#377EB8",high="#E41A1C",limits = c(0,max(mtcars$ disp)), 
+midpoint = mean(mtcars$disp))+ #设置填充颜色映射主题(Colormap)
+scale_size_area(max_size=12)+ # 设置显示的气泡图气泡最大面积
+ geom_text_repel(label = disp ) # 添加数据标签disp” 
+
+
+泡图的数据大小容量有限，气泡太多会使图表难以阅读。静态的气泡图最好只表达3个维度的数据：X 和 Y 轴分别代表不同的两个维度的数据；同时使用气泡的面积和颜色，或者只使用气泡面积，代表第三个维度的数据。
+对于多数据系列气泡图（第4个维度为数据类别），虽然可以使用不同的颜色区分不同类别，但是推荐使用后面章节讲解的Trellis / Facet Grid图展示数据。使用交互可视化的气泡图，可以通鼠标点击或者悬浮时显示气泡信息，或者添加选项控件用于重组或者过滤分组类别，但是交互可视化的方法制作的图表几乎不应用在学术论文图表中。
+对于时间维度的气泡图可以结合动画来表现数据随着时间的变化情况。Hans Rosling把气泡图用得神乎其技，他是瑞典卡罗琳学院全球公共卫生专业教授。有关他利用数据可视化显示200多个国家200年来的人均寿命和经济发展的TED视频非常火 ，其中图4-1-12就是他制作的不同国家的人均收入气泡图。
+ 
+图4-1-12 不同国家的人均收入气泡图
+
+4.1.4 三维散点图
+	我们也可有将气泡图的三维数据绘制到三维坐标系中，这就是通常的三维散点图，即用于在三维 X-Y-Z 图上针对一个或多个数据序列绘出三个度量的一种图表。
+图3-1-13所示为不同类型的三维散点图。图(a)是普通的三维散点图，X、Y和Z轴分别对应三个不同的变量。图(b)是在图(a)基础上，将Z轴变量数据“Power(KW)”映射到数据点颜色，这样可以更加清晰地观察Z轴变量与X、Y轴变量数据的变化关系。
+需要注意的是：图3-1-13三维图表投影方式选择都为正交投影(Orthographic Projection)。
+     
+(a)                                       (b)                          
+图4-1-13不同类型的三维散点图
+
+  三维散点图的绘制方法
+在编程语言方面，虽然R scatterplot3d包scatterplot3d()函数、rgl包的plot3d()函数、plot3D包的scatter3D()函数 等都可以绘制三维散点图。在R语言中，三维图表的绘制只能通过函数编程实现，比较难控制到每个图表元素，比如xyz坐标轴标题的位置、网格线等。rgl包的plot3d()函数绘制的三维图表可以实现图表的旋转，能提供用户从不同视角(view)去观察数据关系。使用R语言plot3D包的scatter3D()函数可以实现图4-1-13(a)，具体代码如下。
+library(plot3D)
+df<-read.csv("ThreeD_Scatter_Data.csv",header=T)
+pmar <- par(mar = c(5.1, 4.1, 4.1, 6.1))
+with(df, scatter3D(x = mph, y = Gas_Mileage, z = Power, #bgvar = mag,
+                   pch = 21, cex = 1.5,col="black",bg="#F57446",
+                   xlab = "0-60 mph (sec)",
+                   ylab = "Gas Mileage (mpg)",
+                   zlab = "Power (kW)", 
+                   zlim=c(40,180),
+                   ticktype = "detailed",bty = "f",box = TRUE,
+                   #panel.first = panelfirst,
+                   theta = 60, phi = 20, d=3,
+                   colkey = FALSE)#list(length = 0.5, width = 0.5, cex.clab = 0.75))
+)
+
+图(b)就相对来说比较复杂一些，需要将数据点映射到颜色colorbar。需要先自己构造一个颜色映射的颜色条'RdYlGn'，先绘制三维散点图，然后再根据映射的数值添加图例颜色条
+library(RColorBrewer)
+library(fields) 
+#构造颜色映射
+colormap <- colorRampPalette(rev(brewer.pal(11,'RdYlGn')))(100)
+index <- ceiling(((prc <- 0.7 * df$Power/ diff(range(df$Power))) - min(prc) + 0.3)*100)
+for (i in seq(1,length(index)) ){
+  prc[i]=colormap[index[i]]
+}
+pmar <- par(mar = c(5.1, 4.1, 4.1, 6.1))
+with(df, scatter3D(x = mph, y = Gas_Mileage, z = Power, #bgvar = mag,
+                       pch = 21, cex = 1.5,col="black",bg=prc,
+                   xlab = "0-60 mph (sec)",
+                   ylab = "Gas Mileage (mpg)",
+                   zlab = "Power (kW)", 
+                   zlim=c(40,180),
+                       ticktype = "detailed",bty = "f",box = TRUE,
+                       #panel.first = panelfirst,
+                       theta = 60, phi = 20, d=3,
+                       colkey = FALSE)#list(length = 0.5, width = 0.5, cex.clab = 0.75))
+)
+colkey (col=colormap,clim=range(df$Power),clab = "Power", add=TRUE, length=0.5,side = 4)
+
+
+	三维散点图可以展示三维数据，如果添加一维数据，使图表展示四维数据。第1种方法就是将图3-1-10(c)的填充颜色渐变映射到第四维数据，而不是原来的第三维数据，如图3-1-11(a)所示。第2种方法就是将第四维数据映射到数据点的大小上，即三维气泡图，如图3-1-11(b)所示。第3种方法就是结合图(a)和(b)，绘制带颜色渐变映射的三维气泡图，将第四维数据映射到数据点的大小和颜色上，如图(c)所示。图(b)和（c）从本质上讲，是属于三维气泡图类型。在Origin绘图软件中，数据点的符号类型包括2D类型（如图3-1-11(c)点 ）、3D类型（如图3-1-12 (a)立方体 、图(b)球体 、五角星 、四面体 ）。图3-1-10(c)可以使用Origin实现，关键的颜色渐变的映射部分，具体步骤如
+
+     
+(a)                            (b)   
+   
+       (c)                                  (d)
+图4-1-14不同类型的四维数据可视化
+
+
+  三维气泡图的绘制方法
+
+R语言scatterplot3d包scatterplot3d()函数或者plot3D包的scatter3D()函数可以实现图4-1-14(c)，具体代码如下。但是主要存在两个问题：1气泡图例的添加，2.颜色映射图例的添加。
+library(plot3D)
+library(RColorBrewer)
+library(fields)
+library(scales)
+colormap <- colorRampPalette(rev(brewer.pal(11,'RdYlGn')))(100)
+index <- ceiling(((prc <- 0.7 * df$Weight/ diff(range(df$Weight))) - min(prc) + 0.3)*100)
+for (i in seq(1,length(index)) ){
+  prc[i]=colormap[index[i]]
+}
+pmar <- par(mar = c(5.1, 4.1, 4.1, 6.1))
+with(df, scatter3D(x = mph, y = Gas_Mileage, z = Power, #bgvar = mag,
+                   pch = 21, cex = rescale(df$Weight, c(.5, 5)),col="black",bg=prc,
+                   xlab = "0-60 mph (sec)",
+                   ylab = "Gas Mileage (mpg)",
+                   zlab = "Power (kW)", 
+                   zlim=c(40,180),
+                   ticktype = "detailed",bty = "f",box = TRUE,
+                   theta = 60, phi = 20, d=3,
+                   colkey = FALSE)
+)
+breaks<-round(seq(500,2000,length.out=4),3) # df$Weight 的范围为739~2152
+legend_index <- ceiling(((legend_prc <- 0.7 *breaks/ diff(range(breaks))) - min(legend_prc) + 0.3)*100)
+for (i in seq(1,length(legend_index)) ){
+  legend_prc[i]=colormap[legend_index[i]]
+}
+legend("right",title = "Weight",legend=breaks,pch=21,
+       pt.cex=rescale(breaks, c(.5, 5)),y.intersp=1.6, pt.bg = legend_prc,bg="white",bty="n") 
+
+4.2 曲面拟合
+通常，曲线拟合法只适用于单一变量与目标函 数之间的关系分析，而曲面拟合则多用于二维变量与目标函数之间关系的分析。所谓曲面拟合，就是根据实际试验测试数据， 求取函数 f(x,y)与变量 x 及 y 之间的解析式，使其通过或近似通过所有的实验测试点。也就是说， 使所有实验数据点能近似地分布在函数 f(x,y) 所表示的空间曲面上。
+曲面拟合通常采用两种方式即插值方式和逼近方式来实现。两者的共同点是均利用曲面上或接近曲面的一组离散点，寻求良好的曲面方程。两者主要的区别是：插值方式得到的方程，它所表示的曲面全部通过这组数据点，比如lowess曲面拟合；而逼近方式，只要求在某种准则下，其方程表示的曲面与这组数据点接近即可，比如多项式曲面拟合。逼近方式一般使用最小二乘法实现。最小二乘法是一种逼近理论，也是采样数据进行拟合时最常用的一种方法。曲面一般不通过已知数据点，而是根据拟合的曲面在取样处的数值与实际值之差的平均和达到最小求得，它的主旨思想就是使拟合数值与实际数值之前的偏平方差和最小 [26]。
+如图4-2-1所示为相同数据，不同曲面拟合方法所示的结果图，图4-2-1(a)和(b)为三维散点与曲面拟合组合图，分别多项式曲面拟合和lowess曲面拟合。其中，三维散点展示了实际数值(x, y, z)，拟合曲面映射到的颜色渐变主题方案为'RdYlGn'。二次两元多项式拟合的方程为：z=f(x, y)=a+bx+cy+dx2+ey2，其中x和y为自变量，z为因变量，a, b, c, d,e为拟合参数。 
+图4-2-2 为二维散点与等高线组合图，二维散点图展示了实际数值(x, y)，z变量数值映射到渐变颜色；拟合曲面使用二维等高线表示，拟合的f(x,y)数值映射到相同的渐变颜色，这样就可以使用二维图表展示了三维的曲面拟合结果。图4-2-2与图4-2-1的主要区别在于使用颜色视觉特征表示第三维z变量。具体绘制方法可以参照下一节“等高线的绘制”。
+
+ 
+(a) 多项式曲面拟合                        (b)lowess曲面拟合
+图4-2-1 曲面拟合方法
+ 
+(a) 多项式曲面拟合               (b)lowess曲面拟合
+图4-2-2 等高线分布图
+
+  曲面拟合图
+Matlab和Origin都提供了交互操作的曲面拟合工具箱，如Matlab的Curve Fitting ，Matlab提供的fit ()函数能拟合数据，再使用surf()函数绘制如图4-2-1等三维曲面图。 
+在R语言中，rgl包的surface3d()函数、或者scatterplot3d包的plane3d ()函数，或者lattice包的wireframe()函数，或者plot3D中的persp3D()函数绘制拟合曲面。本文推荐使用lattice包的wireframe()函数绘制曲面图，先使用lm()或loess()函数根据已有的(x, y, z)数据求取拟合方程，再根据自定义的网格数据(x,y)，求取每个数据点的z数值；最后使用persp3D()函数绘制生成的(x, y, z)数据。图4-2-1(a)曲面拟合的具体代码如图所示。
+library(plot3D)
+library(reshape2)
+library(RColorBrewer)
+mydata <- read.csv("Surface_Data.csv", sep= ",", header=T)
+#多项式拟合z=f(x, y)=a+bx+cy+dx2+ey2
+x <- mydata$x
+y <- mydata$y
+z <- mydata$z
+x2<-x*x
+y2<-y*y
+poly_z <- lm(z ~ x + y +x2+y2)
+#设定为30X30的网格数据(x, y)，并根据拟合方程求其数值
+N<-30
+xmar <- seq(min(x),max(x),(max(x)-min(x))/N)
+ymar <- seq(min(y),max(y),(max(y)-min(y))/N)
+Grid_xy<-expand.grid(list(x=xmar,y=ymar))
+Grid_xy$x2<-Grid_xy$x*Grid_xy$x
+Grid_xy$y2<-Grid_xy$y*Grid_xy$y
+Grid_z <- predict.lm(poly_z, newdata=Grid_xy) 
+
+pred_z<-matrix(Grid_z, length(xmar), length(ymar))
+persp3D (xmar, ymar, pred_z,
+      theta = 150, phi = 40, d=3, 
+      col = colormap, 
+      scale = TRUE, border = "black", 
+       bty = "f",box = TRUE,ticktype = "detailed",
+      ylab = "0-60 mph (sec)", 
+      xlab = "Gax Mileage (mpg)",
+      zlab="Power (KW)",
+      clab="Power (KW)",
+      zlim=c(20,180),
+      colkey = list(length = 0.5, width = 1))
+
+
+4.3 等高线图
+等高线图(Contour maps)是可视化二维空间标量场的基本方法，可以将三维数据使用二维的方法可视化，同时用颜色视觉特征表示第三维数据，如地图上的等高线、天气预报中的等压线和等温线等。假设f(x, y)是在点(x, y)处的数值，等值线是在二维数据场中满足f(x, y)=c的空间点集按一定的顺序连接而成的线。数值为c的等值线可以将二维空间标量场分为两部分：如果f(x, y)<c，则改点在等值线内；如果f(x, y)>c，则该点在等值线外。
+图4-3-1(a)为热力分布图，只是将三维数据(x, y, z)中(x, y)表示位置信息，z映射到颜色。图4-3-1(b)是在图(a)的基础上添加等高线，同一轮廓上的数值相同。图4-3-1(c)是在图(b)的基础上添加等高线的具体数值，从而不需要颜色映射的图例，同一轮廓上的数值相同。在二维屏幕上，等高线可以有效地表达相同数值的区域，揭示走势和陡峭程度及两者之间的关系，寻找坡、峰、谷等形状。
+          
+(a)热力分布图             (b) 等高线图               (c) 带标签的等高线图
+图4-3-1 等高线图
+  等高线图
+R ggplot2包提供的geom_tile()和geom_raster()函数都可以绘制如图4-3-1(a)所示的热力分布图，其主要区别在于geom_raster()函数中存在interpolate=TRUE/FALSE这个参数，决定是否对热力图作平滑处理。然后可以再添加geom_contour()函数，从而可以添加如图4-3-1(b)所示的等高线。最后使用directlabels包的direct.label()函数可以添加等高线的数值标签，如图3-3-1(c)所示，其核心代码如下：
+Library(reshape2)
+library(ggplot2)
+library( directlabels)
+library(RColorBrewer)
+z<-as.matrix(read.table("等高线.txt",header=TRUE))
+colnames(z)<-seq(1,ncol(z),by=1)
+max_z<-max(z)
+min_z<-min(z)
+breaks_lines<-seq(min(z),max(z),by=(max_z-min_z)/10)
+map<-melt(z)
+colnames(map)<-c("Var1","Var2","value")
+Contour<-ggplot(map,aes(x=Var1,y=Var2,z=value))+
+          geom_tile(aes(fill=value))+          #根据高度填充
+         scale_fill_gradientn(colours= colorRampPalette(rev(brewer.pal(11,'Spectral')))(32))+
+geom_contour(aes(colour= ..level..),breaks=breaks_lines,color="black")
+#添加等高线的标签
+direct.label(Contour, list("bottom.pieces", cex=0.8, fontface="plain", fontfamily="serif", colour='black'))
+
+-------------------------------------------------------------------------------------------------------------------------标量场的基本概念
+当研究物理系统中温度、压力、密度等在一定空间内的分布状态时，数学上只需用一个代数量来描绘，这些代数量（即标量函数）所定出的场就称为数量场，也称标量场。最常用的标量场有温度场，电势场，密度场，浓度场等。
+一个标量场 u 可以用一个标量函数来表示。在直角坐标系中，可将u表示为u=u(x, y, z)。令u=u(x, y, z)=C ，其中C 是任意常数，则该式在几何上表示一个曲面，在这个曲面上的各点，虽然坐标(x, y, z)不同，但函数值相等，称此曲面为标量场u的等值面。随着C的取值不同，得到一系列不同的等值面。同理，对于由二维函数v=v (x, y)所给定的平面标量场，可按v=v (x, y)=C得到一系列不同值的等值线。
+标量场的等值面或等值线，可以直观地帮助我们了解标量场在空间中的分布情况。例如，根据地形图上等高线及其所标出的高度，我们就能了解到该地区的高低情况，根据等高线分布的疏密程度可以判断该地区各个方向上地势的陡度。
+和标量不同，矢量是除了要指明其大小还要指明其方向的物理量，如速度、力、电场强度等；矢量的严格定义是建立在坐标系的旋转变换基础上的。常见的矢量场包括Maxwell场、重矢量场。而在一定的单位制下，用一个实数就足以表示的物理量是标量，如时间、质量、温度等；在这里，实数表示的是这些物理量的大小。
+-------------------------------------------------------------------------------------------------------------------------
+
+4.4 切片图
+切片图(Slice chart) 可以展示四维数据v=f(x, y, z)，将前三维数据展现在三维直角坐标系f(x, y, z)，通过对图形的线型、立面、色彩、渲染、光线、视角等的控制，可形象地表现数据四维特性v。任何一个在三维坐标系中绘制的数据体，都可以使用分割得到平行于X-Y、X-Z和Y-Z的三个切面。然后每个切面上的数据点都可以通过3-D插值获得，如图4-4-1所示。
+在切片图中，v=f(x, y, z) 这个函数对于每一个给定的(x, y, z)都对应一个v，然后映射到渐变颜色，那么v=f(x, y, z)就可以得到一个有颜色变化（其颜色分布按按给定的函数表达式变化）的立体图形。给定(x, y, z)中的某个值，就可以得到某一个切面上的颜色分布，根据颜色映射大致可以看出其函数值的变化。在图4-4-1中，展示了x=0，y=(-4, 0, 4)的四个切面颜色变化情况。
+  
+(a)                                      (b)
+图4-4-1 切面图
+
+  切面图
+R语言中可以使用plot3D包的slice3D()可以绘制切面图，其中facets参数TRUE绘制的效果如图(b)，FALSE绘制的效果如图(a)，其核心代码如下。
+library(plot3D)
+library(RColorBrewer)
+x <- y <- z <- seq(-4, 4, by = 0.2)
+M <- mesh(x, y, z)
+R <- with (M, sqrt(x^2 + y^2 + z^2))
+p <- sin(2*R) /(R+1e-3)
+colormap <- colorRampPalette(rev(brewer.pal(11,'Spectral')),alpha = TRUE)(32)
+slice3D(x, y, z, colvar = p, facets = FALSE,
+        col = ramp.col(colormap,alpha = 0.9), 
+        clab="p vlaue",
+        xs = 0, ys = c(-4, 0, 4), zs = NULL, 
+        ticktype = "detailed",bty = "f",box = TRUE,
+        theta = -120, phi = 30, d=3,
+        colkey = list(length = 0.5, width = 1, cex.clab = 1))
+
+4.5 三元相图
+三元相图 (Ternary) 指独立组分数为3的体系，该体系最多可能有四个自由度。三元相图成分通常用浓度(或成分)三角形（Concentration/Composition Triangle）表示。常用的成分三角形有等边成分三角形、等腰成分三角形或直角成分三角形。
+其中，对于等边成分三角形图形（如图4-4-1所示），在等边成分三角形中，三角形的三个顶点分别代表三个组元A、B、C，三角形的三个边的长度定为0～100%，分别表示三个二元系(A-B系、B-C系、C-A系)的成分坐标，则三角形内任一点都代表三元系的某一成分。其成分确定方法如下：由三角形所给定点s，分别向A、B、C顶点所对应的边BC、CA、AB作平行线(sa、sb、sc)，相交于三边的c、a、b点，则A、B、C组元的比例数值W分别为：WA = sc = Ca，WB = sa = Ab，WC = sb = Bc，其中： sa + sb + sc = 1，Ca + Ab + Bc = 1。
+ 
+图4-5-1 三元相图示意图
+
+如图4-5-2(a)和(b)分别为三相散点图和三相等高线图，跟直角坐标系的散点图和等高线图类似，只是表达的是三维数据信息。
+     
+(a) 三元相散点图                      (b) 三元相等高线图
+图4-5-2 三元相图
+  三元相图
+R语言中可以使用ggtern包的ggtern()函数，结合ggplot2包的geom_point()函数可以绘制如图4-4-2(a)所示的三元相散点图。使用ggtern()函数和stat_density_tern ()函数，以及ggplot2包的geom_point()函数，可以绘制如图(b)所示的三元相等高线图，其核心代码如下。
+library(ggplot2)
+library(ggtern)
+library(rcolorbrewer)
+data(fragments)
+arrangement = list()
+for(base in c('ilr')){
+ x = ggtern(fragments,aes(qm,qp,m)) +
+geom_point() +
+   stat_density_tern(geom='polygon', aes(fill=..level..), base=base, colour='grey50') + 
+scale_fill_gradientn(colours=c(brewer.pal(7,"set1")[2],"white",brewer.pal(7,"set1")[1]),na.value=na)+
+   theme_showarrows()+
+   limit_tern(.5,1,.5)
+  arrangement[[length(arrangement) + 1]] = x
+}
+grid.arrange(grobs = arrangement,nrow=1)
+
+
+4.6 散点曲线图系列
+	带曲线的散点图就是使用平滑的曲线将散点依次连接，重点体现数据的趋势，如图4-5-1(a)所示。曲线图就是不带数据标记而只带平滑曲线的散点图，图4-6-1 (b)所示。带面积填充的曲线图就是在图(b)的基础上把曲线下面的部分使用颜色填充，使图表能更好地展示数据的变化趋势。图(d)是在图(a)的基础上把曲线下面的部分使用颜色填充。
+	对于这几种图表的应用情况，图(a)和(b)同时适应于单数据系列和多数据系列；图(c)和(d)更适用于单数据系列，因为使用面积填充的多数据系列会存在遮挡效果，从而降低读者对数据的可读性。
+   
+(a)                         (b)
+   
+(c)                         (d)
+图4-6-1 散点曲线图系列
+  散点曲线图
+由于R ggplot2包的geom_line()函数只能绘制折线图，但是R ggalt包提供的geom_xspline ()函数可以绘制带光滑曲线的散点图，图(a)和(b)的核心代码如下。
+ 需要注意的是：geom_line()函数是先对数据根据X坐标轴变量的数值排序，然后再把各点使用直线依次连接，常用于直角坐标系中。geom_path()函数是直接根据给定的数据点顺序，使用直线连接，常用于地理空间坐标系中。
+library(ggplot2)
+library(ggalt)
+mydata<-read.csv("Line_Data.csv",header=T)
+ggplot(mydata, aes(x, y) )+
+geom_xspline(spline_shape=-0.5, size=0.25)+
+geom_point(shape=21,size=4,color="black",fill="#F78179") +
+theme_gray()
+
+对于图(c)和(d)带填充的散点曲线图，可以使用数据预处理的方法使用算法平滑曲线，然后根据平滑数据绘制面积图，再添加散点曲线。R语言splines包提供了spline()函数可以使用样条函数实现曲线的光滑与插值(interpolation)，其核心代码如下。其中，spline()的method方法参数有"fmm", "natural", "periodic", "monoH.FC" and "hyman"四种类型。“hyman”只适应于单调递增或递减的数据插值，"natural"使用自然样条插值方法，"periodic"使用周期样条插值方法，在使用该函数时，自己可以根据数据，尝试或者选择不同的数据平滑差值方法。
+library(ggplot2)
+library(splines)
+mydata<-read.csv("Line_Data.csv",header=T)
+newdata <- data.frame(spline(mydata$x,mydata$y,n=300,method="hyman" ))
+ggplot(newdata, aes(x, y) )+
+geom_line(size=0.25)+
+geom_area(fill="#F78179",alpha=0.7)+
+geom_point(data=mydata,aes(x,y),shape=21,size=4,color="black",fill="white")
+
+
+4.7 瀑布图
+瀑布图(Waterfall plots)用于展示拥有相同的X轴变量数据（如相同的时间序列）、不同的Y轴离散型变量（如不同的类别变量）和Z轴数值变量，可以清晰地展示不同变量之间的数据变化关系。如图4-6-1所示为三维瀑布图。三维瀑布图可以看成是多数据系列三维面积图。
+使用分面图的可视化方法也可以展示瀑布图的数据信息，关于分面图可视化方法的具体讲解请见第八章 高维数据可视化-分面图。如图4-6-2 所示的分面图，所有数据公用X轴坐标，每个数据类别拥有自己的Y轴坐标，数据类别显示在最右边。相对于三维瀑布图，分面瀑布图可以更好地展示数据信息，避免不同类别之间数据重叠引起的遮挡问题，但是不能很直接地比较不同类别之间的数据差异。图(b)在图(a)的基础上将每个数据的Z变量作颜色映射，这样有利于比较不同类别之间的数据差异。
+使用峰峦图也可以很好地展示瀑布图的数据信息，如图4-6-3 所示。图4-6-3可以看成是在图4-6-2(b)的基础上将Y轴坐标移除、并缩小数据类别之间的距离，这样可以有效地缩小图表的占有面积，同时可以很好地展示数据的完整信息，包括不同类别之间的数据差异比较。
+     
+(a)                              (b)  
+图4-7-1 瀑布图
+
+     
+(a)                                           (b)
+图4-7-2 行分面的带填充的曲线图
+ 
+图4-7-3 峰峦图
+  瀑布图
+R语言plot3D包的polygon3D()函数和segments3D()函数可以绘制三维面积图，lines3D()函数可以绘制三维曲线图，所以，综合这几个函数可以绘制三维瀑布图waterfall，其中图4-6-1(a)的具体代码如下所示。
+library(plot3D)
+mydata0<-read.csv("Facting_Data.csv",check.names =FALSE)
+N<-ncol(mydata0)-1
+mydata<-data.frame(x=numeric(),y=numeric(),variable=character())
+
+for (i in 1:N){
+  newdata<-data.frame(spline(mydata0[,1],mydata0[,i+1],n=300,method= "natural"))
+  newdata$variable<-colnames(mydata0)[i+1]
+  mydata<-rbind(mydata,newdata)
+}
+mydata$variable<-as.numeric(mydata$variable)
+group<-unique(mydata$variable)
+M<-length(group)
+
+#获取ggplot2默认 颜色方案
+gg_color_hue <- function(n) {
+  hues = seq(15, 375, length = n + 1)
+  hcl(h = hues, l = 65, c = 100)[1:n]}
+colormap <- rev(gg_color_hue(M))
+
+pmar <- par(mar = c(5.1, 4.1, 4.1, 6.1))
+
+perspbox(z=as.vector(0),xlim=c(20,70),ylim=c(360,750),zlim=c(0,15),
+          ticktype = "detailed",bty = "f",box = TRUE,colkey = FALSE,
+          theta = -110, phi = 20, d=3)
+
+for (i in 1:M){
+  df0<-mydata[mydata$variable==group[i],]
+  Ndf<-nrow(df0)
+  df<-rbind(df0,c(df0$x[1],df0$y[Ndf],df0$variable[Ndf]))
+  with(df,polygon3D(x=variable,y=x, z=y, alpha=0.6, col=colormap[i],lwd = 3,add=TRUE,colkey = FALSE))
+  
+  with(df0,lines3D(x=variable,y=x, z=y, lwd = 0.5,col="black",add=TRUE))
+}
+
+
+R ggplot2包提供的facet_grid ()可以绘制如图4-6-2所示行分面的带填充的曲线图。ggplot2的facet_grid ()可以根据数据框的变量分行或者分列，以并排子图的形式绘制图表。图4-6-2(a)所示的行分面的带填充的曲线图具体代码如下：
+library(ggplot2)
+library(RColorBrewer)  
+library(reshape2)
+mydata0<-read.csv("Facting_Data.csv",stringsAsFactors=FALSE)
+colnames(mydata0)<-c("X_Axis",seq(60,25,-5))
+mydata<-melt(mydata0,id.vars = "X_Axis")
+ggplot(mydata,aes(X_Axis,value,fill=variable))+
+  geom_area(color="black",size=0.25)+
+  facet_grid(variable~.)
+
+时间序列的峰峦图，可以使用geom_linerange()函数或者geom_ribbon()函数绘制实现；其中geom_linerange()函数的参数(x,y,ymax)，表示用直线连接(x,y)和(x,ymax)两点；geom_ribbon()函数的参数(x,y,ymax)，表示用直线连接数据系列的(x,y)和(x,ymax)上所有的点，并使用颜色填充。图4-6-3所示的峰峦图使用geom_linerange()函数实现绘制。其中主要关键是使用spline()函数对每条曲线插值得到N个数据点。
+
+library(ggplot2)
+library(RColorBrewer)  
+colormap <- colorRampPalette(rev(brewer.pal(11,'Spectral')))(32)
+mydata0<-read.csv("Facting_Data.csv",check.names =FALSE)
+N<-ncol(mydata0)-1
+labels_Y<-colnames(mydata0)[1:N+1]  # 保留原有的列名作为Y轴数据标签
+colnames(mydata0)<-c("x",seq(1,N,1))  # 自定义新的列名依次为1到N的等差数列
+mydata<-data.frame(x=numeric(),y=numeric(),variable=character()) #创建空的Data.Frame
+#spline()函数对每条曲线插值得到300个数据点
+for (i in 1:N){
+  newdata<-data.frame(spline(mydata0[,1],mydata0[,i+1],n=300,method= "natural"))
+  newdata$variable<-colnames(mydata0)[i+1]
+  mydata<-rbind(mydata,newdata)
+}
+#设定两条曲线的间隔Step为5           
+Step<-5
+mydata$offest<--as.numeric(mydata$variable)*Step
+mydata$V1_density_offest<-mydata$y+mydata$offest
+
+p<-ggplot()
+for (i in 1:N){
+  p<-p+ geom_linerange(data=mydata[mydata$variable==i,],
+aes(x=x,ymin=offest,ymax=V1_density_offest,group=variable,color=y),size =1, alpha =1) +
+    geom_line(data=mydata[mydata$variable==i,],aes(x=x, y=V1_density_offest),color="black",size=0.5)}
+p+scale_color_gradientn(colours=colormap)+
+#将Y轴坐标标签置换成原始的数据列名labels_Y
+  scale_y_continuous(breaks=seq(-Step*N,-Step,Step),labels= rev(labels_Y))+
+  xlab("Time")+
+  ylab("Class")+
+  theme_light()
+
+
+
+-------------------------------------------------------------------------------------------------------------------------峰峦图的故事
+1979年，英国乐队快乐小分队（Joy Division）发行了自己的首张唱片《Unknown Pleasuers》，这张专辑发行两周内就卖了5000份，但问题是……印了10000份。然而，当乐队的单曲《Transmission》发布后，这张后朋克唱片很快销售一空。有意思的是这个专辑在2017年又重新流行了，因为那个设计极为特殊的封面。
+ 
+《Unknown Pleasuers》封面
+这里说的封面流行是指在数据可视化领域里，其实它本就很流行……在流行文化里。很多人用这个类似波谱的图来指征一种波动、起伏的感受，恰恰应和《Unknown Pleasuers》中那种迷茫而强烈的情感，同时封面设计师又开放了版权，所以我们可以看到其在很多场景中的再现。例如 3D 打印版、服装版、电影版等。甚至有人制作了一个网站来用鼠标生成类似风格的图。不过这个图仔细看是很有问题的：坐标轴是什么？线的间隔是固定的吗？有什么意义？这图又是怎么做出来的？
+ 
+《Unknown Pleasuers》封面的源头，Harold D. Craft, Jr. 博士论文插图。Radio Observations of the Pulse Profiles and Dispersion Measures of Twelve Pulsars, Harold D. Craft, Jr [27]. (PhD Thesis, September 1970 pages 214-216), Cornell University
+冤有头债有主，《科学美国人》曾经对这张封面的源头进行过探索，据封面设计师 Peter Saville 的说法，这张图是从 1977 年出版的《The Cambridge Encyclopaedia of Astronomy》上面一幅关于脉冲星 CP1919 所发出的脉冲波叠加图（不是山峰，也不是波浪）上获取灵感进行的创作，但这所谓的“创作”实质上就是把颜色做了反转还去掉了坐标轴。不过这就说明源头是这本书吗？不，顺着这本书，有人追溯到了1974年《Graphis diagrams: The graphic visualization of abstract data》 。进一步追溯，会发现更早出版的《科学美国人》（1971年1月刊）上也使用了这幅图。也就是《科学美国人》的考古队出门绕了个圈，又回到起点了。
+那么《科学美国人》又是哪里搞到这幅图的呢？事实上1971年的文章之所以要用这幅图，是因为要介绍脉冲星这个上世纪60年代的重大发现，而这个发现的确切时间是1967年，也就是说这个图的出生日期就在1967年与1971年之间。然后我们就找到了 Harold D. Craft, Jr. 在康奈尔大学的博士论文《Radio Observations of the Pulse Profiles and Dispersion Measures of Twelve Pulsars》，到这个时候真正的源头才出现。
+当《科学美国人》联系到 Harold D. Craft, Jr. 时，他也顺道说了下这幅图背后的故事。刚开始在脉冲星在剑桥被发现后，他所在的团队就意识到自己其实拥有当时世界上最好的测量脉冲星的设备，其实也就是电子设备。然后，从测量结果上他们很快就发现脉冲星的脉冲存在一些漂移，也就是大脉冲里有小脉冲，这个结果发表在《自然》上。但他们觉得需要一个更直观的方式来观察这些脉冲的模式，然后就做了一些叠加图，很快就发现这种图前后的遮挡太过严重。作为一个程序员，遮挡问题其实就是一个漂移问题，所以他操起键盘（也可能是打孔卡）做出了一个漂移版，这样当峰强度足够时才会出现遮挡，而这类峰正是我们想看的模式。不过不要高估那个年代的技术，他还得再找人用印度墨水（其实就是中国墨汁）重新勾描一遍才能清晰的放到博士论文里。不过他显然不是流行文化爱好者，因为直到他同事有天闲逛时发现后告诉他他才发现自己的图这么流行，然后他毫不犹豫的买下了有这张图的专辑与海报：
+it’s my image, and I ought to have a copy of it.
+-------------------------------------------------------------------------------------------------------------------------
+
+
+4.8 相关系数图
+	相关系数图就是相关系数矩阵的可视化。相关系数矩阵(Correlation Matrix)也叫相关矩阵，是由矩阵各列间的相关系数构成的。也就是说，相关矩阵第i行第j列的元素是原矩阵第i列和第j列的相关系数。如果一个数据集有P个相关变量，求两变量之间的相关系数，共可得 个相关系数。如按变量的编号顺序，依次将它们排列成一数字方阵，此方阵就称为相关矩阵。常用字母R表示。
+ 
+从左上到右下方向的对角线上，均是两个相同变量的相关，其数值均是1，对角线以上部分的相关系数与以下部分的相关系数是对称的。
+在概率论和统计学中，相关或称相关系数或关联系数，显示两个随机变量之间线性关系的强度和方向。在统计学中，相关的意义是用来衡量两个变量相对于其相互独立的距离。在这个广义的定义下，有许多根据数据特点而定义的用来衡量数据相关的系数。对于不同数据特点，可以使用不同的系数。最常用的是皮尔逊积差相关系数。其定义是两个变量协方差除以两个变量的标准差（方差）。相关系数矩阵的可视化图表类型如图5-7-1所示，主要包括热力图、气泡图、方块图和椭圆图。
+1. 热力图。热力图就是将一个网格矩阵映射到指定的颜色序列上，恰当地选取颜色来展示数据，如图(a)。在相关阵中，所有的数据都在-1到1之间，我们不仅要关注相关系数的绝对值大小，同时更加看重它们的正负号。因此，相关阵的颜色图和一般矩阵的颜色图应该有所区别：即应当选取两种色差较大的颜色序列来展示不同符号的相关系数。其中，红色表示正相关系数，蓝色表示负相关系数。也可以图(a)热力图的基础上添加数据标签（相关系数的数值），如图(f)所示。这样可以使读者更加清晰地观察数据。
+2. 气泡图。气泡图是将一个网格矩阵映射到气泡的面积大小和颜色序列上，这样使用两个视觉特征表示数据，可以让读者更加清晰地观察数据，如图(b)所示。具体做法是：1. 用气泡的面积来表示相关矩阵的绝对值大小。2. 两种色差较大的颜色序列来展示不同符号的相关系数，其中，红色表示正相关系数，蓝色表示负相关系数。也可以将圆圈换成方块，如图(c)所示。或者也可以上边部分使用气泡图显示相关系数，而下半部分使用相关系数数值展示结果，这样也比较清晰、全面地表达数据，如图(e)所示。
+3. 椭圆图。 椭圆图是利用椭圆的形状来表示相关系数：离心率越大，即椭圆越扁，对应绝对值较大的相关系数；离心率越小，即椭圆越圆，对应绝对值较小的相关系数。椭圆长轴的方向来表示相关系数的正负：右上-左下方向对应正值，左上－右下方向对应负值，如图(d)所示。观察图(d)可以发现：椭圆图比较失败，因为它将最大的面积留给了相关性最弱的数据，给其他信息的获取造成了干扰。所以不建议大家使用椭圆图表示相关系数矩阵。
+   
+(a)热力图                     (b) 气泡图                      (c) 方块图
+     
+(d) 椭圆图                     (e)气泡标签图               (f) 带标签的热力图
+图4-8-1 不同类型的相关系数热力图
+  相关系数图
+R ggplot2包提供的geom_tile()和geom_point()函数可以绘制图(a)、(b)、(c)和(f)，使用corrplot包 提供的corrplot()函数可以绘制图(d)和(e)，其中图(f)和(b)的核心代码如下。
+library(ggplot2)  
+library(RColorBrewer)  
+library(reshape2) 
+data("mtcars")
+mat <- round(cor(mtcars), 1)
+mydata <- melt(mat)  
+colnames(mydata)<-c("Var1","Var2","value")
+#绘制图(f)相关系数热力图
+ggplot(mydata, aes(x = Var1, y = Var2, fill = value,label=value)) +  
+geom_tile(colour="black") +
+geom_text(size=3,colour="white")+
+coord_equal()+
+scale_fill_gradientn(colours=c(brewer.pal(7,"Set1")[2],"white",brewer.pal(7,"Set1")[1]),na.value=NA)
+
+#绘制图(b)相关系数气泡图
+mydata$AbsValue<-abs(mydata$value)
+ggplot(mydata, aes(x= Var1 , y=Var2)) +
+ geom_point(aes(size=AbsValue,fill = value), shape=21, colour="black") +
+scale_fill_gradientn(colours=c(brewer.pal(7,"Set1")[2],"white",brewer.pal(7,"Set1")[1]),na.value=NA)+
+  scale_size_area(max_size=12, guide=FALSE) )
+
+4.9 韦恩图
+韦恩图（Venn Diagram），也叫温氏图、维恩图、范氏图，用于显示元素集合重叠区域的图表。维恩图是关系型图表，通过图形与图形之间的层叠关系，来表示集合与集合之间的相交关系。每个集合通常以一个圆圈表示。每个集合都是一组具有共同之处的物件或数据。当多个圆圈（集）相互重迭时，称为交集 (intersection)，里面的数据同时具有重迭集中的所有属性。
+一个完整的韦恩图包含以下构成元素：1.若干个圆表示集合；2. 若干个圆层叠部分表示公有集合；3.内部文本标签。一般来说，超过五个集合的场景，不适合适用韦恩图。
+适合场景1：表示2个集合相交关系，有一个集合A，有一个集合B，相交集合为C。2个维度数据，分类数据映射集合名，关系数据映射集合关系。
+适合场景2：表示3个集合相交关系，有集合A、B、C。2个维度数据，分类数据映射集合名，关系数据映射集合关系。
+适合场景3：表示4个集合相交关系，场景说明：有一个集合A、B、C、D。2个维度数据，分类数据映射集合名，关系数据映射集合关系。
+   
+图4-8-1 不同场景的韦恩图
+  韦恩图
+R 语言中VennDiagram包的venn.Diagram()函数，gplots包的venn()函数，limma包的vennDiagram()函数、venneuler包的venneuler()函数都可以绘制韦恩图，但是以VennDiagram包的venn.Diagram()函数绘制的韦恩图效果最佳，具体案例代码如下所示：
+library(VennDiagram)
+library(RColorBrewer)
+venn.diagram(list(B = 1:1800, A = 1571:2020,c=500:1100),fill = c(brewer.pal(7,"Set1")[1:3]),
+             alpha = c(0.5, 0.5,0.5), cex = 2,
+cat.cex=3,cat.fontface = 4,lty =2, fontfamily =3, 
+             resolution =300, filename = "trial2.tiff")
+
+
+4.10 树状图
+树状图（Dendrogram）是表示连续合并的每对类之间的属性距离的示意图。为避免线交叉，示意图将以图形的方式进行排布，使得要合并的每对类的成员在示意图中相邻，如图4-9-1所示。
+树状图工具采用等级聚类算法。程序首先会计算输入特征文件中每对类之间的距离。然后迭代式地合并最近的一对类，完成后继续合并下一对最近的类，直到合并完所有的类。在每次合并后，每对类之间的距离会进行更新。合并类特征时采用的距离将用于构建树状图。如图4-9-2所示为四种不同类型的树状图：分布为纵向树状图、横向树状图、环形树状图和进化树状图。
+ 
+图4-10-1 树状示意图
+
+    
+(a)                                    (b)
+       
+(c)                                      (d)
+图4-10-2 不同类型的树形图
+
+  树形图
+R 语言中ggdendro包ggdendrogram()函数、ggraph包的ggraph()函数（layout = "dendrogram"或者"dendrogram"）、factoextra包的fviz_dend()函数都可以绘制树形图，factoextra包绘制的树状图更加美观，如图4-9-2所示都是使用factoextra包绘制，其中图(a)的具体代码如下。当horiz = TRUE时，坐标轴转置，效果如图(b)所示。调节参数type = c("rectangle", "circular", "phylogenic")， 可以得到不同类型的树状图，其中"rectangle"对应图(a)和图(b)，"circular"对应图(c)，"phylogenic"对应图(d)。图(c)也可以使用circlize包的circlize_dendrogram()函数绘制。
+library(factoextra)
+data(USArrests)
+dd <- dist(scale(datasets::mtcars), method = "euclidean") #对数据中心化处理后求取欧式距离
+hc <- hclust(dd, method = "ward.D2") #层次聚类方法
+fviz_dend(hc, k = 4, # 聚类的类别数目为4
+          cex = 0.8, # 数据标签的字体大小
+          k_colors = c("#2E9FDF", "#00AFBB", "#E7B800", "#FC4E07"),
+          color_labels_by_k = FALSE, # 数据标签也根据颜色设定
+          rect_border = c("#2E9FDF", "#00AFBB", "#E7B800", "#FC4E07"),
+          rect = TRUE, # 使用不同颜色的矩形框标定类别
+          rect_fill = TRUE)
+
+
+4.11 圆堆积图
+圆堆积 (Circle Packing) 是树形结构图的变体，使用圆形（而非矩形）一层又一层地代表整个层次结构：树木的每个分支由一个圆圈表示，而其子分支则以圆圈内的圆圈来表示。每个圆形的面积也可用来表示额外任意数值，如数量或文件大小。我们也可用颜色将数据进行分类，或通过不同色调表示另一个变量，如图4-10-2所示。
+虽然圆堆积看起来漂亮，但不及树形结构图(如图4-10-1(b)所示) 般节省空间（因为圆圈内会有很多空白处），可是它实际上比树形结构图更能有效显示层次结构，如图4-10-1(c)所示。
+       
+            (a)数据结构                  (b)树形图                      (c)圆堆积图
+图4-11-1 圆堆积示意图
+      
+图4-11-2 不同颜色主题的圆堆积图
+  圆堆积图
+R 语言中ggraph包的ggraph()函数可以绘制圆堆积图。edges和vertices的数据结构如图4-10-1(a)所示，把层次关系的数据转换成两列的数据，每行左边from列的数据隶属于右边to列的数据。使用graph_from_data_frame()函数可以将数据框data.frame的数据转换成graph类型的数据，并可以使用ggraph()函数绘制，其中核心参数layout = 'circlepack'(圆堆积图)；geom_node_circle()函数表示圆圈的美学参数设定，geom_node_text()函数表示圆圈的标签添加与设定。图4-10-2圆堆积图的核心代码如下图所示。
+	其中，ggraph()函数核心参数layout 有很多种选择，可以绘制网络图(network)、Hive图(hive)、树状图(treemap)、旭日图、树形图(dendrogram) 。
+library(ggraph)
+library(igraph)
+library(tidyverse)
+library(viridis)
+data(flare)
+# 过滤选择数据集
+edges<-flare$edges %>% filter(to %in% from) %>% droplevels()
+vertices <- flare$vertices %>% filter(name %in% c(edges$from, edges$to)) %>% droplevels()
+vertices$size<-runif(nrow(vertices))
+# 构造graph类型的数据结构
+mygraph <- graph_from_data_frame( edges, vertices=vertices )
+ggraph(mygraph, layout = 'circlepack', weight="size" ) + 
+  geom_node_circle(aes(fill = depth)) +
+  geom_node_text( aes(label=shortName, filter=leaf, fill=depth, size=size)) +
+  theme_void() + 
+  theme(legend.position="FALSE") + 
+  scale_fill_viridis()
+
+
+4.12 和弦图
+弦图 (Chord Diagram) 可以显示不同实体之间的相互关系和彼此共享的一些共通之处，因此这种图表非常适合用来比较数据集或不同数据组之间的相似性。节点围绕着圆周分布，点与点之间以弧线或贝塞尔曲线彼此连接以显示当中关系，然后再给每个连接分配数值（通过每个圆弧的大小比例表示）。此外，也可以用颜色将数据分成不同类别，有助于进行比较和区分，如图4-11-1所示。
+弦图的特点在于，它有助于我们看出数据之间的关系，适用于比较数据集或不同数据组之间的相似性。连接两个数据点的弧线可以以颜色、弧线与圆的接触面积大小为不同的维度，表达不同的数值。正因为弦图能在表达大量复杂数据的同时，尽可能把这种复杂的关系可视化，弦图被广泛运用到各个方面。弦图的缺点是过于混乱，尤其是当要显示太多连接的时候。
+
+  
+图4-12-1 常见的和弦图：数据与图表的实现关系
+
+为了区分弦图在数据表达复杂程度上的不同，我们尝试把它分成几个“等级”，如图4-11-2所示 。
+1.	“入门级”：在单纯的数据关系展示上，弧线的意义就在于表达两个数据之间存在一定的关系。弧线与圆的接触面积和颜色没有数值的意义，它可以指示简单的关系（A-B）、具有位置信息（A-C）或单向关系（A-D），如图(a)所示。
+2.	“普通级”：你也可以在弧线与圆的接触面积上赋予数值的意义，表示两个数据之间的关系程度或者比例关系，如图(b)所示。
+3.	“高手级”：当弧线根据相关数据着色时，我们会更容易发现数据间的关系。值得注意的一点是，弧线可以根据源数据或目标数据着色。同样是展示A与B的关系，但弧线的颜色可以由A决定(如图(c)所示)，也可以由B决定(如图(d)所示)。
+4.	“殿堂级”：有的弧线与表示比例关系的弧线非常相似，也是两端粗细不同，却是两个数据的集合表现。下左图表现的是（A，B）的值为2，（B，A）的值为10，分别由两条粗细不一的弧线表示。图(e)将两个数值结合起来，根据弧线与圆接触面积的大小，表达不同的数值。C则表达了两倍的数值。
+5.	“神话级”：更进一步，我们可以通过设计弧线是否接触到圆，区分数据类别。图(f)中弧线与圆相触的为数据的行，相反则为列。
+     
+(a)                        (b)                      (c)
+      
+(d)                        (e)                      (f)
+图4-12-2 不同复杂程度的和弦示意图
+
+   
+(a)                                           (b)
+图4-12-3 和弦图
+
+  和弦图
+R circlize包提供了chordDiagram()函数可以绘制和弦图，该函数既可以使用data.frame数据框类型的数据，又可以使用matri矩阵类型的数据。矩阵的数据结构如图4-12-1所示，矩阵中的数据Mi, j表示变量Y第i个类别和变量X第j个类别的关系数值，比如两者的相似性。如图4-12-3和弦图的具体实现代码如下：
+特别强调的是，circlize可以绘制更加复杂的和弦图，比如添加环状分布(极坐标)分布的散点图、柱形图等，更多内容可以参考并学习官方网站  [28] 
+library(circlize)
+library(RColorBrewer)
+set.seed(999)
+mat = matrix(sample(18, 18), 3, 6)
+rownames(mat) = paste0("S", 1:3)
+colnames(mat) = paste0("E", 1:6)
+df = data.frame(from = rep(rownames(mat), times = ncol(mat)),
+                to = rep(colnames(mat), each = nrow(mat)),
+                value = as.vector(mat),
+                stringsAsFactors = FALSE)
+chordDiagram(df,grid.col = brewer.pal(9,"Set1")[1:9],link.border="grey") #使用DataFrame数据结构绘制
+circos.clear()
+
+chordDiagram(mat,grid.col = brewer.pal(9,"Set1")[1:9],link.border="grey") #使用matrix数据结构绘制
+circos.clear()
+
+-------------------------------------------------------------------------------------------------------------------------------------------
+和弦图的故事
+虽然弦图的名字与几何学密切相关，但最初开始使用弦图的却是生物学家 [29]。面对纷繁复杂的基因组数据，生物学家巧妙地利用弦图展示基因组之间的关系。这种类型的图表最先于2007年使用在《纽约时报》基因组的信息图表中。
+ 
+弦图的特点在于，它有助于我们看出数据之间的关系，适用于比较数据集或不同数据组之间的相似性（猴子、老鼠、猩猩、鸡与人的染色体实验就是发现不同数据组的相似性）。连接两个数据点的弧线可以以颜色、弧线与圆的接触面积大小为不同的维度，表达不同的数值。
+-------------------------------------------------------------------------------------------------------------------------------------------
+4.13 桑基图
+对于该图的称呼莫衷一是：有直接根据象形定名它为“决策树”（Decision Tree）；或者根据线段的层级流动称之为“流程图/作业图”（Flow Diagram）；还有一些图形网站称其为“冲击图”（Alluvial Diagram），但对其最准确的定义应当是：桑基图（Sankey Diagram）。
+桑基图的名称来源于爱尔兰船长。1898年，爱尔兰船长马修·亨利·菲尼亚斯·里亚尔·桑基（Matthew Henry Phineas Riall Sankey）使用了这种类型的图表展示了蒸汽的能源效率。与此同时，这个图也以船长的名字命名为“桑基图”。 在今天的数据可视化领域，桑基图有利于展现分类维度间的相关性，以流的形式呈现共享同一类别的元素数量。特别适合表达集群的发展，比如展示特定群体的人数分布等，通常应用于能源、材料成分、金融等数据的可视化分析。
+如图4-13-1所示，基图主要由边、流量和支点组成，其中边代表了流动的数据，流量代表了流动数据的具体数值，节点代表了不同分类。桑基图最明显的特征如下：
+1.	起始流量和结束流量相同，所有主支宽度的总和与所有分出去的分支宽度总和相等，保持能量的平衡；
+2.	在内部，不同的线条代表了不同的流量分流情况，边的宽度与流量成比例地显示，边越宽，数值越大； 
+ 
+图4-13-1 桑基示意图
+所以，在使用桑基图的过程中，桑基图要保持能量的守恒。无论数据怎样流动，数据的总量从开始到结束都不能有任何的变化，不能在中间过程创造出数据，流失（损耗）的数据应该流向表示损耗的支点。
+      
+ (a) (b)
+图4-13-2 不同类型的桑基图
+
+  桑基图
+R 语言的ggalluvial包提供了geom_flow()和geom_stratu()两个函数，可以结合ggplot2包的ggplot函数绘制桑基图。其中，geom_stratu()函数控制节点的美学参数设定，主要数值由stratum和weight决定；geom_flow()函数控制边的美学参数设定，主要由alluvium和weight决定。图4-13-1(a)实现的具体代码如下：
+library(ggalluvial)
+library(ggplot2)
+data(vaccinations)
+levels(vaccinations$response) <- rev(levels(vaccinations$response))
+ggplot(vaccinations, aes(x = survey, stratum = response, alluvium = subject, weight = freq,
+                    fill = response, label = response)) +
+  geom_flow(alpha = 0.7,color = "darkgray") +
+  geom_stratum(alpha = 1) +
+  geom_text(stat = "stratum", size = 3.5) +
+  theme_classic()+
+  #coord_flip() +
+  theme(legend.position = "none",
+        axis.text.x =element_text(color="black",size=12),
+        axis.title.x = element_blank(),
+        axis.text.y =element_blank(),
+        axis.line = element_blank(),
+        axis.ticks =element_blank() )
+-----------------------------------------------------------------------------------------------------------------------------------------
+桑基图的故事
+最着名的桑基图是查尔斯·米纳德（Charles Minard）绘制的1812年拿破仑俄国战役地图。这张战役地图将一张桑基图叠加到一张地图上，是一张流程图与地图结合的图表。
+ 
+拿破仑俄国战役地图 
+　　桑基图中的粉色部分描绘了拿破仑军队在欧洲的移动和数量变化情况，显示了在1812年6月，拿破仑带领了42万人入侵俄罗斯。然而随着战争不断深入，军队人数一路减少，到了战败撤退时，只剩下1万人。这张最早的桑基图创建于1869年，但它那时候还不叫桑基图。
+　　29年后，到了1898年，爱尔兰船长马修·亨利·菲尼亚斯·里亚尔·桑基（Matthew Henry Phineas Riall Sankey）使用了这种类型的图表展示了蒸汽的能源效率。与此同时，这个图也以船长的名字命名为“桑基图”。
+
+-------------------------------------------------------------------------------------------------------------------------------------------
+?
+第六章 数据分布型图表
+本章我们先从正态分布开始说起。正态分布（Normal distribution）又名高斯分布（Gaussian distribution）。若随机变量X服从一个数学期望为μ、标准方差为σ2的高斯分布，记为：X～N(μ, σ2),则其概率密度函数为:
+ 
+正态分布的期望值μ决定了其位置，其标准差σ决定了分布的幅度。因其曲线呈钟形，因此人们又经常称之为钟形曲线。我们通常所说的标准正态分布是μ = 0,σ = 1的正态分布。现实生活中很多数据分布都符合正态分布。使用R语言中rnorm()函数生成100个服从μ = 3,σ = 1正态分布的数据，使用不同的方法展示数据分布，如下图所示。下图总共使用了14种不同的图表类型展示数据，再本章中会详细讲解这些图表类型。
+             
+(a)          (b)           (c)         (d)         (e)           (f)          (g)
+             
+(h)          (i)           (j)         (k)           (m)           (l)          (n)
+图5-0-1 不同类型的数据分布型图表. (a)散点抖动图. (b) 蜂巢图. (c)点状图. (d)统计直方图. (e)核密度估计图. (f)带误差线的散点图. (g)带误差线的柱形图. (h) 梯度图. (i) 箱型图. (j) 带凹槽的箱型图. (k)瓶状图. (l)豆状图. (m)小提琴图. (n)海盗图.
+
+5.1 统计直方图和核密度估计图
+5.1.1 统计直方图
+直方图（(Histogram)，形状类似柱状图却有着与柱状图完全不同的含义。直方图牵涉统计学的概念，首先要从数据找出它的最大值和最小值，然后确定一个区间，使其包含全部测量数据，将区间分成若干小区间，统计测量结果出现在各小区间的频数M，以测量数据为横坐标，以频数M为纵坐标，划出各小区间及其对应的频数。在平面直角坐标系中，横轴标出每个组的端点，纵轴表示频数，每个矩形的高代表对应的频数，称这样的统计图为频数分布直方图。
+所以统计直方图的主要作用有：1.能够显示各组频数或数量分布的情况；2.易于显示各组之间频数或数量的差别。通过直方图还可以观察和估计哪些数据比较集中，异常或者孤立的数据分布在何处。
+统计直方图的基本参数有：1.组数：在统计数据时，我们把数据按照不同的范围分成几个组，分成的组的个数称为组数；2.组距：每一组两个端点的差；3.频数：分组内的数据元的数量除以组距。
+
+5.1.2 核密度估计图
+核密度估计图 (Density Plot) 用于显示数据在X轴连续数据段内的分布状况。这种图表是直方图的变种，使用平滑曲线来绘制数值水平，从而得出更平滑的分布。核密度估计图比直方图优胜一个的地方，在于它们不受所使用分组数量的影响，所以能更好地界定分布形状。
+核密度估计（kernel density estimation）是在概率论中用来估计未知的密度函数，属于非参数检验方法之一，由Rosenblatt (1955)和Emanuel Parzen(1962) [30]提出，又名Parzen窗（Parzen window）。所谓核密度估计，就是采用平滑的峰值函数(“核”)来拟合观察到的数据点，从而对真实的概率分布曲线进行模拟。核密度估计（Kernel density estimation），是一种用于估计概率密度函数的非参数方法，x1,x2,..,xn为独立同分布F的n个样本点，设其概率密度函数为f，核密度估计为以下：
+ 
+其中，K(.)为核函数（非负、积分为1，符合概率密度性质，并且均值为0）。有很多种核函数，比如高斯函数(Gaussian function,  ，其中a, b和 c都为常数)，uniform,triangular, biweight, triweight, Epanechnikov,normal等。当h>0为一个平滑参数，称作带宽(bandwidth)。
+不同的带宽得到的估计结果差别很大，那么如何选择h？显然是选择可以使误差最小的。我们用平均积分平方误差（Mean Intergrated Squared Error, MISE）的大小来衡量h的优劣。
+ 
+   
+(a1) 单数剧系列直方图      (b1)单数剧系列核密度估计图
+  
+(a2) 多数剧系列直方图      (b2)多数剧系列核密度估计图
+图5-1-1 直方图和核密度估计图
+  直方图和核密度估计图
+plotnine包提供了geom_histogram()和geom_density()两个函数，可以分布绘制直方图和核密度估计图，图5-1-1(a2)和(b2)实现的具体代码如下。其中geom_histogram()函数主要由两个参数控制统计分析结果：箱型宽度binwidth和箱型总数bins；geom_density()函数的主要参数是带宽bw和核函数kernel，核函数默认为为高斯核函数"gaussian"，还有其他核函数包括 "epanechnikov", "rectangular","triangular", "biweight","cosine", "optcosine"。
+import pandas as pd
+from plotnine import *
+df<-read.csv("Hist_Density_Data.csv",stringsAsFactors=FALSE)
+#统计直方图
+(ggplot(df, aes(x='MXSPD', fill='Location'))+  
+  geom_histogram(binwidth = 1,alpha=0.55,colour="black",size=0.25)+
+  scale_fill_hue(s = 0.90, l = 0.65, h=0.0417,color_space='husl'))
+#核密度估计图
+(ggplot(df, aes(x='MXSPD',  fill='Location'))+ 
+  geom_density(bw=1,alpha=0.55, colour="black",size=0.25)+
+  scale_fill_hue(s = 0.90, l = 0.65, h=0.0417,color_space='husl'))
+
+
+峰峦图，这是最近很火的图表，在twitter上颇受欢迎。峰峦图也可以应用于多数据系列的核密度估计的可视化，如下图所示。X轴对应平均温度的数值范围，Y轴对应不同的月份，每个月份的核密度估计数值映射到颜色，这样就可以很好地展示多数据系列的核密度估计结果。
+    
+图5-1-2核密度估计峰峦图
+  核密度估计峰峦图
+R 语言的ggridges包提供了geom_density_ridges_gradient()函数，可以结合ggplot2包的ggplot()函数绘制核密度估计图，图5-1-2实现的具体代码如下。建议将核密度估计曲线图的数值映射到颜色条。
+https://cran.r-project.org/web/packages/ggridges/vignettes/introduction.html
+import pandas as pd
+import joypy
+df = pd.read_csv("lincoln_weather.csv")
+Categories=['January', 'February', 'March', 'April', 'May', 'June','July',
+          'August','September', 'October', 'November','December']
+df['Month']=df['Month'].astype("category",categories=Categories,ordered=True)
+
+fig, axes = joypy.joyplot(df, column=["Mean.Temperature..F."], 
+                          by="Month", ylim='own',colormap=cm.Spectral,
+                          alpha= 0.9,figsize=(6,5))
+plt.xlabel("Mean Temperature",{'size': 15 })
+plt.ylabel("Month",{'size': 15 })
+
+5.2数据分布图表系列
+本节图5-2-1至-4 使用了4种不同分布的数据，每个类别的数据总数分布为100个，其中类别n的数据服从正态分布的数据（normal distribution：均值μ = 3,方差σ = 1）；类别s的数据为在n数据的基础上右倾斜分布（skew-right distribution：Johnson分布的偏斜度2.0和峰度13）；类别k的数据在n数据的基础上尖峰态分布（leptikurtic distribution：Johnson分布的偏斜度2.2和峰度20）；类别mm为双峰分布（bimodal distribution：两个峰的均值μ1，μ2分别为2.05和3.95，σ1 = σ2 =0.31）
+       
+(a)                                           (b)
+图5-2-1四种不同数据分析的分布类图表. (a) 统计直方图. (b)核密度估计曲线图.
+
+  辅助数据的构造
+使用R自带的rnorm()函数可以构造符合高斯分布的单峰或者多峰数据，使用SuppDists包的rJohnson()函数可以构造符合Johnson分布的数据，然后使用ggplot2包的核密度估计曲线函数geom_density()与分面函数facet_grid()实现如图5-2-1(b)所示的图表，具体代码如下：
+import pandas as pd
+from plotnine import *
+df=pd.read_csv('Distribution_Data.csv')
+df['class']=df['class'].astype("category",categories= ["n", "s", "k", "mm"],ordered=True)
+#统计直方图
+(ggplot(df,aes(x="value",fill="class"))
++geom_histogram(alpha=1,colour="black",bins=30,size=0.2)
++facet_grid('class~.')
++scale_fill_hue(s = 0.90, l = 0.65, h=0.0417,color_space='husl')
++theme_light())
+
+#核密度估计曲线图.
+(ggplot(df,aes(x="value",fill="class"))
++geom_density(alpha=1)
++facet_grid('class~.')
++scale_fill_hue(s = 0.90, l = 0.65, h=0.0417,color_space='husl')
++theme_light())
+
+5.2.1 散点分布图系列
+	散点数据分布图是指使用散点图的方式展示数据的分布规律，有时可以借助误差线或者连接曲线。如下图5-2-1所示为6种不同形式的散点数据分布图。
+	图(a)为散点抖动图(Jitter chart)，每个类别数据点的Y轴数值保持不变，数据点X轴数值沿着X轴类别标签中心线在一定范围内随机生成，然后绘制成散点图。所以，散点抖动图的主要绘制参数就是数据点的抖动范围。由于随机生成数据点的X轴数值，所以很容易存在数据点重合叠加的情况，不利于观察数据的分布规律。ggplot2包的geom_jitter()函数可以绘制散点抖动图，其关键参数是position = position_jitter (width = NULL)，width表示水平方向左右抖动的范围。
+	图(b)为蜂群图(Beeswarm chart)，每个类别数据点沿着X轴类别标签中心线向两侧、同时逐步向上均匀而对称展开，整体较为美观，也方便读者观察数据的分布规律。可以借助ggplot2的拓展包ggbeeswarm包的geom_beeswarm()函数，主要参数包括散点的形状shape、大小size和间隙cex。
+图(c)为点阵图(Dotplot)，每个类别数据点沿着X轴类别标签中心线向两侧均匀而对称展开，整体较为美观，很方便读者观察数据的分布规律。ggplot2包的geom_dotplot()函数可以绘制点阵图，主要参数包括箱型宽度binwidth、箱型的排布方向binaxis（沿X或Y轴）、 散点的排布方式stackdir（"up" (默认), "down", 'center'）、散点大小dotsize等。
+图(d)为散点抖动图+带误差线的散点图，先根据每个类别数据直接绘制散点图，然后在添加每个类别数据的均值与误差线（标准差）：average+standard deviation。如果只使用带误差线的散点图，就无法观察数据的分布情况，所以使用散点抖动图作为背景，可以很好地数据分布情况。数据均值与误差线的添加可以使用stat_summary()函数实现。更加具体地说是stat_summary(fun.data="mean_sdl",geom="pointrange")函数可以绘制带均值点的误差线图。
+图(e)为点阵图+带误差线的散点图，先根据每个类别数据直接绘制散点图，然后在添加每个类别数据的均值与误差线（标准差）：average+standard deviation。如果只使用带误差线的散点图，就无法观察数据的分布情况，所以使用点阵图作为背景，可以很好地数据分布情况，跟图(d)表达的信息类似。
+图(f)为带连接线的带误差线散点图，使用曲线连接散点，但是这时的X轴变量为连续型的时间变量，而不是图(a)-(e)的类别变量。用曲线连接数据点可以表示数据的变化关系与趋势，与第4章4.6 散点曲线图系列基本类似，但是添加误差线表示数据的分布情况。可以借助dplyr包的group_by()和summarise()函数分组计算不同类别的均值与标准差；然后使用ggplot2包的geom_point()函数和geom_errorbar()函数分别绘制均值点和对应的误差线；最后使用ggalt包的geom_xspline()函数使用光滑的曲线连接各点。
+      
+  (a)                      (b)                     (c)
+     
+  (d)                      (e)                     (f)
+图5-2-2 散点分布图系列.
+ (a) 散点抖动图；(b) 蜂群图；(c)点阵图； (d) 带误差线的散点与抖动图；(e) 带误差线散点与点阵组合图；(f)带连接线的带误差线散点图
+
+  散点分布图系列
+图(d)和图(e)类似，都是带误差线的散点与分布类散点图的组合，就是使用geom_jitter()或者geom_dotplot()函数绘制点阵图或者散点抖动图，再添加误差线和均值点。其中图(d)的具体代码如下：
+ggplot(mydata, aes(Class, Value))+
+#添加抖动散点
+  geom_jitter(aes(fill = Class),position = position_jitter(0.3),shape=21, size = 2,color="black")+
+  scale_fill_manual(values=c(brewer.pal(7,"Set2")[c(1,2,4,5)]))+
+  #添加误差线
+  stat_summary(fun.data="mean_sdl", fun.args = list(mult=1), geom="pointrange", color = "black",size = 1.2)+
+  #添加均值散点
+  stat_summary(fun.y="mean", fun.args = list(mult=1), geom="point", color = "white",size = 4)+
+  theme_light()
+
+5.5.2 柱形分布图系列
+柱形分布图系列是指使用柱形图的方式展示数据的分布规律，有时可以借助误差线或者散点图。如下图所示。带误差线的柱形图就是使用每个类别的均值作为柱形的高度，再根据每个类别的标准差绘制误差线，如图(a)所示。
+但是如果只使用图(a)展示数据的话，这就跟带误差线的散点图存在同样的问题：无法显示数据的分布情况。图(a)类别nn为双峰分布，但是他与其他三个类别的均值与标准差基本相同，没有较大区别。
+所以可以在带误差线的柱形图的基础上，添加散点抖动图，这样可以方便观察数据分布规律。
+     
+(a)                        (b)
+图5-2-3 柱形分布图系列。(a) 带误差线的柱形图；(b) 带误差线柱形与抖动图
+  柱形分布图系列
+图(b)带误差线柱形与抖动图就是在带误差线柱形图的基础上，再使用geom_jitter()函数添加抖动散点图。其中，带误差线柱形图使用stat_summary(fun.y=mean, geom='bar')实现柱形图，而stat_summary(fun.data = mean_sdl, geom='errorbar')实现误差线的绘制。
+ggplot(mydata, aes(Class, Value))+ 
+  #添加柱形
+  stat_summary(fun.y=mean, geom='bar',colour="black",fill="white",width=.7) +
+#添加误差线
+  stat_summary(fun.data = mean_sdl, geom='errorbar', color='black',width=.2) +    
+  #添加抖动散点
+  geom_jitter(aes(fill = Class),position = position_jitter(0.2),shape=21, size = 2,alpha=0.9)+
+  scale_fill_manual(values=c(brewer.pal(7,"Set2")[c(1,2,4,5)]))+
+theme_light()
+
+5.2.3 箱型图系列
+箱线图（Box plot）也称箱须图（Box-whisker Plot）、箱线图、盒图，能显示出一組数据的最大值、最小值、中位数、及上下四分位数，可以用来反映一组或多组连续型定量数据分布的中心位置和散布范围，因形状如箱子而得名。1977年，箱形图首先出现在美国著名数学家John W. Tukey的著作《Exploratory Data Analysis》[31]。它能方便显示数字数据组的四分位数。从盒子两端延伸出来的线条称为「晶须」(whiskers)，用来表示上、下四分位数以外的变量。异常值 (Outliers) 有时会以与晶须处于同一水平的单一数据点表示。这种箱形图可以垂直或水平的形式出现，如图5-2-3(a)所示。
+ 
+图 5-2-4 箱型示意图
+其中，四分位数（Quartile）是指在统计学中把所有数值由小到大排列并分成四等份，处于三个分割点位置的数值。分位数是将总体的全部数据按大小顺序排列后，处于各等分位置的变量值。如果将全部数据分成相等的两部分，它就是中位数；如果分成四等分，就是四分位数；八等分就是八分位数等。四分位数也称为四分位点，它是将全部数据分成相等的四部分，其中每部分包括25%的数据，处在各分位点的数值就是四分位数。四分位数有三个，第一个四分位数就是通常所说的四分位数，称为下四分位数，第二个四分位数就是中位数，第三个四分位数称为上四分位数，分别用Q1、Q2、Q3表示。
+第一四分位数 (Q1)，又称“较小四分位数”，等于该样本中所有数值由小到大排列后第25%的数字。
+第二四分位数 (Q2)，又称“中位数”，等于该样本中所有数值由小到大排列后第50%的数字。
+第三四分位数 (Q3)，又称“较大四分位数”，等于该样本中所有数值由小到大排列后第75%的数字。
+第三四分位数与第一四分位数的差距又称四分位距（InterQuartile Range，IQR）是上四分位值Q3与下四分位值Q1之间的差,即IQR= Q3-Q1。IQR乘以因子0.7413得标准化四分位距（Norm IQR）,它是稳健统计技术处理中用于表示数据分散程度的一个量,其值相当于正态分布中的标准偏差（SD）
+如图5-2-3所示为箱型图系列。从箱形图得出的观察结果：1.关键数值，例如平均值、中位数和上下四分位数等。2.任何异常值（以及它们的数值）。3.数据分布是否对称。4.数据分组有多紧密。5.数据分布是否出现偏斜（如果是，往什么方向偏斜）
+箱形图通常用于描述性统计，是以图形方式快速查看一个或多个数据集的好方法。虽然与直方图或密度图相比似乎有点原始，但它们占用较少空间，当要比较很多组或数据集之间的分布时便相当有用。箱形图在数据显示方面受到限制，简单的设计往往隐藏了有关数据分布的重要细节。例如使用箱形图时，我们不能了解数据分布是双模还是多模。虽然小提琴图可以显示更多详情，但它们也可能包含较多干扰信息。
+箱线图作为描述统计的工具之一，其功能有独特之处，主要有以下几点：
+1.直观明了地识别数据批中的异常值。一批数据中的异常值值得关注，忽视异常值的存在是十分危险的，不加剔除地把异常值包括进数据的计算分析过程中，对结果会带来不良影响；重视异常值的出现，分析其产生的原因，常常成为发现问题进而改进决策的契机。箱线图为我们提供了识别异常值的一个标准：异常值被定义为小于Q1－1.5IQR或大于Q3＋1.5IQR的值。虽然这种标准有点任意性，但它来源于经验判断，经验表明它在处理需要特别注意的数据方面表现不错。这与识别异常值的经典方法有些不同。众所周知，基于正态分布的3σ法则或z分数方法是以假定数据服从正态分布为前提的，但实际数据往往并不严格服从正态分布。它们判断异常值的标准是以计算数据批的均值和标准差为基础的，而均值和标准差的耐抗性极小，异常值本身会对它们产生较大影响，这样产生的异常值个数不会多于总数0.7%。显然，应用这种方法于非正态分布数据中判断异常值，其有效性是有限的。箱线图的绘制依靠实际数据，不需要事先假定数据服从特定的分布形式，没有对数据作任何限制性要求，它只是真实直观地表现数据形状的本来面貌；另一方面，箱线图判断异常值的标准以四分位数和四分位距为基础，四分位数具有一定的耐抗性，多达25%的数据可以变得任意远而不会很大地扰动四分位数，所以异常值不能对这个标准施加影响，箱线图识别异常值的结果比较客观。由此可见，箱线图在识别异常值方面有一定的优越性。
+2.利用箱线图判断数据批的偏态和尾重。比较标准正态分布、不同自由度的t分布和非对称分布数据的箱线图的特征，可以发现：对于标准正态分布的大样本，只有 0.7%的值是异常值,中位数位于上下四分位数的中央,箱线图的方盒关于中位线对称。选取不同自由度的t分布的大样本，代表对称重尾分布，当t分布的自由度越小，尾部越重，就有越大的概率观察到异常值。以卡方分布作为非对称分布的例子进行分析，发现当卡方分布的自由度越小，异常值出现于一侧的概率越大，中位数也越偏离上下四分位数的中心位置，分布偏态性越强。异常值集中在较小值一侧，则分布呈现左偏态；；异常值集中在较大值一侧，则分布呈现右偏态。
+箱型图可以很好地用于观察数据的分布，但是无法适用于双峰以及多峰分布的数据，如图5-2-3类别mn（数据服从双峰分布），就准确获得数据的分布情况，所以可以在箱型图的基础上添加抖动散点图或者点阵图，这样可以方便读者观察原始数据的分布情况，如图5-2-3(b)所示 。
+    
+(a)                        (b)
+图5-2-5 箱型图系列。(a) 带误差线的箱型图；(b) 箱型与抖动散点组合图
+  箱型图系列
+R 语言ggplot2包的geom_boxplot()函数可以绘制箱型图，再使用geom_jitter()函数绘制抖动散点图，具体代码如下：
+ggplot(mydata, aes(Class, Value))+
+  geom_boxplot(aes(fill = Class),notch = FALSE)+
+  geom_jitter(binaxis = "y", position = position_jitter(0.3),stackdir = "center",dotsize = 0.4)+
+  scale_fill_manual(values=c(brewer.pal(7,"Set2")[c(1,2,4,5)]))+
+theme_light()
+
+最常用的两种箱形图：可变宽度（Variable-width）和带凹槽(Notched)的箱形图 [32, 33]，如图5-2-3(a)和(b)所示。箱型图另外一个变量：箱型图的宽度（width），就是为了解决箱型图每个类别的数据量大小不同的问题 [32, 33]，如图5-2-4(a)所示可变宽度的箱形图。类别a、b、c和d都服从正态分布，其数据量大小分别为：10、100、1000和10000，箱子的宽度依次增加。在如图5-2-4(b)所示带凹槽的箱形图中，中位数的置信区间 (Confidence intervals )可以由凹槽对应表示。因此，不考虑数据的分布情况，如果凹槽不重合，就表示中位数在95%的自信区间内可以认为显著不同。
+       
+(a)                     (b)                       (c)
+图5-2-6 箱型图系列。(a) 可变宽度的箱型图；(b) 带凹槽的箱型图；(c) 可变宽度的带凹槽箱型图
+
+  箱型图系列
+图(c) 可变宽度的带凹槽箱型图可以设置geom_boxplot()参数是否带凹槽notch ( TRUE/FALSE)，和是否根据将箱型宽度映射到箱型宽度varwidth (TRUE/FALSE)，具体代码如下：
+library(ggplot2)
+library(RColorBrewer)
+freq <- 10 ^ ((1:4))
+df <- data.frame(group = rep(letters[seq_along(freq)], freq), x = rnorm(sum(freq),3,1))
+ggplot(df, aes(group,x))+
+  geom_boxplot (aes(fill = group),notch = TRUE, varwidth = TRUE) +
+  scale_fill_manual(values=c(brewer.pal(7,"Set2")[c(1,2,4,5)]))
+theme_light()
+
+
+	传统的箱型图（如图5-2-4和-5）能有效地展示数据的分布情况与异常值。但是对于中等数据集(n < 1000)，对四分位数之外数据的估计可能不可靠，所以箱形图所提供的信息在四分位数之外的情况下是相当模糊的，而对于一个数据集大小为n的高斯样本来说，异常值（“outliers”）和远外值（“far-out” values）通常小于10[34]。
+而我们希望使用大数据集(n ≈10, 000 ? 100, 000)可以提供更加精准的四分位数之外的数据估计，同时可以展示大量的异常值(约0.4 + 0.007n)。letter-value 箱型图就能满足我们的需求，它不仅能展示四分位数之外的数据分布信息，还能显示异常值的分布情况。letter-value 箱型图在箱型图（中值median (M) 和 四分位数 fourths (F)）的基础上，往两端延伸、增加箱型的个数：1/8 eigths (E), 1/16 sixteenths (D), ...,知道估计误差增大到一定的阈值。如图5-2-6所示，一系列的小箱子堆积而成，展示数据的分布情况。但是它与传统箱型图存在一个同样的问题：无法识别多峰分布的情况 [35, 36]。
+在图5-2-5(a)中，类别a、b、c和d都服从正态分布，其数据量大小分别为：100、1000、10000和100000。在图5-2-5(b)中，类别n、s、k和nm服从不同的数据分布，其数据量大小分别为：100、1000、10000和100000，其中nm数据服从双峰分布，但是仅仅从图中无法识别，这就是箱型图的局限所在。
+
+
+    
+(a)                        (b)
+图5-2-7 大数据的箱型图系列[36]。(a) 不同数据量的正态分布；(b) 相同大数据的不同数据分布
+
+对于实验数据的分析与展示时，很多人会使用常见的带误差线的柱形图，因为可以使用Excel就可以直接绘制。但是这样展示数据，信息量是非常低的。而使用箱型图能够提供更多的数据分布信息，能更好地展现数据（Excel 2016版本也提供了箱型图的绘制功能）。在期刊《Nature Methods》2013年的文章中有100个带误差线的柱形图，而只有20个箱型图，从这里就可以看出来，用箱型图的人远远没有带误差线的柱形图的多。于是自然出版集团（Nature Publishing Group）写了两篇专栏文章《Points of View: Bar charts and box plots》[37]和《Points of Significance: Visualizing samples with box plots》[38]，并且还发表了一篇《BoxPlotR: a web tool for generation of box plots》[39]，专门对比箱型图与带误差线的柱形图在数据分别展示方面的差异，最后得出的结论是：使用箱型图能比带误差线的柱形图，更好地展示数据的分布情况。
+
+5.2.4 其他图表
+瓶状图(Vase plot)就是使用核密度估计箱型部分的数据，从而得到核密度估计曲线，替代原有的箱型部分，主要用来显示数据的分布形状 [40]。绘图时需要设定核密度估计的带宽(bandwidth)。
+小提琴图 (Violin Plot) 用于显示数据分布及其概率密度。这种图表结合了箱形图和密度图的特征，主要用来显示数据的分布形状。中间的黑色粗条表示四分位数范围，从其延伸的幼细黑线代表 95% 置信区间，而黑色横线则为中位数 [41]。箱形图在数据显示方面受到限制，简单的设计往往隐藏了有关数据分布的重要细节。例如使用箱形图时，我们不能了解数据分布是双模还是多模。虽然小提琴图可以显示更多详情，但它们也可能包含较多干扰信息，而且绘图时需要设定核密度估计的带宽(Bandwidth)。小提琴图可以使用ggplot2包的geom_violin()函数，主要参数是跟核密度估计曲线一样，也是带宽bw。
+豆状图(Bean plot) 是在小提琴密度部分的基础上，用短横条表示每个数据的数值，用长横线表示类别数据的均值。它看起来就是豌豆，而里面的短横条看起来像里面的种子 [42]。豆状图可以使用beanplot包的beanplot()函数实现。
+海盗图(Pirate plot)，中文名是笔者给起的，因为它算是综合了散点抖动图（原始数据）、柱形图（均值）、小提琴图（核密度估计）和方块（95%的高密度区间(High Density Interval, HDI)或置信区间(Confidence Interval,CI) ），虽然能完整地表达数据的所有信息，但是过于复杂 [43]。建议该图表可用于前期数据分布的探索，再具体确定选择合适的图表类型展示数据。海盗图可以使用yarrr包的pirateplot()函数实现。
+     
+(a)                        (b)
+图5-2-8 其他数据分布类型的图表。(a) 瓶状图；(b)小提琴图；(c)豆状图；(d) 海盗图
+
+	梯度图(Gradient Plot，如图5-0-1(h)所示)，也可以表示数据分布情况，彩色的条带对应数据的核密度估计，黑色长条代表数据的均值或者中位数，表达的数据信息跟小提琴图类似 [44]。梯度图可以使用denstrip包的denstrip()函数实现。
+
+  小提琴图
+图(b)小提琴图也是很常见的图表，可以使用ggplot2包的geom_violin()函数实现；一般我们还可以在小提琴图里添加箱型图，这样能更加全面地展示数据。
+ggplot(mydata, aes(Class, Value))+ 
+  geom_violin(aes(fill = Class),trim = FALSE)+
+  geom_boxplot(width = 0.2)+
+  scale_fill_manual(values=c(brewer.pal(7,"Set2")[c(1,2,4,5)]))+
+  theme_light()
+
+	
+多数据系列的箱型图、小提琴图和豆状图如图5-2-10所示。多数据系列的箱型图可以使用geom_boxplot()函数，只需要将两组的变量映射到箱型的颜色填充fill，另外可以使用position = position_dodge(width)控制箱型之间的间隔，如图(a)所示。在图(a)基础上，可以再使用geom_jitter()函数添加抖动散点图，可以通过position=position_jitter(width,height)语句使散点沿着箱型图的中心线分布，如图(b)所示。
+图(c)是双数据系列的小提琴图，它并非像双数据系列的箱型图一样，同一个类别下，两个小提琴图。这是因为小提琴图本身就是由两个左右对称的核密度估计曲线图构成。所以对于双数据系列小提琴图，我们只需要保留两个小提琴图的各一半，使左边为一个数据的核密度估计曲线图，右边为另一个数据的核密度估计曲线图。由于ggplot2包并未提供这样的函数，所以我们可以通过自定义双数据系列小提琴图绘制函数geom_split_violin()实现。在此基础上，再使用geom_jitter()函数添加抖动散点图。
+	图(d)是双数据系列的豆状图，可以使用beanplot包的beanplot()函数就可以直接实现。跟图(c)小提琴图表达的数据信息基本一致。
+    
+(a)                                          (b)
+    
+                     (c)                                          (d)
+图5-2-10 (a) 多数据系列的箱型图和(b) 带抖动散点的多数据系列箱型图. (c) 带抖动散点的多数据系列小提琴图. (d) 多数据系列的豆状图
+
+  多数据系列的箱型图
+多数据系列的箱型图可以使用geom_boxplot()函数，只需要将两组的变量映射到箱型的颜色填充fill，另外可以使用position = position_dodge(width)控制箱型之间的间隔，如图(a)所示。在图(a)基础上，可以再使用geom_jitter()函数添加抖动散点图，可以通过position=position_jitter(width,height)语句使散点沿着箱型图的中心线分布，如图(b)所示。
+library(ggplot2)
+set.seed(141079)
+data <- data.frame(BAI2013 = rnorm(300), class = rep(letters[1:3], 100),
+                 treatment = rep(c("elevated","ambient"),150))
+#(a)多数据系列的箱型图
+ggplot(data, aes(x = class, y = BAI2013))+
+  geom_boxplot(outlier.size = 1, aes(fill=factor(treatment)), position = position_dodge(0.8),size=0.5) +  
+  guides(fill=guide_legend(title="treatment"))+
+  theme_light()
+#(b) 带抖动散点的多数据系列箱型图
+data<-transform(data,dist_cat_n=as.numeric(class), scat_adj=ifelse(treatment == "ambient",-0.2,0.2))
+ggplot(data, aes(x =class, y = BAI2013))+
+    geom_boxplot(outlier.size = 0, aes(fill=factor(treatment)), position = position_dodge(0.8),size=0.4) + 
+    geom_jitter(aes(scat_adj+dist_cat_n, BAI2013,fill = factor(treatment)), position=position_jitter(width=0.1,height=0), shape=21, size = 1.5)+
+  guides(fill=guide_legend(title="treatment"))+
+  theme_light()
+
+图(c)多数据系列的小提琴图，需要使用自定义的函数geom_split_violin()实现，它可以只将两个小提琴图各采取一半，并拼接在一起，具体实现代码如下所示。
+
+data<-transform(data,dist_cat_n=as.numeric(class), scat_adj=ifelse(treatment == "ambient",-0.15,0.15))
+ggplot(data, aes(x = class, y = BAI2013,fill=factor(treatment)))+
+  geom_split_violin(draw_quantiles = 0.5,trim = FALSE)+
+# geom_split_violin为构造的双数据系列小提琴图，具体请见源代码文件
+  geom_jitter(aes(scat_adj+dist_cat_n, BAI2013,fill = factor(treatment)),
+              position=position_jitter(width=0.1,height=0), shape=21, size = 1)+
+  guides(fill=guide_legend(title="treatment"))+
+  theme_light()
+
+
+ 	箱型图的水平显示 使用ggplot2包的geom_box()，结合coord_flip( )函数实现箱型图的水平翻转，如图5-2-15(a)所示。虽然箱型图部分实现了水平翻转，但是右边的图例legend部分还是竖直的。这时，我们只需要把ggplot2包的geom_box()函数替换成ggstance包的geom_boxploth()函数，就可以实现如图5-2-15(b)所示的效果。
+
+    
+                      (a)                                       (b)
+图5-2-15 水平显示的箱型图 
+
+
+箱型图的中值排序显示 排序展示数据对更快地发现数据规律和获取数据信息尤为重要。对应X轴为类别向量时，最好将箱型图按中值降序后展示，如图5-2-16(b)所示。
+      
+图5-2-16中值排序显示的箱型图
+
+  中值排序显示的箱型图
+先使用reorder()函数根据中值median对数据框mydata排序，然后改变因子向量的顺序，使因子向量的水平levels按其中值降序排列，最后使用ggplot2包的geom_boxplot()函数绘制即可，具体代码如下：
+Order_Class<-with(mydata,reorder(Class,Value,median))
+Order_Class<-factor(Order_Class,levels=rev(levels(Order_Class)))
+ggplot(mydata, aes(Order_Class,Value))+
+  geom_boxplot(aes(fill = Class),notch = FALSE,outlier.alpha=1) +
+  scale_fill_manual(values=c(brewer.pal(7,"Set2")[c(1,2,4,5)]))+
+  scale_y_continuous(breaks=seq(0,15,3))+wo
+  theme_light()
+
+
+5.3 二维核密度估计图和统计直方图
+5.3.1 二维统计直方图
+	二维统计直方图主要针对二维数据的统计分析，X-Y轴变量为数值型。首先要从X轴和Y轴变量数据分别找出它的最大值和最小值，然后确定一个区间，使其包含全部测量数据，将区间分成若干小区间[Xn:Xn+w, Yn:Yn+w]（其中，w为最小区间的大小，(Xn, Yn)为第n个区间的始点），统计测量结果出现在各小区间的频数M。 在平面直角坐标系中，X轴和Y横轴分别标出每个组的端点，每个方块（Bin）的颜色代表对应的频数，称这样的统计图为二维频数分布直方图。
+     
+(a)	(b)
+图5-3-1 不同类型的二维统计直方图. (a) 方块形. (b)六方形.
+
+5.3.2 二维核密度估计图
+核密度估计（Kernel density estimation），是一种用于估计概率密度函数的非参数方法 [30]，x1,x2,..,xn, y1,y2,..,yn为独立同分布F的n个样本点，设其概率密度函数为f，核密度估计为以下：
+ 
+其中，K(.)为核函数（非负、积分为1，符合概率密度性质，并且均值为0）。有很多种核函数，比如高斯函数(Gaussian function,  ，其中a, b和 c都为常数)，uniform,triangular, biweight, triweight, Epanechnikov,normal等。当h>0为一个平滑参数，称作带宽(bandwidth)。
+
+    
+(a)	(b)
+图5-3-2 不同类型的二维核密度估计图. (a) 栅格型raster. (b) 多边形polygon.
+
+  二维统计直方图和核密度估计图
+对于二维统计直方图，R 语言的ggplot2包的geom_bin2d ()和geom_hex ()函数分别可以绘制图5-3-1(a)和(b)，参数bins为在X和Y轴变量分别设定的区间数目。
+对于二维核密度估计图，R语言的ggplot2包的stat_density_2d()函数可以绘制，其中geom ="raster"或者"polygon"分别对应图5-3-2(a)和(b)，具体代码如下所示：
+library(RColorBrewer)
+library(ggplot2)
+colormap<- rev(brewer.pal(11,'Spectral'))
+# 构造正态分布的数据集
+x1 <- rnorm(mean=1.5, 5000)
+y1 <- rnorm(mean=1.6, 5000)
+x2 <- rnorm(mean=2.5, 5000)
+y2 <- rnorm(mean=2.2, 5000)
+df <- data.frame(x=c(x1,x2),y=c(y1,y2))
+ggplot(df, aes(x,y)) +
+   #geom_hex(bins = 40,na.rm=TRUE)+  #对应图5-3-1(b)
+geom_bin2d (bins=40,na.rm=TRUE) +  #对应图5-3-1(a)
+   scale_fill_gradientn(colours=colormap)+
+   theme_classic()
+
+ggplot(df, aes(x,y))+
+  stat_density_2d (geom ="raster",aes(fill = ..density..),contour = F)+  #对应图5-3-2(a)
+# stat_density_2d (geom ="polygon",aes(fill = ..level..),bins=30 )+    #对应图5-3-2(b)
+  scale_fill_gradientn(colours= colormap)+
+  theme_classic()
+	
+
+
+
+二维与一维统计分布组合图 我们还可以将二维统计直方图和核密度估计图，结合一维的统计分布图表一起展示，更加详细地揭示数据的分布情况，如图5-3-3所示。
+ 
+(a) 二维与一维统计直方图          (b) 二维与一维核密度估计图
+图5-3-4 二维与一维统计分布组合图
+  二维与一维统计分布组合图
+R 语言的gridExtra包的grid.arrange()函数实现ggplot2包绘制的一维和二维统计分布图的组合，具体实现代码如下：
+library(ggplot2)
+library(gridExtra)
+library(RColorBrewer)
+Colormap <- rev(brewer.pal(11,'Spectral'))
+#构造正态分布的数据集
+N<-300
+x1 <- rnorm(mean=1.5, N)
+y1 <- rnorm(mean=1.6, N)
+x2 <- rnorm(mean=2.5, N)
+y2 <- rnorm(mean=2.2, N)
+data <- data.frame(x=c(x1,x2),y=c(y1,y2)) 
+hist_top <- ggplot(data, aes(x)) +
+  geom_density(colour="black",fill='#5E4FA2',size=0.25)+
+  theme_void()
+# 同样绘制右边的直方图
+hist_right <- ggplot(data, aes(y)) +
+  geom_density(colour="black",fill='#5E4FA2',size=0.25)+
+  theme_void()+
+  coord_flip()
+scatter<-ggplot(data, aes(x, y)) + 
+  #stat_density2d(geom ="polygon",aes(fill = ..level..),bins=30 )+
+stat_binhex(bins = 15,na.rm=TRUE,color="black")+# 
+   scale_fill_gradientn(colours=Colormap)+
+    theme_minimal()
+# 最终的组合
+grid.arrange(hist_top, empty, scatter, hist_right, ncol=2, nrow=2, widths=c(4,1), heights=c(1,4))
+
+
+
+5.4 金字有时候为了更好地发现数据规律或者展示数据分析结果，可以使用二维散点图和统计直方图或核密度估计图的组合图表，如图5-1-3所示。
+   
+   
+     
+(a) 二维散点与统计直方图          (b) 二维散点与核密度估计图
+图5-1-3 二维散点与统计分布组合图
+
+  二维散点与统计分布组合图
+R 语言的ggpubr包的ggscatterhist()函数（可选择"density"核密度估计图, "histogram"统计直方图, "boxplot"箱型图共三种类型），ggExtra包的ggMarginal()函数（可选择"density"核密度估计图, "histogram"统计直方图, "boxplot"箱型图,"violin"小提琴图共四种类型），gridExtra包的grid.arrange()函数实现ggplot2包绘制的散点图和统计分布图的组合，这三种方法都可以实现二维散点与统计分布组合图，其中以ggscatterhist()函数最为简单，grid.arrange()函数的可控性最好、也最为复杂。图5-1-3(b)二维散点与核密度估计图的具体实现代码如下：
+library(ggplot2)
+library(ggpubr)
+N<-200
+x1 <- rnorm(mean=1.5, sd=0.5,N)
+y1 <- rnorm(mean=2,sd=0.2, N)
+x2 <- rnorm(mean=2.5,sd=0.5, N)
+y2 <- rnorm(mean=2.5,sd=0.5, N)
+x3 <- rnorm(mean=1, sd=0.3,N)
+y3 <- rnorm(mean=1.5,sd=0.2, N)
+data2 <- data.frame(x=c(x1,x2,x3),y=c(y1,y2,y3),class=rep(c("A","B","C"),each=200))
+ggscatterhist(
+  data2,  x ='x', y = 'y',  
+  shape=21,color ="black",fill= "class", size =3, alpha = 0.8,
+  palette = c("#00AFBB", "#E7B800", "#FC4E07"),
+  margin.plot =  "density",
+  margin.params = list(fill = "class", color = "black", size = 0.2),
+  legend = c(0.9,0.15),
+ggtheme = theme_minimal()))
+?
+ 
+第七章 局部整体型图表
+
+第八章 时间序列型图表
+
+第九章 高维数据型图表
+?
+参考：
+1.	Brink, H., J.W. Richards, and M. Fetherolf, Real-world machine learning. 2017: Manning.
+2.	Tan, P.-N., M. Steinbach, and V. Kumar, Introduction to data mining. 1st. 2005, Boston: Pearson Addison Wesley. xxi.
+

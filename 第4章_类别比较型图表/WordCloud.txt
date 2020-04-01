@@ -1,0 +1,210 @@
+Perception and Preference Analysis of Fashion Colors: 
+Solid Color Shirts
+Abstract:
+Color, as an important fashion feature, can make great influences on the consumers¡¯ preference and purchase intention. To investigate consumers¡¯ preference of fashion colors can help the garment industries to develop new and popular products. Hence, a psychophysical experiment based on solid color shirts is carried out to analyze people¡¯s perception and preference on fashion colors, including the aesthetic differences and similarities between male and female, and establish a hierarchical feed-forward model of color preference for solid color shirts in this paper. Firstly, 480 colors are collected from solid shirts of different clothing brands and Mean Shift clustering algorithm is used to classify them into 19 clusters in CIE LAB color space. Secondly, another 22 solid colors, combined with the 19 colors of cluster centers, are generated the solid color scheme. Thirdly, 41 solid male and female shirts and fabrics were simulated in three dimensions as the stimuli presented on a calibrated computer display, and The simulations are assessed by 42 observers (consisting of 17 males and 17 females) in terms of 11 semantic scales, including Cold/Warm, Heavy/Light, Passive/Active, Dirty/Clearn, Tense/Relaxed, Plain/Splendid, Traditional/Moder, Masculine/Feminine¡±,  Slim-Look/Fat-Look¡±, Hard-to-Match/Easy-to-Match, Dislike/Like. The experimental results demonstrate that the Hard-to-Match/ Easy-to-Match response is found to highly correlate with Dislike/Like. Furthermore, the female¡¯s response to Hard-to-Match/ Easy-to-Match has a strong correlation with 2 adjective pairs (Plain/Splendid and Slim-Look/ Fat-Look), while that of male also has a strong correlation with 2 adjective pairs (Plain/ Splendid and Masculine/Feminine). Finally, a hierarchical feed-forward model of aesthetic perception for solid color shirts is established to predict the shirt preference degree. These findings could be used to develop a more robust and comprehensive theory of fashion color preferences and provide a reference for the design of solid color shirts. 
+Keywords: Fashion color preference, Color perception, Solid color shirts, Consumers¡¯ purchase intention
+
+1. Introduction 
+Color is light carried on wavelengths absorbed by the eyes that the brain converts into colors that we see [1], and it is ubiquitous and is a source of information. Colors can have a powerful psychological effect and evoke emotions and therefore it can change our behavior too, which is also supported by science, as color addresses one of our basic neurological needs for stimulation [2].
+Color, as an important fashion feature, can also make great influences on the consumers¡¯ preference and purchase intention. For consumers, the visual appearance and color is placed above other factors when shopping (1% sound / smell, 6% texture, 93% visual appearance) [3]. The consumers make up their minds within 90 seconds of their initial interactions with either people or products and about 62~90% of the assessment is based on colors alone [1]. For retailers, shopping is the art of persuasion. Though there are many factors that influence how and what consumers buy. 85% of shoppers place color as a primary reason for why they buy a particular product [3]. However, a great deal is decided by visual cues, the strongest and most persuasive color.
+Basically, the perception of a clothing color directly affects the parts of person¡¯s nervous system to arouse various emotions, such as excitement, energy, and calmness, which play an important role for customers in making decisions on what they like and dislike. On another hand, to know the consumers¡¯ preference of fashion color can help companies to reduce the stock, improve the sale and enhance the competitiveness. Hence, given that our moods and feelings are unstable and that colors play roles in forming attitude, it is significant to investigate the perception and preference of product color. Furthermore, there is a significant difference between the preference between genders when coming to color selection [4], and it is also important to investigate the preference difference of fashion color between female and male.
+
+     
+(a)             (b)             (c)             (d)            (e)
+Figure 1. Examples of various color shirts. (a) Solid color. (b) Two-color combination.
+(c) Multi-color combination. (d) One-color gradient. (b) Two-color gradient.
+The shirts are a kind of common and popular fashion among male and female, including solid color, multi-color plaid shirts and printing shirts with color gradient, as shown in Figure 1. Compared other shirts, the solid color shirts do not have color gradients or combinations and pattern, and it is easier to find the potential relationships between shirt color values and people's preference. Hence, in this paper, the solid color shirts are selected as the research objects to analyze people¡¯s perception and preference on fashion colors, and we make the following contributions:
+?	We find the potential preference pattern of male and female consumers that the Hard-to-Match/Easy-to-Match (HE) response is found to highly correlate with Dislike/Like and both of male and female have the similar response to Cold/Warm, Heavy/Light and Passive/Active. 
+?	We analyze the aesthetic differences and similarities between male and female. The female¡¯s response to HE has a strong correlation with 2 adjective pairs (Plain/Splendid and Slim-Look/Fat-Look), while that of male also has a strong correlation with 2 adjective pairs (Plain/Splendid and Masculine/Feminine).
+?	We develop a hierarchical feed-forward model of aesthetic perception for solid color shirts. This model can predict the preference degree of solid color shirts by inputting the color values in CIELAB color space.
+
+2. Related Work
+2.1 General Context Perception and Preference Analysis
+The ability to appreciate the aesthetic qualities of the items is one of the universal characteristics of humanity, including the colors, textures and pattern. Neuroaesthetics is the discipline of investigating how beauty activates aesthetic perception and appreciation. It is situated at the intersection of psychological aesthetics, neuroscience, and human evolution [5]. The main objective of neuroaesthetics is to ¡°characterize the neurobiological foundations and evolutionary history of the cognitive and affective processes involved in aesthetic experiences and artistic and other creative activities¡± [6]. 
+Most previous neuroaesthetic studies have focused on the investigation of the neural mechanisms underlying aesthetic appreciation as well as those factors that make certain stimuli, such as the general visual arts, dance, the human face, and music. Over the past decade, several neutrally based and neutrally inspired models of aesthetic perception have been proposed, such as The Neuropsychological Model [7], The Information-Processing Model [8, 9], The Mirror Model of Art [10], The Quartet Model of Human Emotion [11], The Unifying Model of Visual Aesthetic Experience [12] and The Hierarchical ¡°Feed-Forward¡± Model [13, 14]. Among them, the first real mathematical model to bridge the gap between low-level statistical features and aesthetic emotions aroused by visual textures is proposed by Thumfart and colleagues [13]. 
+However, these proposed models are used for general context perception and preference analysis, rather than the specific object whose colors are their main features. Hence, we still need to establish an effective model to bridge the gap between fashion colors and aesthetic emotions aroused by visual colors.  
+
+2.2 Product Color Perception and Preference Analysis
+Besides the textures and patterns of the products and environments, during the color perception process, an associate feeling or emotion is normally induced in our brains. The term ¡°color emotion¡± is used recently by researchers in this field to represent this feeling or emotion. Many researchers have suggested that color directly affects the parts of human¡¯s nervous system that are responsible for emotion arousal, and different colors or color combinations usually have different meanings for people. As color emotion is in the domain of psychology, it is influenced by many factors such as sex, age, climate and geographic conditions, as well as race and cultural influences. 
+Many researches have already investigated the relationship in terms of adjective pairs, such as ¡°heavy/light¡±, ¡°passive/active¡± and ¡°cold/warm¡±, between color and the affective quality of the color itself (e.g., color patches) [15-19] and the effects by sex [20] and age [21, 22] difference. Note that most of these color preference studies are based on color patches. As pointed out by Norman and Scott, [23] such studies do not measure the observer responses to color products, but to color patches. It is still unclear whether the observer responses to color patches can generalize to real-world applications.
+Colors have inherent features, like ¡°heavy/light¡±, ¡°passive/active¡± and ¡°cold/warm¡±, while the colors on the surface of different products and environments have different additional features, like ¡°masculine/feminine¡±, ¡°hard-to-match/easy-to-match¡±, ¡°traditional/fashionable¡±. There were only a few studies of color preference that used colored objects or environments as the stimuli, such as cars [24], textile or fabrics [25-27], residences [28], room interiors[29]. However, color preference ratings are found to vary across different objects, suggesting a strong impact of context on color preference [30]. 
+
+Compared with other products, the fashion is a much more common and ubiquitous product. Regarding previous research to the present study, to our best knowledge, there is no psychophysical research into color perception and preference of fashion with a specific contest. Using existing research findings of aesthetic perception models [13, 14] and colour emotion [15-19, 22, 31, 32] as a theoretical basis, this study aims to discover factors affecting fashion colour perception and preference and the specific mechanism. Furthermore, the investigated clothing is three-dimensionally displayed. Because the previous studies just do some research on the investigation of 2D fabric color preference [26, 27]. But there is a difference of color preference between 2D fabric and 3D clothing. Hence, it is more reliable to investigate the color preference of 3D clothing with the help of 3D clothing simulation technology. 
+
+3. Experimental Details
+3.1 Current Solid Shirt Color Analysis. 
+The colors of the test shirts used in the experiment are generated on the basis of the existing solid color shirts. We collect 480 colors from solid shirts of different clothing brands (shown in Figure 8(a)) and use Mean Shift clustering algorithm to classify them into 19 clusters in CIELAB color space (shown in Figure 8(b)). 19 cluster centers and their corresponding numbers of clusters are shown in Figure 8(c), and the white is the most popular color, followed by the dark and red. 
+        
+(a)                      (b)                       (c)
+Figure 2. Clustering results of solid shirts¡¯ colors.
+(a)	Original colors. (b) Clustering results. (c) Clustering centers.
+
+3.2	Solid Color Scheme Designing 
+Based on the 19 colors of clustering centers, another 22 solid colors are added to generate the solid color scheme, whose color values in CIELAB color space are shown in Figure 9. The 41 colors are selected to cover a reasonably wide range of lightness (L*), chroma (C*) and hue (hab) in CIELAB color space, and meanwhile to cover the clustering centers of existing solid shirts¡¯ colors. 
+ 
+Figure 3. Selected solid colors in CIE Lab color space.
+
+3.3	Solid Color Shirts Simulating 
+Based on the designed solid color scheme, CLO 3D software is used to simulate the three-dimensional men's and women's shirts, as shown in Figure 10(a) and (b) respectively (in which the image on the left is a basic type of men's shirt for a height of 175cm, the middle is a basic type of women's shirt for a height of 165cm, and the right is a simulated drawing of fabric with a size of 15cm ? 15cm). It is shown in Figure 5 that 41 female shirts whose colors are corresponding to the selected colors in Figure 3. 
+        
+(a)                       (b)
+Figure 4. Simulated fabric and shirt. (a) Male shirt. (b) Female shirt.
+
+                                         
+Figure 5. 3D-Simulated female shirts.
+
+3.4 Semantic Scales Designing
+We collect multitude of semantic scales from previous studies [14, 15, 18, 26] and select 11 adjective pairs related to solid color shirts: ¡°Cold-Warm¡±, ¡°Heavy: Light¡±, ¡°Passive: Active¡±, ¡°Dirty: Clean¡±, ¡°Tense: Relaxed¡±, ¡°Plain: Splendid¡±, ¡°Traditional : Modern¡±, ¡°Masculine : Feminine¡±,  ¡°Slim-Look: Fat-Look¡±, ¡°Hard-to-Match: Easy-to-Match¡±, ¡°Dislike: Like¡±. 
+During the main experiment, each word pair was presented using a seven-step, forced choice scale to measure the observer response. Taking ¡°Dislike: Like¡± as an example, the 7 steps included ¡°Dislike Extremely¡±, ¡°Dislike Very Much¡±, ¡°Dislike Somewhat¡±, ¡°Neither Like nor Dislike¡±, ¡°Like Somewhat¡±, ¡°Like¡±, ¡°Like Extremely¡±. A certain number of female and male observers are asked to fill in the same 7-step mandatory scale with choice questions to assess the 41 shirts.
+
+3.5 Visual Experiments Implementation 
+In the experiment, this study can use two Apple 27-inch iMacs (model: MD095CH/A) as the display. The two monitors were under the same indoor environment and light source. During the experiment, other interference factors are avoided and the same brightness and display calibration are set for the two monitors. During the test, an image was displayed for 10 seconds to avoid interference with the next image. 
+A panel of 34 Chinese observers who has basic knowledge about color or design, including 17 males and 17 females, take part in the experiment. There are 6 males and 5 females with the age between 18 and 25, while 10 males and 12 females with the age between 25 and 33. During the experiment, each observer is asked to sit in front of the experimental display, with a viewing distance about 50 cm. 
+
+4	Results Analysis and Discussion
+4.1 Variance analysis
+Gender variance analysis. It is important to know the difference of semantic scales between male and female. Hence, an independent sample t-test is used to analyze the differences in the semantic scales for different solid color shirts from the viewpoint of gender, as shown in Figure 6. 
+In Figure 6, the block (i, j) the middle heatmap shows the gender difference of the ith semantic scale for the jth solid color shirt, where i=1,2,¡­, 10 and j=0,2,¡­,40. Especially, the red block in the middle heatmap indicates the significant difference P is less than 0.05, which means there is significant difference of semantic scale between male and female in terms of solid color shirts. The results show that observers of different genders do not show a significant difference of aesthetic emotions (P>0.05) for different solid color shirts, besides ¡°FatL : SlimL¡± (Slim-Look: Fat-Look), which indicated that different genders have nearly consistent aesthetic emotions for different solid color shirts.
+In Figure 6, the top heatmap shows the mean values of semantic scales of color preference (¡°Dislike: Like¡±). The female and male have a positive preference to white and black colors. Especially, the values of the female¡¯s response ¡°Dislike:Like¡± are slightly lower than that of male for most colors, which means female is fussier about fashion than male. 
+ 
+ 
+      
+Figure 6. Independent sample t-test from the viewpoint of gender. 
+(¡°FatL : SlimL¡± indicates ¡°Slim-Look: Fat-Look¡±,
+¡°HMatch : Ematch¡± indicates ¡°Hard-to-Match: Easy-to-Match¡±)
+
+Age variance analysis. It is important to know the difference of semantic scales among people with different age. Therefore, an independent sample t-test is used to analyze the differences in the semantic scales for different solid color shirts from the viewpoint of age, as shown in Figure 7. The observers are classified into two groups: 18-25 and 25-33 and their numbers are 12 and 22 respectively.
+    
+ 
+         
+Figure 7. Independent sample t-test from the viewpoint of age.
+In Figure 7, the block (i, j) the middle heatmap shows the age difference of the ith semantic scale for the jth solid color shirt, where i=1,2,¡­, 10 and j=0,2,¡­,40. Especially, the red block in the middle heatmap indicates the significant difference P is less than 0.05, which means there is significant difference of aesthetic emotions among different age groups in terms of solid color shirts. The results show that observers of different age do not show a significant difference of semantic scales (P>0.05) for different solid color shirts, besides the 14th dark red, the 31st white, the 35th and 40th black, which indicated that different genders have nearly consistent aesthetic emotions for different solid color shirts.
+In Figure 7, the top heatmap shows the mean values of semantic scales of color preference (¡°Dislike: Like¡±). The different age groups have a positive preference to white and black colors. Especially, the values of the 18~25 observers¡¯ response ¡°Dislike:Like¡± are slightly greater than that of 25~33 for most colors, which means the younger people have more preferred colors.
+
+4.2	Correlation and Regression Analysis
+It is possible and significant to quantify aesthetic emotions of solid color shirts and confirm the relationship between color values and aesthetic emotions. In our studies, the values in CIELAB color space are used to describe the colors of solid shirts.
+The CIELAB color space (also known as CIE L*a*b* or sometimes abbreviated as simply "Lab" color space) is a color space defined by the International Commission on Illumination (CIE) in 1976. It expresses color as three numerical values, L* for the lightness and a* and b* for the green-red and blue-yellow color components. CIELAB was designed to be perceptually uniform with respect to human color vision, meaning that the same amount of numerical change in these values corresponds to about the same amount of visually perceived change.
+The CIELCH color space is a CIELAB cube color space, where instead of Cartesian coordinates a*, b*, the cylindrical coordinates C* (chroma, relative saturation) and hab (hue angle, angle of the hue in the CIELAB color wheel) are specified. The CIELAB lightness L* remains unchanged. The conversion of a* and b* to C* and hab is done using the following formulas:
+	 	(1)
+	 	(2)
+	The relationship between CIE LCH values and semantic scales is shown in Figure 8. In Figure 8, compared with other semantic scales, the observers¡¯ response ¡°Heavy: Light¡± and ¡°Passive: Active¡± have the highest linear correlation with the L* and C* respectively. Compared with other semantic scales, the observers¡¯ response ¡°Cold: Warm¡± has a strong nonlinear correlation with hab. The value of response ¡°Cold: Warm¡± decreases along with hab, reaches the lowest point at hab of around 250o, and then increases. Based on the universal models of color emotion and color harmony developed by Ou et al [33], the fitting equations of the perceived ¡°Heavy: Light¡±, ¡°Passive: Active¡± and ¡°Cold: Warm¡± , as the three basic semantic scales, are confirmed and illustrated in Table 2 by regression analysis method. 
+ 
+  
+Figure 8. The correlation between CIE LCH values and 11 semantic scales. (Corr indicates the correlation coefficient)
+
+	The scatterplot matrix of average values of semantic scales is shown in Figure 9. In Figure 9, the perceived ¡°HMatch: EMatch¡± (¡°Hard-to-Match: Easy-to-Match¡±) is found to highly correlate with ¡°Dislike: Like¡±. The Gender Variance analysis results of Figure 6 show that observers of different genders show a significant difference of ¡°FatL: SlimL¡± (Slim-Look: Fat-Look), (P<0.05) for different solid color shirts. Hence, Figure 10 shows the scatterplot matrix of semantic scales for female and male. It can be found that the perceived ¡°HMatch: EMatch¡± is mainly affected by the ¡°Plain: Splendid¡± and ¡°Slim-Look: Fat-Look¡± for female, and the ¡°Plain: Splendid¡± and ¡°Masculine: Feminine¡± for male. Furthermore, the perceived ¡°FatL : SlimL¡± and ¡°Masculine: Feminine¡± have a linear correlation with the three basic semantic scales respectively. 
+The internal relationship of semantic scales is shown in Table 1. R indicate the Pearson correlation coefficient. In Table 1, the semantic scales connected with ¡°Dislike: Like¡± directly or indirectly are taken into consideration, including ¡°HMatch: EMatch¡±, ¡°FatL: SlimL¡±, ¡°Masculine: Feminine¡± and ¡°Plain: Splendid¡±, while the semantic scales that do not affect the response ¡°Dislike: Like¡± are ignored in the data analysis, including ¡°Dirty: Clean¡±, ¡°Traditional: Modern¡± and ¡°Tense: Relaxed¡±. 
+Interestingly, it can be found from these variance and correlation analysis: 
+1.	The people¡¯s attitude towards the solid color shirts is mainly affected by whether the shirts is easy to match or not. Compared with the shirts that is hard to match, people prefer the solid color shirts that is easy to match, which indicates people dislike taking much time to or do not know how to match their clothing.
+2.	The female prefers the solid color shirts that can make them look slim, rather fat, and easy to match, while the male do not take it into consideration at all. 
+3.	The male prefers solid color shirts that can make them look masculine and is easy to match.
+4.	Compared with splendid shirts, both of female and male prefer plain shirts. Too splendid clothing can make them hard to match.
+
+Table 1. Internal relationship of semantic scales.
+Dependent variable	Independent variable	R
+Plain: Splendid	Passive :Active	0.85
+Masculine : Feminine (Male)	Heavy: Light	0.76
+	Passive: Active	0.76
+	Cold : Warm	0.76
+Slim-Look: Fat-Look (Female)	Heavy: Light	-0.64
+	Passive: Active
+Cold : Warm	-0.54
+-0.49
+Hard-to-Match: Easy-to-Match (Female)	Plain: Splendid
+Slim-Look: Fat-Look	-0.57
+0.68
+Hard-to-Match: Easy-to-Match (Male)	Plain: Splendid
+Masculine : Feminine	-0.60
+-0.54
+Dislike : Like	Hard-to-Match: Easy-to-Match	0.85
+
+ 
+Figure 9. The scatterplot matrix of average values of semantic scales.
+
+ 
+Figure 10. The scatterplot matrix of semantic scales for female and male. 
+
+Based on the hierarchical feed-forward theory of aesthetic texture perception [13, 14], a hierarchical feed-forward model of aesthetic perception for solid color shirts is developed from Table 1, as shown in Figure 11. A hierarchical feed-forward model with five layers is established. The inherent layer consists of three values in CIELCH color space; there are three adjective pairs ,¡°Heavy: Light¡±, ¡°Passive: Active¡±  and  ¡°Cold: Warm¡±, that have the strongest link with the L*, C* and hab respectively; the judgement layer 1 also has three adjective pairs: ¡°Palin: Splendid¡±, ¡°Masculine : Feminine¡± (only for male) and ¡°Slim-Look: Fat-Look¡± (only for female) while the judgement layer 2 just has ¡°Hard-to-Match: Easy-to-Match¡± for male and female respectively; the final emotion layer is used to output people¡¯s preference degree. Furthermore, the regression analysis method is used to confirm the regression equation among these layers, as shown in Table 2. Coefficient in each regression equation are calculated by using the least square method to fit the psychophysical data. The predictive performance of each equation in terms of correlation coefficient of determination R2 is also given in Table 3.
+
+ 
+Figure 11. A hierarchical feed-forward model of aesthetic perception for solid color shirts.
+
+Table 2. Regression Analysis results of the hierarchical feed-forward model.
+ID	Adjective Pair	Fitting Equation	R2
+1	Heavy: Light	 
+0.682
+2	Passive :Active	 
+0.806
+3	Cold : Warm	 
+0.624
+4	Plain: Splendid	 
+0.838
+5	Fat-Look : Slim-Look(Female)	 
+0.552
+6	Hard-to-Match: Easy-to-Match (Female)	 
+0.521
+7	Masculine : Feminine (Male)	 
+0.747
+8	Hard-to-Match: Easy-to-Match (Male)	 
+0.385
+9	Dislike: Like	 
+0.713
+Note: L* is CIELCH lightness, C* is CIELCH chroma, hab is CIELCH hue angle.
+
+	The hierarchical feed-forward model of aesthetic perception for solid color shirts can predict the color preference degree for female and male when L* , C* and hab are inputted. When the L* are 25, 50 and 75 respectively, the color preference degree changes with the value of C* and hab for female and male, as shown in Figure 12 and 13. 
+   
+(a) L*=25                (b) L*=50                  (c) L*=75  
+Figure 12. The prediction of color preference degree for female.
+    
+(a) L*=25                (b) L*=50                  (c) L*=75
+Figure 13. The prediction of color preference degree for male.
+Furthermore, there are some interesting pattern we can find from Figure 12 and 13 generated by the developed model. 
+1.	It can be found that the preference degree (¡°Dislike: Like¡±) of a color for female is usually lower than that for male, which is consistent with the former conclusion that female is fussier about fashion than male. 
+2.	The blue color whose hab is about 270 is more popular compared with other colors when their chroma C* and lightness L* are same. 
+3.	The bigger the lightness L* of a color is, the bigger the preference degree is, when its C* and hab are same.
+4.	The smaller the chroma C* of a color is, the bigger the preference degree is, when its L* and hab are same.
+
+4.3 Research Limitations
+Besides the solid color shirts, aesthetic perception for other color shirts also need to be investigated by using transfer learning method [34] based on the developed model, including two-color, multi-color, one-color gradient and two-color gradient shirts, as show in Figure 1. 
+For these color shirts, some other color features and aesthetic properties should be taken into consideration to the hierarchical feed-forward model, such as maximum and mean color difference in the inherent layer, ¡°Unharmonious: Harmonious¡±, ¡°Simple: Complex¡± in the affective layer. Compare with solid color shirts, the harmonious degree of the color combination and the complexity of the color pattern are important for two-color and multi-color shirts, and the color gradients of the one-color gradient shirts and the harmonious degree of the two-color gradient shirts are also significant aesthetic properties. 
+
+5. Conclusion 
+Based on the psychophysical data, a hierarchical feed-forward model of aesthetic perception for solid color shirts is developed, and the aesthetic differences and similarities between male and female also are analyzed in this paper. Especially, it is found that the female prefers the solid color shirts that can make them look slim, rather fat, and easy to match, while the male do not take it into consideration at all, and the male prefers solid color shirts that can make them look masculine and is easy to match. Furthermore, the proposed model can be used to predict the preference degree of a color. 
+The limit of this study is that all observers are Chinese people who have some fundamental knowledge about color. This is a very specific consumer group that cannot be used directly to translate the results into universal consumer preference of fashion colors. However, it is not hard to analyze the fashion color preference for consumers with different ages and nationalities by using transfer learning method based on the developed model. In the future, we will attempt to improve the proposed hierarchical feed-forward model of aesthetic perception and make it suitable for other color shirts and clothing.
+
+Reference 
+1.	Singh, S., Impact of color on marketing. Management Decision, 2006. 44(6): p. 783-789.
+2.	Hillenbrand, P., et al., Better branding: brand names can influence consumer choice. Journal of Product & Brand Management, 2013. 22(4): p. 300-308.
+3.	Choi, H.H., S.A. Lim, and J. HeeKim, Promotional Video of Editing Techniques Utilizing Color and Brand Balance. International Journal of Software Engineering and Its Applications, 2014. 8(7): p. 149-158.
+4.	Funk, D. and N. Oly Ndubisi, Colour and product choice: a study of gender roles. Management Research News, 2006. 29(1/2): p. 41-52.
+5.	Bundgaard, P.F., Feeling, meaning, and intentionality-a critique of the neuroaesthetics of beauty. Phenomenology and the Cognitive Sciences, 2015. 14(4): p. 781-801.
+6.	Chatterjee, A., Neuroaesthetics: A Coming of Age Story. Journal of Cognitive Neuroscience, 2011. 23(1): p. 53-62.
+7.	Chatterjee, A., Prospects for a cognitive neuroscience of visual aesthetics. 2003.
+8.	Leder, H., Next Steps in Neuroaesthetics: Which Processes and Processing Stages to Study? Psychology of Aesthetics Creativity and the Arts, 2013. 7(1): p. 27-37.
+9.	Leder, H., et al., A model of aesthetic appreciation and aesthetic judgments. British Journal of Psychology, 2004. 95: p. 489-508.
+10.	Tinio, P.P.L., From Artistic Creation to Aesthetic Reception: The Mirror Model of Art. Psychology of Aesthetics Creativity and the Arts, 2013. 7(3): p. 265-275.
+11.	Koelsch, S., et al., The quartet theory of human emotions: An integrative and neurofunctional model. Physics of Life Reviews, 2015. 13: p. 1-27.
+12.	Redies, C., Combining universal beauty and cultural context in a unifying model of visual aesthetic experience. Frontiers in Human Neuroscience, 2015. 9.
+13.	Thumfart, S., et al., Modeling Human Aesthetic Perception of Visual Textures. Acm Transactions on Applied Perception, 2011. 8(4).
+14.	Liu, J.L., E. Lughofer, and X.Y. Zeng, Could linear model bridge the gap between low-level statistical features and aesthetic emotions of visual textures? Neurocomputing, 2015. 168: p. 947-960.
+15.	Ou, L.C., et al., A study of colour emotion and colour preference. Part I: Colour emotions for single colours. Color Research and Application, 2004. 29(3): p. 232-240.
+16.	Ou, L.C., et al., A study of colour emotion and colour preference. part II: Colour emotions for two-colour combinations. Color Research and Application, 2004. 29(4): p. 292-298.
+17.	Ou, L.C., et al., A study of colour emotion and colour preference. Part III: Colour preference Modeling. Color Research and Application, 2004. 29(5): p. 381-389.
+18.	Xin, J.H., et al., Cross-regional comparison of colour emotions part I: Quantitative analysis. Color Research And Application, 2004. 29(6): p. 451-457.
+19.	Xin, J., et al., Cross©\regional comparison of colour emotions Part II: Qualitative analysis. Color Research & Application, 2004. 29(6): p. 458-466.
+20.	Hurlbert, A.C. and Y.Z. Ling, Biological components of sex differences in color preference. Current Biology, 2007. 17(16): p. R623-R625.
+21.	Beke, L., et al., Color preference of aged observers compared to young observers. Color Research & Application: Endorsed by Inter©\Society Color Council, The Colour Group (Great Britain), Canadian Society for Color, Color Science Association of Japan, Dutch Society for the Study of Color, The Swedish Colour Centre Foundation, Colour Society of Australia, Centre Fran?ais de la Couleur, 2008. 33(5): p. 381-394.
+22.	Ou, L.C., et al., Age effects on colour emotion, preference, and harmony. Color Research and Application, 2012. 37(2): p. 92-105.
+23.	Norman, R.D. and W.A. Scott, Color and affect: a review and semantic evaluation. The Journal of General Psychology, 1952. 46(2): p. 185-223.
+24.	Saito, T., Latent Spaces of Color Preference with and without a Context - Using the Shape of an Automobile as the Context. Color Research and Application, 1983. 8(2): p. 101-113.
+25.	Kim, S.J., et al., Emotion-based textile indexing using colors, texture and patterns. Advances in Visual Computing, Pt 2, 2006. 4292: p. 9-18.
+26.	Hsu, M.Y., L.C. Ou, and S.S. Guan, Colour preference for Taiwanese floral pattern fabrics. Color Research and Application, 2016. 41(1): p. 43-55.
+27.	Kim, E.Y., et al., Emotion-based textile indexing using colors and texture. Fuzzy Systems and Knowledge Discovery, Pt 1, Proceedings, 2005. 3613: p. 1077-1080.
+28.	Manav, B., Color©\emotion associations and color preferences: A case study for residences. Color Research & Application: Endorsed by Inter©\Society Color Council, The Colour Group (Great Britain), Canadian Society for Color, Color Science Association of Japan, Dutch Society for the Study of Color, The Swedish Colour Centre Foundation, Colour Society of Australia, Centre Fran?ais de la Couleur, 2007. 32(2): p. 144-150.
+29.	Yildirim, K., M.L. Hidayetoglu, and A. Capanoglu, Effects of interior colors on mood and preference: comparisons of two living rooms. Perceptual and motor skills, 2011. 112(2): p. 509-524.
+30.	Schloss, K.B., E.D. Strauss, and S.E. Palmer, Object color preferences. Color Research and Application, 2013. 38(6): p. 393-411.
+31.	Ou, L.C., et al., A cross©\cultural comparison of colour emotion for two©\colour combinations. Color Research & Application, 2012. 37(1): p. 23-43.
+32.	Szabo, F., P. Bodrogi, and J. Schanda, Experimental Modeling of Colour Harmony. Color Research and Application, 2010. 35(1): p. 34-49.
+33.	Ou, L.C., et al., Universal models of colour emotion and colour harmony. Color Research & Application, 2018. 43(5): p. 736-748.
+34.	Tsung, F., et al., Statistical transfer learning: A review and some extensions to statistical process control. Quality Engineering, 2018. 30(1): p. 115-128.
+
