@@ -2,7 +2,7 @@
 """
 Created on Wed Jan 23 12:07:15 2019
 
-@author: Jie Zhang
+@author: Jie Zhang，微信公众号【EasyShu】，本代码源自《Python数据可视化之美》
 """
 
 

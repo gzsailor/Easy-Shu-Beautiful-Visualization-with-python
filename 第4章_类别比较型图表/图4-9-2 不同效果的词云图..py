@@ -2,7 +2,7 @@
 """
 Created on Mon Feb  4 11:58:22 2019
 
-@author: Peter_Zhang
+@author: Jie Zhang，微信公众号【EasyShu】，本代码源自《Python数据可视化之美》
 """
 import chardet
 import jieba

@@ -1,3 +1,10 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Wed Oct 16 15:08:03 2019
+
+@author: Jie Zhang，微信公众号【EasyShu】，本代码源自《Python数据可视化之美》
+"""
+
 import geopandas as gpd
 from shapely.geometry import Point
 import numpy as np

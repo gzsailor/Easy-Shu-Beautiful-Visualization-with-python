@@ -2,7 +2,7 @@
 """
 Created on Sun Sep 29 18:29:39 2019
 
-@author: Peter_Zhang
+@author: Jie Zhang，微信公众号【EasyShu】，本代码源自《Python数据可视化之美》
 """
 import datetime
 import numpy as np

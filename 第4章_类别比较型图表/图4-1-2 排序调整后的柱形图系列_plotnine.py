@@ -2,7 +2,7 @@
 """
 Created on Mon Jun 18 11:13:35 2018
 
-@author: Peter_Zhang
+@author: Jie Zhang，微信公众号【EasyShu】，本代码源自《Python数据可视化之美》
 """
 
 import pandas as pd

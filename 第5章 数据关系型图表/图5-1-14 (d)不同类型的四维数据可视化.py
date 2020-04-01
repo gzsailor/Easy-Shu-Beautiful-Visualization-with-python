@@ -2,7 +2,7 @@
 """
 Created on Mon Mar 18 11:21:27 2019
 
-@author: Jie Zhang
+@author: Jie Zhang，微信公众号【EasyShu】，本代码源自《Python数据可视化之美》
 """
 #https://dawes.wordpress.com/2014/06/27/publication-ready-3d-figures-from-matplotlib/
   

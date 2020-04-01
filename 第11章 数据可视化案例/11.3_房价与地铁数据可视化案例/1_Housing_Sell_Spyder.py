@@ -1,8 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 Created on Tue Feb 27 14:39:56 2018
-EasyCharts团队张杰出品，如有任何问题可添加微信：EasyCharts，
-欢迎大家关注微信公众号：EasyCharts
+Jie Zhang，微信公众号【EasyShu】，本代码源自《Python数据可视化之美》
 @author: Jie Zhang
 """
 #https://www.jianshu.com/p/ecf3a88d9ae1 

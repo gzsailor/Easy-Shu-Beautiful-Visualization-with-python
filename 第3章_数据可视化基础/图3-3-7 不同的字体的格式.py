@@ -2,7 +2,7 @@
 """
 Created on Thu Mar 14 17:15:11 2019
 
-@author: Jie Zhang
+@author: Jie Zhang，微信公众号【EasyShu】，本代码源自《Python数据可视化之美》
 """
 
 from matplotlib.font_manager import FontProperties

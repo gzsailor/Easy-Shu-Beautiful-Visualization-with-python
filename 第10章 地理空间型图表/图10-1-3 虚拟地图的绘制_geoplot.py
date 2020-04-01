@@ -2,7 +2,7 @@
 """
 Created on Sun Dec  1 13:34:37 2019
 
-@author: Peter_Zhang
+@author: Jie Zhang，微信公众号【EasyShu】，本代码源自《Python数据可视化之美》
 """
 from geopandas import GeoDataFrame
 import geoplot as gplt
